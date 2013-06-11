@@ -13,8 +13,8 @@
  * @param number
  * @param kilometers
  */
-Copy::Copy(const int& number, const int& kilometers, Vehicle* vehicle) {
-	_number = number;
+Copy::Copy(const int& id, const int& kilometers, Vehicle* vehicle) {
+    _id = id;
 	_kilometers = kilometers;
 	_vehicle = vehicle;
 }
@@ -24,7 +24,7 @@ Copy::Copy(const int& number, const int& kilometers, Vehicle* vehicle) {
  * @param copy
  */
 Copy::Copy(const Copy& copy) {
-	_number = copy._number;
+    _id = copy._id;
 	_kilometers = copy._kilometers;
 	_vehicle = copy._vehicle;
 }
@@ -67,16 +67,16 @@ void Copy::setKilometers(int kilometers) {
  *
  * @return
  */
-int Copy::getNumber() const {
-	return _number;
+int Copy::getId() const {
+    return _id;
 }
 
 /**
  *
- * @param number
+ * @param id
  */
-void Copy::setNumber(int number) {
-	_number = number;
+void Copy::setId(int id) {
+    _id = id;
 }
 
 /**
@@ -86,7 +86,7 @@ void Copy::setNumber(int number) {
  * @return
  */
 std::ostream& operator<< (std::ostream& out, const Copy& copy) {
-	out << "Copy's number: " << copy._number;
+    out << "Copy's number: " << copy._id;
 	out << "\nCopy's kilometers: " << copy._kilometers;
 	return out;
 }
@@ -99,7 +99,7 @@ std::ostream& operator<< (std::ostream& out, const Copy& copy) {
  */
 std::istream& operator>> (std::istream& in, Copy& copy) {
 	std::cout << "Please enter copy's number: ";
-	in >> copy._number;
+    in >> copy._id;
 	std::cout << "\nPlease enter copy's kilometers: ";
 	in >> copy._kilometers;
 	return in;

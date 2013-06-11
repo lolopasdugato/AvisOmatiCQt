@@ -7,6 +7,8 @@
 
 #include "../include/Borrower.h"
 
+int Borrower::_nbInstance = 0;
+
 /**
  *
  * @param id
@@ -15,8 +17,9 @@
  * @param address
  * @param phoneNumber
  */
-Borrower::Borrower(const int& id, const std::string& firstname,  const std::string& lastname, const Address& address, const std::string& phoneNumber) {
-	_id = id;
+Borrower::Borrower(const std::string& firstname,  const std::string& lastname, const Address& address, const std::string& phoneNumber) {
+    _nbInstance++;
+    _id = _nbInstance;
 	_firstName = firstname;
 	_lastName = lastname;
 	_address = address;

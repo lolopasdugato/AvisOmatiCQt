@@ -13,7 +13,7 @@
 
 class Borrower {
 public:
-	Borrower(const int& id, const std::string& firstname,  const std::string& lastname, const Address& address, const std::string& phoneNumber = "None" );
+    Borrower(const std::string& firstname,  const std::string& lastname, const Address& address, const std::string& phoneNumber = "None" );
 	Borrower(const Borrower&);
 	virtual ~Borrower();
 
@@ -35,6 +35,7 @@ public:
 	friend std::istream& operator>> (std::istream& in, Borrower& borrower);
 
 private:
+    static int _nbInstance;
 	int _id;
 	std::string _firstName;
 	std::string _lastName;

@@ -20,11 +20,11 @@ public:
 
 	Vehicle* at(int i);
 	int count();
-	std::vector<std::string> search(std::string brand);
-	const std::vector<Vehicle*>& getVehicleList() const;
+    std::vector<std::string> search(std::string brand);
+    const std::vector<Vehicle*>& getVehicleList() const;
 
 private:
-	std::vector<Vehicle*> _vehicleList;
+    std::vector<Vehicle*> _vehicleList;
 };
 
 #endif /* VEHICLECONTAINER_H_ */

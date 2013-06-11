@@ -14,22 +14,28 @@ BorrowerContainer::BorrowerContainer() {
 
 }
 
-const std::vector<Borrower*>& BorrowerContainer::getBorrowerContainer() const {
+const std::map<int,Borrower*>& BorrowerContainer::getBorrowerContainer() const {
 	return _borrowerContainer;
 }
 
 void BorrowerContainer::setBorrowerContainer(
-		const std::vector<Borrower*>& borrowerContainer) {
+        const std::map<int,Borrower*>& borrowerContainer) {
 	_borrowerContainer = borrowerContainer;
 }
 
-std::vector<Borrower*> BorrowerContainer::search(std::string firstName, std::string lastName) {
-	std::vector<Borrower*> sorted;
-	for(std::vector<Borrower*>::iterator it = _borrowerContainer.begin(); it != _borrowerContainer.end(); it++) {
-		if(firstName != "none" && firstName == (*it)->getFirstName()) sorted.push_back(*it);
-		else if(lastName != "none" && lastName == (*it)->getLastName()) sorted.push_back(*it);
+std::map<int, Borrower*> BorrowerContainer::search(std::string firstName, std::string lastName) {
+    std::map<int, Borrower*> sorted;
+    for(std::map<int, Borrower*>::iterator it = _borrowerContainer.begin(); it != _borrowerContainer.end(); it++) {
+        if(firstName != "none" && firstName == (*it).second->getFirstName()) sorted[(*it).first] = (*it).second;
+        else if(lastName != "none" && lastName == (*it).second->getLastName()) sorted[(*it).first] = (*it).second;
 	}
 	return sorted;
+}
+
+void BorrowerContainer::add(const std::string& firstname, const std::string& lastname, const Address& address, const std::string& phoneNumber = "None") {
+    Borrower* a = new Borrower (firstname, lastname, address, phoneNumber);
+    _borrowerContainer[a->getId()] = a;
+    return;
 }
 
 BorrowerContainer::~BorrowerContainer() {

@@ -10,20 +10,20 @@
 #ifndef BORROWERCONTAINER_H_
 #define BORROWERCONTAINER_H_
 
-#include <vector>
+#include <map>
 #include "Borrower.h"
 
 class BorrowerContainer {
 private:
-	std::vector<Borrower*> _borrowerContainer;
+    std::map<int, Borrower*> _borrowerContainer;
 public:
 	BorrowerContainer();
 	virtual ~BorrowerContainer();
 
-	std::vector<Borrower*> search(std::string firstName = "none", std::string lastName = "none");
-
-	const std::vector<Borrower*>& getBorrowerContainer() const;
-	void setBorrowerContainer(const std::vector<Borrower*>& borrowerContainer);
+    std::map<int, Borrower*> search(std::string firstName = "none", std::string lastName = "none");
+    void add(const std::string& firstname, const std::string& lastname, const Address& address, const std::string& phoneNumber);
+    const std::map<int, Borrower*>& getBorrowerContainer() const;
+    void setBorrowerContainer(const std::map<int, Borrower*>& borrowerContainer);
 };
 
 #endif /* BORROWERCONTAINER_H_ */
