@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,7 +26,8 @@ SOURCES +=\
     src/BorrowerContainer.cpp \
     src/Borrower.cpp \
     src/Address.cpp \
-    src/mainwindow.cpp
+    src/mainwindow.cpp \
+    src/XmlBorrower.cpp
 
 HEADERS  += \
     include/VehicleContainer.h \
@@ -39,6 +41,7 @@ HEADERS  += \
     include/BorrowerContainer.h \
     include/Borrower.h \
     include/Address.h \
-    include/mainwindow.h
+    include/mainwindow.h \
+    include/XmlBorrower.h
 
 FORMS    += mainwindow.ui
