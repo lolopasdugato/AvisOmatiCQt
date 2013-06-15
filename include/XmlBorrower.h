@@ -15,8 +15,8 @@ class XmlBorrower : public QWidget
 public:
     explicit XmlBorrower(QWidget *parent = 0);
     virtual ~XmlBorrower();
-    bool read(BorrowerContainer* borrower);
-    bool write();
+    bool read(BorrowerContainer* borrowerContainer);
+    bool write(BorrowerContainer* borrowerContainer);
     
 signals:
     

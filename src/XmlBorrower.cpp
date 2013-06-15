@@ -73,5 +73,66 @@ bool XmlBorrower::read(BorrowerContainer* borrowerContainer) {
     return true;
 }
 
+bool XmlBorrower::write(BorrowerContainer* borrowerContainer) {
+
+    /* Tests
+    BorrowerContainer *borrowerContainer = new BorrowerContainer;
+    Address addresss;
+    borrowerContainer->add("Jean", "Jacques", addresss, "465789123");
+    borrowerContainer->add("Jean", "Lapin", addresss, "465487496546");
+    */
+
+    std::map<int, Borrower*>::iterator it;
+    std::map<int, Borrower*> container = borrowerContainer->getBorrowerContainer();
+    QDomElement xml;
+    QTextStream out;
+    QDomDocument *dom = new QDomDocument("BorrowerList"); // Création de l'objet DOM
+    QFile file("BorrowerList.xml"); // On choisit le fichier contenant les informations XML.
+    file.remove();
+    xml = dom->createElement("xml"); // création de la balise "xml"
+    dom->appendChild(xml); // filiation de la balise "xml"
+    if (!file.open(QIODevice::WriteOnly)) // ouverture du fichier de sauvegarde
+        return false; // en écriture
+    out.setDevice(&file); // association du flux au fichier
+
+    for(it = container.begin(); it != container.end(); it++) {
+        QDomElement borrower = dom->createElement("borrower");
+        xml.appendChild(borrower);
+        QDomElement firstname = dom->createElement("firstname");
+        borrower.appendChild(firstname);
+        QDomElement lastname = dom->createElement("lastname");
+        borrower.appendChild(lastname);
+        QDomElement address = dom->createElement("address");
+        borrower.appendChild(address);
+        QDomElement street = dom->createElement("street");
+        address.appendChild(street);
+        QDomElement nb = dom->createElement("nb");
+        address.appendChild(nb);
+        QDomElement city = dom->createElement("city");
+        address.appendChild(city);
+        QDomElement pc = dom->createElement("pc");
+        address.appendChild(pc);
+        QDomElement phone = dom->createElement("phone");
+        borrower.appendChild(phone);
+
+        firstname.appendChild(QDomText(dom->createTextNode((*it).second->getFirstName().c_str())));
+        lastname.appendChild(QDomText(dom->createTextNode((*it).second->getLastName().c_str())));
+        street.appendChild(QDomText(dom->createTextNode((*it).second->getAddress().getStreet().c_str())));
+        nb.appendChild(QDomText(dom->createTextNode(QString::number((*it).second->getAddress().getNumber()))));
+        city.appendChild(QDomText(dom->createTextNode((*it).second->getAddress().getCity().c_str())));
+        pc.appendChild(QDomText(dom->createTextNode((*it).second->getAddress().getPc().c_str())));
+        phone.appendChild(QDomText(dom->createTextNode((*it).second->getPhoneNumber().c_str())));
+
+    }
+
+    // insertion en début de document de <?xml version="1.0" ?>
+    QDomNode noeud = dom->createProcessingInstruction("xml","version=\"1.0\"");
+    dom->insertBefore(noeud, dom->firstChild());
+    // sauvegarde dans le flux (deux espaces de décalage dans l'arborescence)
+    dom->save(out,2);
+    file.close();
+    return true;
+}
+
 XmlBorrower::~XmlBorrower() {
 }
