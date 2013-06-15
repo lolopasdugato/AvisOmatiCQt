@@ -13,6 +13,11 @@
 
 class Vehicle {
 public:
+    enum Type{
+        car,
+        moto
+    };
+
 	Vehicle(const std::string& brand = "Default");
 	Vehicle(const Vehicle& vehicle);
 	virtual ~Vehicle();
@@ -21,8 +26,11 @@ public:
 	void setBrand(const std::string& brand);
 	virtual const std::string& getName() const=0;
 
+    virtual const Type& getType() const=0;
+
 protected:
 	std::string _brand;
+    Type _type;
 };
 
 #endif /* VEHICLE_H_ */

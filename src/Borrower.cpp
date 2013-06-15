@@ -145,6 +145,10 @@ void Borrower::setPhoneNumber(const std::string& phoneNumber) {
 	_phoneNumber = phoneNumber;
 }
 
+Address &Borrower::getAddress(){
+    return _address;
+}
+
 /**
  * @brief overload stream <<
  * @param out

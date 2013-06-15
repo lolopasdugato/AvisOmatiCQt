@@ -29,6 +29,7 @@ public:
 	const std::string& getLastName() const;
 	void setLastName(const std::string& lastName);
 	const std::string& getPhoneNumber() const;
+    Address& getAddress();
 	void setPhoneNumber(const std::string& phoneNumber);
 
 	friend std::ostream& operator<< (std::ostream& out, const Borrower& borrower);

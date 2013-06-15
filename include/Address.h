@@ -10,6 +10,7 @@
 
 #include <string>
 #include <iostream>
+#include <sstream>
 
 class Address {
 public:
@@ -25,6 +26,8 @@ public:
 	void setPc(const std::string& pc);
 	const std::string& getStreet() const;
 	void setStreet(const std::string& street);
+
+    std::string display();
 
 	//overload
 	friend std::ostream& operator<< (std::ostream& out, const Address& address);

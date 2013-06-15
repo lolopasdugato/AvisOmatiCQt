@@ -12,8 +12,15 @@
  * @param brand
  * @param cylinder
  */
-Motorcycle::Motorcycle(const std::string& brand, const int& cylinder): Vehicle(brand) {
+Motorcycle::Motorcycle(const std::string& brand, const std::string &cylinder): Vehicle(brand) {
 	_cylinder = cylinder;
+    _type = Vehicle::moto;
+}
+
+Motorcycle::Motorcycle(Vehicle *&vehicle) {
+    _cylinder = vehicle->getName();
+    _type = vehicle->getType();
+    _brand = vehicle->getBrand();
 }
 
 /**
@@ -31,7 +38,7 @@ Motorcycle::~Motorcycle() {
  *
  * @return
  */
-int Motorcycle::getCylinder() const {
+const std::string &Motorcycle::getCylinder() const {
 	return _cylinder;
 }
 
@@ -39,7 +46,7 @@ int Motorcycle::getCylinder() const {
  *
  * @param cylinder
  */
-void Motorcycle::setCylinder(int cylinder) {
+void Motorcycle::setCylinder(std::string cylinder) {
 	_cylinder = cylinder;
 }
 
@@ -57,9 +64,11 @@ std::ostream& operator<< (std::ostream& out, const Motorcycle& motorcycle) {
 }
 
 const std::string& Motorcycle::getName() const{
-    std::ostringstream oss;
-    oss << getCylinder();
-	return oss.str() + "cc";
+    return getCylinder();
+}
+
+const Vehicle::Type& Motorcycle::getType() const{
+    return _type;
 }
 
 /**

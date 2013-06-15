@@ -11,7 +11,10 @@
 #define VEHICLECONTAINER_H_
 #include <vector>
 #include <string>
+#include <map>
 #include "Vehicle.h"
+#include "Car.h"
+#include "Motorcycle.h"
 
 class VehicleContainer {
 public:
@@ -21,7 +24,15 @@ public:
 	Vehicle* at(int i);
 	int count();
     std::vector<std::string> search(std::string brand);
+    std::vector<Vehicle *> search(std::vector<std::string> keywords);
+
     const std::vector<Vehicle*>& getVehicleList() const;
+
+    int size();
+
+    std::vector<std::string> display(int i);
+
+    void add(const std::string& brand, const std::string& name, const Vehicle::Type &type);
 
 private:
     std::vector<Vehicle*> _vehicleList;

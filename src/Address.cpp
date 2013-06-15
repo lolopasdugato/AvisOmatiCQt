@@ -136,3 +136,10 @@ std::istream& operator >>(std::istream& in, Address& address) {
 	in >> address._city;
 	return in;
 }
+
+
+std::string Address::display(){
+    std::ostringstream oss;
+    oss << _number;
+    return oss.str() + " " + _street + " " + _PC + " " + _city;
+}

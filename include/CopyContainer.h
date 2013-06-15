@@ -24,6 +24,10 @@ public:
 	Copy* at(const int& i);
     std::map<int, Copy*> search(const int& number = -1, const int& kilometers = -1);
 
+    void add(int i, Vehicle* vehicle);
+
+    int getNumberOf(Vehicle*vehicle);
+
     const std::map<int, Copy*>& getCopyContainer() const;
     void setCopyContainer(const std::map<int, Copy*>& copyContainer);
 };

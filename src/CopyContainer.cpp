@@ -36,6 +36,24 @@ std::map<int, Copy*> CopyContainer::search(const int& number, const int& kilomet
 	return sorted;
 }
 
+int CopyContainer::getNumberOf(Vehicle* vehicle){
+    std::map<int, Copy*>::iterator it;
+    int returnValue=0;
+    for (it = _copyContainer.begin(); it != _copyContainer.end(); it++) {
+        if((*it).second->getVehicle()->getName()==vehicle->getName() && (*it).second->getVehicle()->getBrand()==vehicle->getBrand())
+            returnValue++;
+    }
+
+    return returnValue;
+}
+
+void CopyContainer::add(int i, Vehicle* vehicle){
+    for(int j=0;j<i;j++){
+        Copy* copy = new Copy(_copyContainer.size(),vehicle);
+        _copyContainer.insert(std::make_pair(copy->getId(),copy));
+    }
+}
+
 CopyContainer::~CopyContainer() {
 	// TODO Auto-generated destructor stub
 }

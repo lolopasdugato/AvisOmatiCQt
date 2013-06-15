@@ -15,20 +15,23 @@
 
 class Motorcycle: public Vehicle {
 public:
-	Motorcycle(const std::string& brand = "Default", const int& cylinder = -1);
+    Motorcycle(const std::string& brand = "Default", const std::string& cylinder = "Default");
 	Motorcycle(const Motorcycle& motorcycle);
+    Motorcycle(Vehicle*& vehicle);
 	virtual ~Motorcycle();
 
-	int getCylinder() const;
-	void setCylinder(int cylinder);
+    const std::string& getCylinder() const;
+    void setCylinder(std::string cylinder);
 
 	const std::string& getName() const;
+    const Vehicle::Type& getType() const;
 
 	friend std::ostream& operator<< (std::ostream& out, const Motorcycle& motorcycle);
 	friend std::istream& operator>> (std::istream& in, Motorcycle& motorcycle);
 
 private:
-	int _cylinder;
+    std::string _cylinder;
+    Vehicle::Type _type;
 };
 
 #endif /* MOTORCYCLE_H_ */

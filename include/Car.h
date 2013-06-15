@@ -16,12 +16,14 @@ class Car: public Vehicle {
 public:
 	Car(const std::string& model, const std::string& brand = "Default");
 	Car(const Car& car);
+    Car(Vehicle *&vehicle);
 	virtual ~Car();
 
 	const std::string& getModel() const;
 	void setModel(const std::string& model);
 
 	const std::string& getName() const;
+    const Type& getType() const;
 
 	friend std::ostream& operator<< (std::ostream& out, const Car& car);
 	friend std::istream& operator>> (std::istream& in, Car& car);

@@ -15,6 +15,13 @@
  */
 Car::Car(const std::string& model, const std::string& brand):Vehicle(brand) {
 	_model = model;
+    _type = Vehicle::car;
+}
+
+Car::Car(Vehicle *&vehicle) {
+    _model = vehicle->getName();
+    _type = vehicle->getType();
+    _brand = vehicle->getBrand();
 }
 
 /**
@@ -58,6 +65,10 @@ std::ostream& operator<< (std::ostream& out, const Car& car) {
 
 const std::string& Car::getName() const{
 	return getModel();
+}
+
+const Vehicle::Type& Car::getType() const{
+    return _type;
 }
 
 /**

@@ -19,6 +19,12 @@ Copy::Copy(const int& id, const int& kilometers, Vehicle* vehicle) {
 	_vehicle = vehicle;
 }
 
+Copy::Copy(const int& id,Vehicle* vehicle) {
+    _id = id;
+    _kilometers = -1;
+    _vehicle = vehicle;
+}
+
 /**
  * @brief copy constructor
  * @param copy
@@ -103,4 +109,9 @@ std::istream& operator>> (std::istream& in, Copy& copy) {
 	std::cout << "\nPlease enter copy's kilometers: ";
 	in >> copy._kilometers;
 	return in;
+}
+
+
+const Vehicle* Copy::getVehicle() const{
+    return _vehicle;
 }
