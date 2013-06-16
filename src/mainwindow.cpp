@@ -286,3 +286,11 @@ void MainWindow::on_pushButton_2_clicked()
     selectedCopy->setDispo(false);
     renderRentContainer();
 }
+
+void MainWindow::on_save_clicked(){
+    XmlBorrower xmlBorrower;
+    XmlCopy xmlCopy;
+
+    xmlBorrower.write(&_borrowerContainer);
+    xmlCopy.write(&_copyContainer);
+}
