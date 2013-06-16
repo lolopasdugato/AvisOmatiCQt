@@ -27,6 +27,7 @@ bool XmlCopy::read(VehicleContainer* vehicleContainer, CopyContainer* copyContai
     QDomNode n;
     QDomElement racine = dom->documentElement(); // renvoie la balise racine
     QDomNode noeud = racine.firstChild(), noeud2; // renvoie la première balise « copy »
+    std::vector<Vehicle*> b;
 
     // variables liées à un exemplaire
     int kilometers(0);
@@ -49,6 +50,7 @@ bool XmlCopy::read(VehicleContainer* vehicleContainer, CopyContainer* copyContai
         {
             noeud2 = copyElement.firstChild();
             while (!noeud2.isNull()) {
+
                 VehCharElement = noeud2.toElement();
                 // récupère les valeurs liées à un véhicule
                 if (VehCharElement.tagName() == "vehicle") {
@@ -63,7 +65,14 @@ bool XmlCopy::read(VehicleContainer* vehicleContainer, CopyContainer* copyContai
                         else if (n.toElement().tagName() == "model") name = n.firstChild().toText().data().toStdString();
                         else if (n.toElement().tagName() == "dailyprice") cost = n.firstChild().toText().data().toFloat();
                     }
-                    vehicleContainer->add(brand, name, type, cost);
+
+                    std::vector<std::string> a;
+
+                    a.push_back(brand);
+                    a.push_back(name);
+                    b = vehicleContainer->search(a);
+                    if (b.size() == 0 || (b.size() != 0 && !(b.front()->getName() == name && b.front()->getBrand() == brand))) vehicleContainer->add(brand, name, type, cost);
+
                 }
                 // Récupère les valeurs liées à un exemplaire
                 else if (VehCharElement.tagName() == "characteristics") {
@@ -79,7 +88,8 @@ bool XmlCopy::read(VehicleContainer* vehicleContainer, CopyContainer* copyContai
                         else if (n.toElement().tagName() == "dispo") dispo = n.firstChild().toText().data().toInt();
                         else if (n.toElement().tagName() == "id") id = n.firstChild().toText().data().toInt();
                     }
-                    copyContainer->add(kilometers, status, dispo, vehicleContainer->getVehicleList().back(), id);
+                    if (b.size() == 0 || (b.size() != 0 && !(b.front()->getName() == name && b.front()->getBrand() == brand))) copyContainer->add(kilometers, status, dispo, vehicleContainer->getVehicleList().back(), id);
+                    else copyContainer->add(kilometers, status, dispo, b.front(), id);
                 }
                 noeud2 = noeud2.nextSibling();
             }
