@@ -1,6 +1,13 @@
 #include "../include/mainwindow.h"
 #include "ui_mainwindow.h"
 
+std::string toString(const int& i){
+    std::ostringstream oss;
+    oss << i;
+    return oss.str();
+}
+
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -9,10 +16,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     // Load JeanLapin
     XmlBorrower xmlBorrower;
+    XmlCopy xmlCopy;
 
     xmlBorrower.read(&_borrowerContainer);
+    xmlCopy.read(&_vehicleContainer,&_copyContainer);
 
     renderBorrowerContainer();
+    renderVehicleContainer();
+    renderCopyContainer();
 }
 
 MainWindow::~MainWindow()
@@ -42,6 +53,10 @@ void MainWindow::on_ListVehicle_Clicked(){
 
 void MainWindow::on_NewRent_Clicked(){
     ui->stackedWidget->setCurrentIndex(5);
+}
+
+void MainWindow::on_RentList_Clicked(){
+    ui->stackedWidget->setCurrentIndex(8);
 }
 
 
@@ -212,6 +227,22 @@ void MainWindow::renderBorrowerContainer(){
     }
 }
 
+void MainWindow::renderRentContainer(){
+    removeAllRows(ui->tableWidget_3);
+
+    std::vector<std::string> data;
+
+    for(int i=0; i<_rentContainer.size();i++){
+        //Preparing data vector
+        data.clear();
+        data.push_back(toString(_rentContainer[i]->getId()));
+        data.push_back(_rentContainer[i]->getCopy()->getVehicle()->getBrand()+" "+_rentContainer[i]->getCopy()->getVehicle()->getName());
+        data.push_back(_rentContainer[i]->getBorrower()->getFirstName()+" "+_rentContainer[i]->getBorrower()->getLastName());
+
+        renderRowInTable(ui->tableWidget_3,i,data);
+    }
+}
+
 //-----------------------------------------------------------------------//
 
 void MainWindow::removeAllRows(QTableWidget* table){
@@ -245,4 +276,13 @@ void MainWindow::on_date_rent_start_userDateChanged(const QDate &date)
     int NbOfDay = date.daysTo(end);
 
     ui->label_rent_totalCost->setText(QString::number(selectedCopy->getVehicle()->getDailyCost()*NbOfDay));
+}
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    Rent* rent = new Rent(selectedCopy, selectedBorrower, Date(ui->date_rent_start->date().day(),ui->date_rent_start->date().month(),ui->date_rent_start->date().year()), Date(ui->date_rent_return->date().day(),ui->date_rent_return->date().month(),ui->date_rent_return->date().year()));
+    _rentContainer.push_back(rent);
+
+    selectedCopy->setDispo(false);
+    renderRentContainer();
 }

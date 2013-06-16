@@ -72,7 +72,6 @@ const std::vector<Vehicle*>& VehicleContainer::getVehicleList() const {
 
 std::vector<std::string> VehicleContainer::display(int i){
     std::vector<std::string> returnVector;
-    returnVector.push_back(_vehicleList[i]->getBrand());
 
     switch(_vehicleList[i]->getType()){
     case Vehicle::car:
@@ -82,6 +81,7 @@ std::vector<std::string> VehicleContainer::display(int i){
         returnVector.push_back("Motorcycle");
         break;
     }
+    returnVector.push_back(_vehicleList[i]->getBrand());
 
     returnVector.push_back(_vehicleList[i]->getName());
 

@@ -40,10 +40,10 @@ void BorrowerContainer::add(const std::string& firstname, const std::string& las
 
 std::vector<std::string> BorrowerContainer::display(int i){
     std::vector<std::string> returnVector;
-    returnVector.push_back(_borrowerContainer[i+1]->getFirstName());
-    returnVector.push_back(_borrowerContainer[i+1]->getLastName());
-    returnVector.push_back(_borrowerContainer[i+1]->getAddress().display());
-    returnVector.push_back(_borrowerContainer[i+1]->getPhoneNumber());
+    returnVector.push_back(_borrowerContainer[i]->getFirstName());
+    returnVector.push_back(_borrowerContainer[i]->getLastName());
+    returnVector.push_back(_borrowerContainer[i]->getAddress().display());
+    returnVector.push_back(_borrowerContainer[i]->getPhoneNumber());
     return returnVector;
 }
 

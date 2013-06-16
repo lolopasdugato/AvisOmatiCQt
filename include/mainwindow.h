@@ -10,6 +10,10 @@
 #include "../include/XmlBorrower.h"
 #include "../include/Borrower.h"
 #include "../include/Address.h"
+#include "../include/Date.h"
+#include "../include/XmlCopy.h"
+
+std::string toString(const int& i);
 
 namespace Ui {
 class MainWindow;
@@ -32,6 +36,7 @@ private slots:
     void on_NewVehicle_Clicked();
     void on_NewRent_Clicked();
     void on_ListCopy_Clicked();
+    void on_RentList_Clicked();
 
     void on_button_newBorrower_clicked();
 
@@ -51,15 +56,18 @@ private slots:
 
     void on_date_rent_start_userDateChanged(const QDate &date);
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::MainWindow *ui;
 
+    //Containers
     BorrowerContainer _borrowerContainer;
     VehicleContainer _vehicleContainer;
     CopyContainer _copyContainer;
+    std::vector<Rent*> _rentContainer;
 
-    std::vector<Rent*> _rentContainer();
-
+    //Selected attributes
     Vehicle* selectedVehicle;
     Borrower* selectedBorrower;
     Copy* selectedCopy;
@@ -68,6 +76,7 @@ private:
     void renderBorrowerContainer();
     void renderVehicleContainer();
     void renderCopyContainer();
+    void renderRentContainer();
 
     //Tools for editing QTableWidget
     void removeAllRows(QTableWidget* table);

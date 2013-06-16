@@ -61,7 +61,7 @@ bool XmlCopy::read(VehicleContainer* vehicleContainer, CopyContainer* copyContai
                         }
                         else if (n.toElement().tagName() == "brand") brand = n.firstChild().toText().data().toStdString();
                         else if (n.toElement().tagName() == "model") name = n.firstChild().toText().data().toStdString();
-                        else if (n.toElement().tagName() == "dayliprice") cost = n.firstChild().toText().data().toFloat();
+                        else if (n.toElement().tagName() == "dailyprice") cost = n.firstChild().toText().data().toFloat();
                     }
                     vehicleContainer->add(brand, name, type, cost);
                 }
@@ -79,7 +79,7 @@ bool XmlCopy::read(VehicleContainer* vehicleContainer, CopyContainer* copyContai
                         else if (n.toElement().tagName() == "dispo") dispo = n.firstChild().toText().data().toInt();
                         else if (n.toElement().tagName() == "id") id = n.firstChild().toText().data().toInt();
                     }
-                    copyContainer->add(kilometers, status, dispo, &(vehicleContainer->getVehicleList().back()), id);
+                    copyContainer->add(kilometers, status, dispo, vehicleContainer->getVehicleList().back(), id);
                 }
                 noeud2 = noeud2.nextSibling();
             }

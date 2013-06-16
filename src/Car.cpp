@@ -29,9 +29,9 @@ Car::Car(Vehicle *&vehicle) {
  * @brief copy constructor
  * @param car
  */
-Car::Car(const Car& car) {
+/*Car::Car(const Car& car) {
 	_model = car._model;
-}
+}*/
 
 Car::~Car() {
 }

@@ -11,10 +11,11 @@
 #include "Date.h"
 #include "Vehicle.h"
 #include "Copy.h"
+#include "Borrower.h"
 
 class Rent {
 public:
-	Rent(Copy* copy, Vehicle* vehicle, const Date& begin, const Date& end, const int& number = -1, const int& price = -1);
+    Rent(Copy*& copy, Borrower*& borrower, const Date& begin, const Date& end);
 	Rent(const Rent& rent);
 	virtual ~Rent();
 
@@ -22,17 +23,21 @@ public:
 	void setBegin(const Date& _begin);
 	const Date& getEnd() const;
 	void setEnd(const Date& _end);
-	int getNumber() const;
-	void setNumber(int _number);
+    int getId() const;
+    void setId(int id);
+    const Copy* getCopy() const;
+    const Borrower* getBorrower() const;
+
+    static int currentId;
 
 	friend std::ostream& operator<< (std::ostream& out, const Rent& rent);
 	friend std::istream& operator>> (std::istream& in, Rent& rent);
 
 private:
-	int _number;
+    int _id;
 	int _price;
 	Copy* _copy;
-	Vehicle* _vehicle;
+    Borrower* _borrower;
 	Date _begin;
 	Date _end;
 };

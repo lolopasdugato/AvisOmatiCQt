@@ -28,15 +28,13 @@ void CopyContainer::setCopyContainer(const std::map<int, Copy*>& copyContainer) 
 
 std::vector<std::string> CopyContainer::display(int i){
     std::vector<std::string> returnVector;
-
+    i++;
     std::string s1;
     std::stringstream out1;
     out1 << _copyContainer[i]->getId();
     returnVector.push_back(out1.str());
 
     const Vehicle *vehicle = _copyContainer[i]->getVehicle();
-
-    returnVector.push_back(vehicle->getBrand());
 
     switch(vehicle->getType()){
     case Vehicle::car:
@@ -46,6 +44,8 @@ std::vector<std::string> CopyContainer::display(int i){
         returnVector.push_back("Motorcycle");
         break;
     }
+
+    returnVector.push_back(vehicle->getBrand());
 
     returnVector.push_back(vehicle->getName());
 
@@ -82,14 +82,12 @@ int CopyContainer::size(){
     return _copyContainer.size();
 }
 
-/*
 void CopyContainer::add(int i, Vehicle* vehicle){
     for(int j=0;j<i;j++){
         Copy* copy = new Copy(vehicle);
         _copyContainer.insert(std::make_pair(copy->getId(),copy));
     }
 }
-*/
 
 void CopyContainer::add(const int& kilometers, const Copy::Status& status, const bool& dispo, Vehicle* vehicle, int id) {
     Copy* a = new Copy (kilometers, status, dispo, vehicle, id);
