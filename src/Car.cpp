@@ -13,7 +13,7 @@
  * @param model
  * @param brand
  */
-Car::Car(const std::string& model, const std::string& brand):Vehicle(brand) {
+Car::Car(const std::string& model, const std::string& brand, const float& cost):Vehicle(brand,cost) {
 	_model = model;
     _type = Vehicle::car;
 }
@@ -22,6 +22,7 @@ Car::Car(Vehicle *&vehicle) {
     _model = vehicle->getName();
     _type = vehicle->getType();
     _brand = vehicle->getBrand();
+    _dailyCost = vehicle->getDailyCost();
 }
 
 /**

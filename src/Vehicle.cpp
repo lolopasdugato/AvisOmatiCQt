@@ -11,8 +11,9 @@
  *
  * @param brand
  */
-Vehicle::Vehicle(const std::string& brand) {
+Vehicle::Vehicle(const std::string& brand, const float& cost) {
 	_brand = brand;
+    _dailyCost = cost;
 }
 
 /**
@@ -21,6 +22,7 @@ Vehicle::Vehicle(const std::string& brand) {
  */
 Vehicle::Vehicle(const Vehicle& vehicle) {
 	_brand = vehicle._brand;
+    _dailyCost = vehicle._dailyCost;
 }
 
 Vehicle::~Vehicle() {
@@ -40,4 +42,20 @@ const std::string& Vehicle::getBrand() const {
  */
 void Vehicle::setBrand(const std::string& brand) {
 	this->_brand = brand;
+}
+
+/**
+ *
+ * @return
+ */
+const float& Vehicle::getDailyCost() const {
+    return _dailyCost;
+}
+
+/**
+ *
+ * @param brand
+ */
+void Vehicle::setDailyCost(const float& cost) {
+    this->_dailyCost = cost;
 }

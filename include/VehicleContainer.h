@@ -32,7 +32,7 @@ public:
 
     std::vector<std::string> display(int i);
 
-    void add(const std::string& brand, const std::string& name, const Vehicle::Type &type);
+    void add(const std::string& brand, const std::string& name, const Vehicle::Type &type, float dailyCost);
 
 private:
     std::vector<Vehicle*> _vehicleList;

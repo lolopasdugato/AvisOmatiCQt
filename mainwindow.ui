@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>676</width>
-    <height>399</height>
+    <width>678</width>
+    <height>480</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,11 +20,11 @@
       <x>10</x>
       <y>10</y>
       <width>661</width>
-      <height>321</height>
+      <height>391</height>
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>5</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QWidget" name="horizontalLayoutWidget">
@@ -33,7 +33,7 @@
         <x>9</x>
         <y>9</y>
         <width>641</width>
-        <height>301</height>
+        <height>381</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_2">
@@ -62,7 +62,7 @@
         <x>10</x>
         <y>10</y>
         <width>651</width>
-        <height>301</height>
+        <height>381</height>
        </rect>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -91,8 +91,11 @@
          </item>
          <item>
           <widget class="QTableWidget" name="table_vehicle">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
            <property name="columnCount">
-            <number>3</number>
+            <number>4</number>
            </property>
            <attribute name="horizontalHeaderCascadingSectionResizes">
             <bool>false</bool>
@@ -113,6 +116,11 @@
            <column>
             <property name="text">
              <string>Misc</string>
+            </property>
+           </column>
+           <column>
+            <property name="text">
+             <string>Daily Cost</string>
             </property>
            </column>
           </widget>
@@ -256,7 +264,7 @@
         <x>10</x>
         <y>10</y>
         <width>641</width>
-        <height>311</height>
+        <height>381</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="layoutNewBorrower_4">
@@ -346,6 +354,20 @@
          <item row="0" column="1">
           <widget class="QLineEdit" name="line_new_vehicle_brand"/>
          </item>
+         <item row="2" column="0">
+          <widget class="QLabel" name="label_41">
+           <property name="text">
+            <string>Daily Cost:</string>
+           </property>
+          </widget>
+         </item>
+         <item row="2" column="1">
+          <widget class="QDoubleSpinBox" name="spin_vehicle_cost">
+           <property name="maximum">
+            <double>1000.000000000000000</double>
+           </property>
+          </widget>
+         </item>
         </layout>
        </item>
        <item>
@@ -365,7 +387,7 @@
         <x>10</x>
         <y>10</y>
         <width>641</width>
-        <height>311</height>
+        <height>376</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="layoutNewBorrower">
@@ -430,22 +452,50 @@
           <widget class="QLineEdit" name="line_new_borro_surname"/>
          </item>
          <item row="1" column="1">
-          <layout class="QHBoxLayout" name="horizontalLayout">
-           <item>
+          <layout class="QGridLayout" name="gridLayout_2">
+           <item row="1" column="3">
+            <widget class="QLineEdit" name="line_new_borro_postal"/>
+           </item>
+           <item row="1" column="0">
             <widget class="QLineEdit" name="line_new_borro_street"/>
            </item>
-           <item>
+           <item row="1" column="1">
             <widget class="QSpinBox" name="line_new_borro_number">
              <property name="maximum">
               <number>9999</number>
              </property>
             </widget>
            </item>
-           <item>
+           <item row="1" column="2">
             <widget class="QLineEdit" name="line_new_borro_city"/>
            </item>
-           <item>
-            <widget class="QLineEdit" name="line_new_borro_postal"/>
+           <item row="0" column="0">
+            <widget class="QLabel" name="label_34">
+             <property name="text">
+              <string>Street</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="1">
+            <widget class="QLabel" name="label_35">
+             <property name="text">
+              <string>Number</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="2">
+            <widget class="QLabel" name="label_36">
+             <property name="text">
+              <string>City</string>
+             </property>
+            </widget>
+           </item>
+           <item row="0" column="3">
+            <widget class="QLabel" name="label_37">
+             <property name="text">
+              <string>ZIP code</string>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
@@ -468,7 +518,7 @@
         <x>10</x>
         <y>10</y>
         <width>641</width>
-        <height>301</height>
+        <height>381</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="verticalLayout">
@@ -584,6 +634,28 @@
              </item>
              <item row="2" column="1">
               <widget class="QLabel" name="label_vehicle_name_2">
+               <property name="text">
+                <string/>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="0">
+              <widget class="QLabel" name="label_40">
+               <property name="font">
+                <font>
+                 <pointsize>12</pointsize>
+                 <weight>75</weight>
+                 <bold>true</bold>
+                 <underline>true</underline>
+                </font>
+               </property>
+               <property name="text">
+                <string>Vehicle ID:</string>
+               </property>
+              </widget>
+             </item>
+             <item row="3" column="1">
+              <widget class="QLabel" name="label_vehicle_id_2">
                <property name="text">
                 <string/>
                </property>
@@ -755,17 +827,17 @@
               </widget>
              </item>
              <item row="2" column="1">
-              <widget class="QLabel" name="label_33">
+              <widget class="QLabel" name="label_rent_dailyCost">
                <property name="text">
                 <string/>
                </property>
               </widget>
              </item>
              <item row="0" column="1">
-              <widget class="QDateEdit" name="dateEdit"/>
+              <widget class="QDateEdit" name="date_rent_start"/>
              </item>
              <item row="1" column="1">
-              <widget class="QDateEdit" name="dateEdit_2"/>
+              <widget class="QDateEdit" name="date_rent_return"/>
              </item>
             </layout>
            </item>
@@ -786,7 +858,7 @@
               </widget>
              </item>
              <item row="0" column="1">
-              <widget class="QLabel" name="label_31">
+              <widget class="QLabel" name="label_rent_totalCost">
                <property name="text">
                 <string/>
                </property>
@@ -822,7 +894,7 @@
         <x>10</x>
         <y>10</y>
         <width>641</width>
-        <height>311</height>
+        <height>381</height>
        </rect>
       </property>
       <layout class="QVBoxLayout" name="layoutNewBorrower_2">
@@ -849,6 +921,9 @@
        </item>
        <item>
         <widget class="QTableWidget" name="tableWidget">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="columnCount">
           <number>4</number>
          </property>
@@ -883,6 +958,87 @@
       </layout>
      </widget>
     </widget>
+    <widget class="QWidget" name="pageListCopy">
+     <widget class="QWidget" name="verticalLayoutWidget_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>0</y>
+        <width>641</width>
+        <height>381</height>
+       </rect>
+      </property>
+      <layout class="QVBoxLayout" name="layoutNewBorrower_5">
+       <item>
+        <widget class="QLabel" name="label_38">
+         <property name="font">
+          <font>
+           <pointsize>22</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="text">
+          <string>Copy list</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="Line" name="line_15">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QTableWidget" name="tableWidget_2">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="columnCount">
+          <number>6</number>
+         </property>
+         <attribute name="horizontalHeaderCascadingSectionResizes">
+          <bool>false</bool>
+         </attribute>
+         <attribute name="verticalHeaderShowSortIndicator" stdset="0">
+          <bool>false</bool>
+         </attribute>
+         <column>
+          <property name="text">
+           <string>id</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Type</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Brand</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Model</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Kilometers</string>
+          </property>
+         </column>
+         <column>
+          <property name="text">
+           <string>Fuel</string>
+          </property>
+         </column>
+        </widget>
+       </item>
+      </layout>
+     </widget>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
@@ -890,7 +1046,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>676</width>
+     <width>678</width>
      <height>29</height>
     </rect>
    </property>
@@ -923,6 +1079,8 @@
      </property>
      <addaction name="actionVehicle_list"/>
      <addaction name="actionNew_vehicle"/>
+     <addaction name="separator"/>
+     <addaction name="actionView_Edit_Copy"/>
     </widget>
     <widget class="QMenu" name="menuRent">
      <property name="title">
@@ -1052,13 +1210,14 @@
     <string>About</string>
    </property>
   </action>
+  <action name="actionView_Edit_Copy">
+   <property name="text">
+    <string>View/Edit Copy</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <tabstops>
-  <tabstop>line_new_borro_street</tabstop>
-  <tabstop>line_new_borro_number</tabstop>
-  <tabstop>line_new_borro_city</tabstop>
-  <tabstop>line_new_borro_postal</tabstop>
   <tabstop>line_new_borro_firstname</tabstop>
   <tabstop>line_new_borro_surname</tabstop>
   <tabstop>line_new_borro_phone</tabstop>
@@ -1147,6 +1306,22 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionView_Edit_Copy</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>on_ListCopy_Clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>338</x>
+     <y>239</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>on_NewBorrower_Clicked()</slot>
@@ -1154,5 +1329,6 @@
   <slot>on_ListVehicle_Clicked()</slot>
   <slot>on_NewVehicle_Clicked()</slot>
   <slot>on_NewRent_Clicked()</slot>
+  <slot>on_ListCopy_Clicked()</slot>
  </slots>
 </ui>

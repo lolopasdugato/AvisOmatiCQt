@@ -14,7 +14,7 @@
 
 class Car: public Vehicle {
 public:
-	Car(const std::string& model, const std::string& brand = "Default");
+    Car(const std::string& model, const std::string& brand = "Default", const float& dailyCost = 0);
 	Car(const Car& car);
     Car(Vehicle *&vehicle);
 	virtual ~Car();

@@ -12,7 +12,7 @@
  * @param brand
  * @param cylinder
  */
-Motorcycle::Motorcycle(const std::string& brand, const std::string &cylinder): Vehicle(brand) {
+Motorcycle::Motorcycle(const std::string& brand, const std::string &cylinder, const float& cost): Vehicle(brand, cost) {
 	_cylinder = cylinder;
     _type = Vehicle::moto;
 }
@@ -21,6 +21,7 @@ Motorcycle::Motorcycle(Vehicle *&vehicle) {
     _cylinder = vehicle->getName();
     _type = vehicle->getType();
     _brand = vehicle->getBrand();
+    _dailyCost = vehicle->getDailyCost();
 }
 
 /**

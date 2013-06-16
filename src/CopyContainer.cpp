@@ -18,12 +18,43 @@ Copy* CopyContainer::at(const int& i) {
 	return _copyContainer[i];
 }
 
-const std::map<int, Copy*>& CopyContainer::getCopyContainer() const {
+std::map<int, Copy *> &CopyContainer::getCopyContainer() {
 	return _copyContainer;
 }
 
 void CopyContainer::setCopyContainer(const std::map<int, Copy*>& copyContainer) {
 	_copyContainer = copyContainer;
+}
+
+std::vector<std::string> CopyContainer::display(int i){
+    std::vector<std::string> returnVector;
+
+    std::string s1;
+    std::stringstream out1;
+    out1 << _copyContainer[i]->getId();
+    returnVector.push_back(out1.str());
+
+    const Vehicle *vehicle = _copyContainer[i]->getVehicle();
+
+    returnVector.push_back(vehicle->getBrand());
+
+    switch(vehicle->getType()){
+    case Vehicle::car:
+        returnVector.push_back("Car");
+        break;
+    case Vehicle::moto:
+        returnVector.push_back("Motorcycle");
+        break;
+    }
+
+    returnVector.push_back(vehicle->getName());
+
+    std::string s;
+    std::stringstream out;
+    out << _copyContainer[i]->getKilometers();
+    returnVector.push_back(out.str());
+
+    return returnVector;
 }
 
 std::map<int, Copy*> CopyContainer::search(const int& number, const int& kilometers) {
@@ -45,6 +76,10 @@ int CopyContainer::getNumberOf(Vehicle* vehicle){
     }
 
     return returnValue;
+}
+
+int CopyContainer::size(){
+    return _copyContainer.size();
 }
 
 void CopyContainer::add(int i, Vehicle* vehicle){

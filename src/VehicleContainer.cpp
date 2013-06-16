@@ -84,18 +84,23 @@ std::vector<std::string> VehicleContainer::display(int i){
     }
 
     returnVector.push_back(_vehicleList[i]->getName());
+
+    std::ostringstream os;
+      os << _vehicleList[i]->getDailyCost();
+
+    returnVector.push_back(os.str());
     return returnVector;
 }
 
-void VehicleContainer::add(const std::string& brand, const std::string& name, const Vehicle::Type& type){
+void VehicleContainer::add(const std::string& brand, const std::string& name, const Vehicle::Type& type, float dailyCost){
     Vehicle *c;
 
     switch(type){
     case Vehicle::car:
-        c = new Car(name,brand);
+        c = new Car(name,brand,dailyCost);
         break;
     case Vehicle::moto:
-        c = new Motorcycle(brand,name);
+        c = new Motorcycle(brand,name,dailyCost);
         break;
     }
     _vehicleList.push_back(c);

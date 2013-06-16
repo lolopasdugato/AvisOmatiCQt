@@ -11,6 +11,8 @@
 #define COPYCONTAINER_H_
 
 #include <map>
+#include <sstream>
+#include <vector>
 #include "CopyContainer.h"
 #include "Copy.h"
 
@@ -18,6 +20,7 @@ class CopyContainer {
 private:
     std::map<int, Copy*> _copyContainer;
 public:
+
 	CopyContainer();
 	virtual ~CopyContainer();
 
@@ -28,7 +31,11 @@ public:
 
     int getNumberOf(Vehicle*vehicle);
 
-    const std::map<int, Copy*>& getCopyContainer() const;
+    int size();
+
+    std::vector<std::string> display(int i);
+
+    std::map<int, Copy*>& getCopyContainer();
     void setCopyContainer(const std::map<int, Copy*>& copyContainer);
 };
 

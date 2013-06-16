@@ -15,7 +15,7 @@
 
 class Motorcycle: public Vehicle {
 public:
-    Motorcycle(const std::string& brand = "Default", const std::string& cylinder = "Default");
+    Motorcycle(const std::string& brand = "Default", const std::string& cylinder = "Default", const float& dailyCost = 0);
 	Motorcycle(const Motorcycle& motorcycle);
     Motorcycle(Vehicle*& vehicle);
 	virtual ~Motorcycle();
