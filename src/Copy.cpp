@@ -15,9 +15,15 @@ int Copy::currentId = 0;
  * @param number
  * @param kilometers
  */
-Copy::Copy(const int& kilometers, Vehicle* vehicle) {
-    _id = currentId;
+Copy::Copy(const int &kilometers, const Status& status, const bool& dispo, Vehicle *vehicle, int id) {
+    if (id >= 0) {
+        _id = id;
+        currentId = id;
+    }
+    else _id = currentId;
 	_kilometers = kilometers;
+    _status = status;
+    _dispo = dispo;
 	_vehicle = vehicle;
 
     currentId++;
@@ -89,6 +95,22 @@ int Copy::getId() const {
  */
 void Copy::setId(int id) {
     _id = id;
+}
+
+void Copy::setDispo(bool dispo) {
+    _dispo = dispo;
+}
+
+bool Copy::isDispo() {
+    return _dispo;
+}
+
+const Copy::Status& Copy::getStatus() {
+    return _status;
+}
+
+void Copy::setStatus(Status status) {
+    _status = status;
 }
 
 /**

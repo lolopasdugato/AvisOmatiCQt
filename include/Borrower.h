@@ -13,7 +13,7 @@
 
 class Borrower {
 public:
-    Borrower(const std::string& firstname,  const std::string& lastname, const Address& address, const std::string& phoneNumber = "None" );
+    Borrower(const std::string& firstname,  const std::string& lastname, const Address& address, const std::string& phoneNumber = "None", int id = -1);
 	Borrower(const Borrower&);
 	virtual ~Borrower();
 

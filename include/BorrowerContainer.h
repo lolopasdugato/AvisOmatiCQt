@@ -22,7 +22,7 @@ public:
 	virtual ~BorrowerContainer();
 
     std::map<int, Borrower*> search(std::string firstName = "none", std::string lastName = "none");
-    void add(const std::string& firstname, const std::string& lastname, const Address& address, const std::string& phoneNumber);
+    void add(const std::string& firstname, const std::string& lastname, const Address& address, const std::string& phoneNumber, int id = -1);
     const std::map<int, Borrower*>& getBorrowerContainer() const;
     void setBorrowerContainer(const std::map<int, Borrower*>& borrowerContainer);
     std::vector<std::string> display(int i);

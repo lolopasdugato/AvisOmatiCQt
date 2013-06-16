@@ -32,6 +32,7 @@ bool XmlBorrower::read(BorrowerContainer* borrowerContainer) {
     QDomNode noeud = racine.firstChild(); // renvoie la première balise « mesure »
     std::string firstname("Default"), lastname("Default"), phoneNumber("Default");
     Address address;
+    int id(-1);
 
 
     while(!noeud.isNull())
@@ -51,6 +52,7 @@ bool XmlBorrower::read(BorrowerContainer* borrowerContainer) {
                 if (n.toElement().tagName() == "firstname") firstname = n.firstChild().toText().data().toStdString();
                 else if (n.toElement().tagName() == "lastname") lastname = n.firstChild().toText().data().toStdString();
                 else if (n.toElement().tagName() == "phone") phoneNumber = n.firstChild().toText().data().toStdString();
+                else if (n.toElement().tagName() == "id") id = n.firstChild().toText().data().toInt();
                 else if (n.toElement().tagName() == "address") { // On réitère le traitement dans le cas d'une adresse
                     tab2 = n.toElement().childNodes();
                     for(j = 0; j < tab2.length(); j++) {
@@ -65,7 +67,7 @@ bool XmlBorrower::read(BorrowerContainer* borrowerContainer) {
             }
             // a.setText(affichage); // affichage dans un QMessageBox
             // a.exec();
-            borrowerContainer->add(firstname, lastname, address, phoneNumber);
+            borrowerContainer->add(firstname, lastname, address, phoneNumber, id);
         }
         noeud = noeud.nextSibling(); // passe à la "mesure" suivante
     }
@@ -105,6 +107,7 @@ bool XmlBorrower::write(BorrowerContainer* borrowerContainer) {
         QDomElement address = dom->createElement("address");
         borrower.appendChild(address);
         QDomElement street = dom->createElement("street");
+
         address.appendChild(street);
         QDomElement nb = dom->createElement("nb");
         address.appendChild(nb);
@@ -112,8 +115,11 @@ bool XmlBorrower::write(BorrowerContainer* borrowerContainer) {
         address.appendChild(city);
         QDomElement pc = dom->createElement("pc");
         address.appendChild(pc);
+
         QDomElement phone = dom->createElement("phone");
         borrower.appendChild(phone);
+        QDomElement id = dom->createElement("id");
+        borrower.appendChild(id);
 
         firstname.appendChild(QDomText(dom->createTextNode((*it).second->getFirstName().c_str())));
         lastname.appendChild(QDomText(dom->createTextNode((*it).second->getLastName().c_str())));
@@ -122,6 +128,7 @@ bool XmlBorrower::write(BorrowerContainer* borrowerContainer) {
         city.appendChild(QDomText(dom->createTextNode((*it).second->getAddress().getCity().c_str())));
         pc.appendChild(QDomText(dom->createTextNode((*it).second->getAddress().getPc().c_str())));
         phone.appendChild(QDomText(dom->createTextNode((*it).second->getPhoneNumber().c_str())));
+        id.appendChild(QDomText(dom->createTextNode(QString::number((*it).first))));
 
     }
 

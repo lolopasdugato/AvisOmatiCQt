@@ -17,16 +17,19 @@ int Borrower::_nbInstance = 0;
  * @param address
  * @param phoneNumber
  */
-Borrower::Borrower(const std::string& firstname,  const std::string& lastname, const Address& address, const std::string& phoneNumber) {
-    _nbInstance++;
-    _id = _nbInstance;
+Borrower::Borrower(const std::string& firstname,  const std::string& lastname, const Address& address, const std::string& phoneNumber, int id) {
+    if (id >= 0) {
+        _id = id;
+        _nbInstance = id;
+    }
+    else _id = _nbInstance;
 	_firstName = firstname;
 	_lastName = lastname;
 	_address = address;
 
 	// Optional members
 	_phoneNumber = phoneNumber;
-
+    _nbInstance++;
 }
 
 Borrower::Borrower(const Borrower& borrower) {

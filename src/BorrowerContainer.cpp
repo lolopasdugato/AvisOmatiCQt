@@ -32,8 +32,8 @@ std::map<int, Borrower*> BorrowerContainer::search(std::string firstName, std::s
 	return sorted;
 }
 
-void BorrowerContainer::add(const std::string& firstname, const std::string& lastname, const Address& address, const std::string& phoneNumber = "None") {
-    Borrower* a = new Borrower (firstname, lastname, address, phoneNumber);
+void BorrowerContainer::add(const std::string& firstname, const std::string& lastname, const Address& address, const std::string& phoneNumber = "None", int id) {
+    Borrower* a = new Borrower (firstname, lastname, address, phoneNumber, id);
     _borrowerContainer[a->getId()] = a;
     return;
 }

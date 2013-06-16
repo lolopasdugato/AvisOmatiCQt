@@ -82,13 +82,20 @@ int CopyContainer::size(){
     return _copyContainer.size();
 }
 
+/*
 void CopyContainer::add(int i, Vehicle* vehicle){
     for(int j=0;j<i;j++){
         Copy* copy = new Copy(vehicle);
         _copyContainer.insert(std::make_pair(copy->getId(),copy));
     }
 }
+*/
 
+void CopyContainer::add(const int& kilometers, const Copy::Status& status, const bool& dispo, Vehicle* vehicle, int id) {
+    Copy* a = new Copy (kilometers, status, dispo, vehicle, id);
+    _copyContainer[a->getId()] = a;
+    return;
+}
 CopyContainer::~CopyContainer() {
 	// TODO Auto-generated destructor stub
 }

@@ -13,8 +13,13 @@
 
 class Copy {
 public:
+    enum Status{
+        NEW,
+        DAMAGED,
+        UNUSABLE
+    };
     Copy(Vehicle* vehicle);
-    Copy(const int &kilometers, Vehicle *vehicle);
+    Copy(const int &kilometers, const Status& status, const bool& dispo, Vehicle *vehicle, int id = -1);
 	Copy(const Copy& copy);
 	virtual ~Copy();
 
@@ -25,6 +30,10 @@ public:
     int getId() const;
     void setId(int id);
     const Vehicle* getVehicle() const;
+    void setDispo(bool dispo);
+    bool isDispo();
+    const Status& getStatus();
+    void setStatus(Status status);
 
     static int currentId;
 
@@ -33,6 +42,8 @@ public:
 private:
     int _id;
 	int _kilometers;
+    bool _dispo;
+    Status _status;
 	Vehicle* _vehicle;
 };
 
