@@ -85,6 +85,7 @@ void MainWindow::on_button_newvehicle_clicked()
 
     ui->line_new_vehicle_brand->clear();
     ui->line_new_vehicle_misc->clear();
+    ui->spin_vehicle_cost->clear();
 }
 
 void MainWindow::on_table_vehicle_clicked(const QModelIndex &index)
@@ -120,7 +121,6 @@ void MainWindow::on_table_vehicle_clicked(const QModelIndex &index)
 void MainWindow::on_pushButton_clicked()
 {
    if(ui->label_vehicle_copy->value()>_copyContainer.getNumberOf(selectedVehicle)){
-        int sizeBefore = _copyContainer.size();
         _copyContainer.add(ui->label_vehicle_copy->value()-_copyContainer.getNumberOf(selectedVehicle),selectedVehicle);
         renderCopyContainer();
     }
@@ -177,13 +177,13 @@ void MainWindow::on_tableWidget_2_clicked(const QModelIndex &index)
     ui->label_vehicle_brand_2->setText(selectedCopy->getVehicle()->getBrand().c_str());
     ui->label_vehicle_name_2->setText(selectedCopy->getVehicle()->getName().c_str());
     ui->label_vehicle_id_2->setText(QString::number(selectedCopy->getId()));
-    ui->label_rent_dailyCost->setText(QString::number(selectedCopy->getVehicle()->getDailyCost(),'f'));
+    ui->label_rent_dailyCost->setText(QString::number(selectedCopy->getVehicle()->getDailyCost()));
 
     QDate end = ui->date_rent_return->date();
     QDate start = ui->date_rent_start->date();
     int NbOfDay = start.daysTo(end);
 
-    ui->label_rent_totalCost->setText(QString::number(selectedCopy->getVehicle()->getDailyCost()*NbOfDay,'f'));
+    ui->label_rent_totalCost->setText(QString::number(selectedCopy->getVehicle()->getDailyCost()*NbOfDay));
 }
 
 //-----------------------------------------------------------------------//
@@ -236,7 +236,7 @@ void MainWindow::on_date_rent_return_userDateChanged(const QDate &date)
     QDate start = ui->date_rent_start->date();
     int NbOfDay = start.daysTo(date);
 
-    ui->label_rent_totalCost->setText(QString::number(selectedCopy->getVehicle()->getDailyCost()*NbOfDay,'f'));
+    ui->label_rent_totalCost->setText(QString::number(selectedCopy->getVehicle()->getDailyCost()*NbOfDay));
 }
 
 void MainWindow::on_date_rent_start_userDateChanged(const QDate &date)
@@ -244,5 +244,5 @@ void MainWindow::on_date_rent_start_userDateChanged(const QDate &date)
     QDate end = ui->date_rent_return->date();
     int NbOfDay = date.daysTo(end);
 
-    ui->label_rent_totalCost->setText(QString::number(selectedCopy->getVehicle()->getDailyCost()*NbOfDay,'f'));
+    ui->label_rent_totalCost->setText(QString::number(selectedCopy->getVehicle()->getDailyCost()*NbOfDay));
 }

@@ -8,21 +8,27 @@
 #include "../include/Copy.h"
 #include <iostream>
 
+int Copy::currentId = 0;
+
 /**
  *
  * @param number
  * @param kilometers
  */
-Copy::Copy(const int& id, const int& kilometers, Vehicle* vehicle) {
-    _id = id;
+Copy::Copy(const int& kilometers, Vehicle* vehicle) {
+    _id = currentId;
 	_kilometers = kilometers;
 	_vehicle = vehicle;
+
+    currentId++;
 }
 
-Copy::Copy(const int& id,Vehicle* vehicle) {
-    _id = id;
+Copy::Copy(Vehicle* vehicle) {
+    _id = currentId;
     _kilometers = -1;
     _vehicle = vehicle;
+
+    currentId++;
 }
 
 /**

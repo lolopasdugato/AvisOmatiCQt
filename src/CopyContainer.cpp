@@ -84,7 +84,7 @@ int CopyContainer::size(){
 
 void CopyContainer::add(int i, Vehicle* vehicle){
     for(int j=0;j<i;j++){
-        Copy* copy = new Copy(_copyContainer.size(),vehicle);
+        Copy* copy = new Copy(vehicle);
         _copyContainer.insert(std::make_pair(copy->getId(),copy));
     }
 }

@@ -13,8 +13,8 @@
 
 class Copy {
 public:
-    Copy(const int& id, const int& kilometers, Vehicle* vehicle);
-    Copy(const int &id, Vehicle *vehicle);
+    Copy(Vehicle* vehicle);
+    Copy(const int &kilometers, Vehicle *vehicle);
 	Copy(const Copy& copy);
 	virtual ~Copy();
 
@@ -25,6 +25,8 @@ public:
     int getId() const;
     void setId(int id);
     const Vehicle* getVehicle() const;
+
+    static int currentId;
 
 	friend std::ostream& operator<< (std::ostream& out, const Copy& copy);
 	friend std::istream& operator>> (std::istream& in, Copy& copy);
