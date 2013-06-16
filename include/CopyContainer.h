@@ -29,6 +29,7 @@ public:
 
     void add(int i, Vehicle* vehicle);
     void add(const int& kilometers, const Copy::Status& status, const bool& dispo, Vehicle* vehicle, int id = -1);
+    void erase(Copy* copy);
 
     int getNumberOf(Vehicle*vehicle);
 

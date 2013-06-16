@@ -28,6 +28,7 @@ public:
     std::vector<std::string> display(int i);
 
     std::vector<Borrower*> search(std::vector<std::string> keywords);
+    void erase(Borrower*);
 
     int size();
 };

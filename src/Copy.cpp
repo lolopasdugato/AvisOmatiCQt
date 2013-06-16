@@ -33,7 +33,8 @@ Copy::Copy(Vehicle* vehicle) {
     _id = currentId;
     _kilometers = -1;
     _vehicle = vehicle;
-
+    _dispo = true;
+    _status = NEW;
     currentId++;
 }
 

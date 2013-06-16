@@ -94,6 +94,12 @@ void CopyContainer::add(const int& kilometers, const Copy::Status& status, const
     _copyContainer[a->getId()] = a;
     return;
 }
+
+void CopyContainer::erase(Copy* copy) {
+    _copyContainer.erase(copy->getId());
+    return;
+}
+
 CopyContainer::~CopyContainer() {
 	// TODO Auto-generated destructor stub
 }

@@ -38,6 +38,11 @@ void BorrowerContainer::add(const std::string& firstname, const std::string& las
     return;
 }
 
+void BorrowerContainer::erase(Borrower* borrower) {
+    _borrowerContainer.erase(borrower->getId());
+    return;
+}
+
 std::vector<std::string> BorrowerContainer::display(int i){
     std::vector<std::string> returnVector;
     returnVector.push_back(_borrowerContainer[i]->getFirstName());

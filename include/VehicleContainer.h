@@ -25,7 +25,6 @@ public:
 	int count();
     std::vector<std::string> search(std::string brand);
     std::vector<Vehicle *> search(std::vector<std::string> keywords);
-
     const std::vector<Vehicle*>& getVehicleList() const;
 
     int size();
