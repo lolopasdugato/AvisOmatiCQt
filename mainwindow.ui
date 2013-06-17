@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>9</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QWidget" name="horizontalLayoutWidget">
@@ -1607,6 +1607,37 @@
              <property name="text">
               <string/>
              </property>
+            </widget>
+           </item>
+           <item row="4" column="0">
+            <widget class="QLabel" name="label_50">
+             <property name="text">
+              <string>Fuel</string>
+             </property>
+            </widget>
+           </item>
+           <item row="4" column="1">
+            <widget class="QComboBox" name="combo_fuel">
+             <item>
+              <property name="text">
+               <string>4/4</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>3/4</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>2/4</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>1/4</string>
+              </property>
+             </item>
             </widget>
            </item>
           </layout>

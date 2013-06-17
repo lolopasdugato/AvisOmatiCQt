@@ -29,6 +29,8 @@ public:
     const bool getInsurance() const;
     const bool getStatus() const;
     void setStatus(const bool& i);
+    int getFuelMalus();
+    void setFuelMalus(int f);
     Copy *getCopy();
     Borrower *getBorrower() const;
 
@@ -44,6 +46,7 @@ private:
 	int _price;
     bool _status; //true = returned
     bool _insurance;
+    int _fuelMalus;
 	Copy* _copy;
     Borrower* _borrower;
 	Date _begin;

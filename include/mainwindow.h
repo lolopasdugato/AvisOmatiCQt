@@ -81,6 +81,8 @@ private slots:
 
     void on_pushButton_3_clicked();
 
+    void on_combo_fuel_currentIndexChanged(int index);
+
 private:
     Ui::MainWindow *ui;
 
@@ -107,7 +109,7 @@ private:
     void renderRowInTable(QTableWidget* table, int row, std::vector<std::string> list);
 
     //Other cool function
-    int calculatePrice(int price, bool insu, int NbOfDay, int nbKm, int daysOver=0);
+    int calculatePrice(int price, bool insu, int NbOfDay, int nbKm, int fuelMalus=0, int daysOver=0);
 };
 
 #endif // MAINWINDOW_H

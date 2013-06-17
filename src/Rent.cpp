@@ -161,3 +161,11 @@ const bool Rent::getStatus() const{
 void Rent::setInsurance(const bool &i){
     _insurance=i;
 }
+
+int Rent::getFuelMalus(){
+    return _fuelMalus;
+}
+
+void Rent::setFuelMalus(int f){
+    _fuelMalus=f;
+}
