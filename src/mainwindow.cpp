@@ -421,7 +421,11 @@ void MainWindow::on_tableWidget_3_clicked(const QModelIndex &index)
 
 void MainWindow::on_pushButton_4_clicked()
 {
+    selectedRent->setStatus(false);
+    selectedRent->getCopy()->setDispo(true);
 
+    renderRentContainer();
+    renderCopyContainer();
 }
 
 void MainWindow::on_radio_insu_clicked()

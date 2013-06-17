@@ -98,7 +98,7 @@ void Copy::setId(int id) {
     _id = id;
 }
 
-void Copy::setDispo(bool dispo) {
+void Copy::setDispo(const bool& dispo){
     _dispo = dispo;
 }
 

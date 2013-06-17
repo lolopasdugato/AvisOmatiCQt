@@ -29,7 +29,7 @@ public:
     const bool getInsurance() const;
     const bool getStatus() const;
     void setStatus(const bool& i);
-    const Copy* getCopy() const;
+    Copy *getCopy();
     const Borrower* getBorrower() const;
 
     bool isReturned();

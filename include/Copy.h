@@ -30,7 +30,7 @@ public:
     int getId() const;
     void setId(int id);
     const Vehicle* getVehicle() const;
-    void setDispo(bool dispo);
+    void setDispo(const bool &dispo);
     bool isDispo();
     const Status& getStatus();
     void setStatus(Status status);

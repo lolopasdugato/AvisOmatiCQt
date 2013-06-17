@@ -21,6 +21,7 @@ Rent::Rent(Copy *&copy, Borrower*& borrower, const Date& begin, const Date& end)
 	_end = end;
 	_copy = copy;
     _borrower = borrower;
+    _status = true;
 
 	// initialisation du prix en fonction du nombre de kilomètres de l'exemplaire.
     /*int factor = 0;
@@ -141,12 +142,12 @@ const Borrower* Rent::getBorrower() const{
     return _borrower;
 }
 
-const Copy* Rent::getCopy() const{
+Copy* Rent::getCopy() {
     return _copy;
 }
 
 void Rent::setStatus(const bool &i){
-    _insurance = i;
+    _status = i;
 }
 
 const bool Rent::getInsurance() const{
