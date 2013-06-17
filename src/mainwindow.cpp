@@ -24,6 +24,10 @@ MainWindow::MainWindow(QWidget *parent) :
     renderBorrowerContainer();
     renderVehicleContainer();
     renderCopyContainer();
+
+    selectedBorrower=NULL;
+    selectedVehicle=NULL;
+    selectedCopy=NULL;
 }
 
 MainWindow::~MainWindow()
@@ -53,6 +57,11 @@ void MainWindow::on_ListVehicle_Clicked(){
 
 void MainWindow::on_NewRent_Clicked(){
     ui->stackedWidget->setCurrentIndex(5);
+    if(!selectedBorrower||!selectedCopy){
+        ui->pushButton_2->setEnabled(false);
+        return;
+    }
+    ui->pushButton_2->setEnabled(true);
 }
 
 void MainWindow::on_RentList_Clicked(){
