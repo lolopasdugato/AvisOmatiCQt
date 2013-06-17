@@ -17,17 +17,21 @@ MainWindow::MainWindow(QWidget *parent) :
     // Load JeanLapin
     XmlBorrower xmlBorrower;
     XmlCopy xmlCopy;
+    XmlRent xmlRent;
 
     xmlBorrower.read(&_borrowerContainer);
     xmlCopy.read(&_vehicleContainer,&_copyContainer);
+    xmlRent.read(&_rentContainer,&_copyContainer,&_borrowerContainer);
 
     renderBorrowerContainer();
     renderVehicleContainer();
     renderCopyContainer();
+    renderRentContainer();
 
     selectedBorrower=NULL;
     selectedVehicle=NULL;
     selectedCopy=NULL;
+    selectedRent=NULL;
 
     ui->date_rent_start->setMinimumDate(QDate::currentDate());
     ui->date_rent_return->setMinimumDate(QDate::currentDate());
@@ -346,9 +350,11 @@ void MainWindow::on_pushButton_2_clicked()
 void MainWindow::on_save_clicked(){
     XmlBorrower xmlBorrower;
     XmlCopy xmlCopy;
+    XmlRent xmlRent;
 
     xmlBorrower.write(&_borrowerContainer);
     xmlCopy.write(&_copyContainer);
+    xmlRent.write(_rentContainer);
 }
 
 void MainWindow::on_radioButton_2_clicked()

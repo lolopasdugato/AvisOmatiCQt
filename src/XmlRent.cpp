@@ -5,7 +5,7 @@ XmlRent::XmlRent(QWidget *parent) :
 {
 }
 
-bool XmlRent::read(std::vector<Rent*> rentContainer, CopyContainer* copyContainer, BorrowerContainer* borrowerContainer) {
+bool XmlRent::read(std::vector<Rent *> *rentContainer, CopyContainer* copyContainer, BorrowerContainer* borrowerContainer) {
 
     QDomDocument *dom = new QDomDocument("RentList"); // Création de l'objet DOM
     QFile xml_doc("RentList.xml"); // On choisit le fichier contenant les informations XML.
@@ -41,7 +41,7 @@ bool XmlRent::read(std::vector<Rent*> rentContainer, CopyContainer* copyContaine
         // méthodes tagName() et attribute()
         mesure = noeud.toElement();
         // vérifie la présence de la balise « mesure »
-        if (mesure.tagName() == "borrower")
+        if (mesure.tagName() == "rent")
         {
             tab1 = mesure.childNodes(); // crée un tableau des enfants de « mesure »
             for(i = 0; i < tab1.length(); i++)
@@ -79,7 +79,7 @@ bool XmlRent::read(std::vector<Rent*> rentContainer, CopyContainer* copyContaine
             Rent* a = new Rent(copyContainer->getCopyContainer().at(copyID), borrowerContainer->getBorrowerContainer().at(borrowerID), begin, end);
             a->setInsurance(insurance);
             a->setStatus(status);
-            rentContainer.push_back(a);
+            rentContainer->push_back(a);
         }
         noeud = noeud.nextSibling(); // passe à la "mesure" suivante
     }
@@ -128,15 +128,15 @@ bool XmlRent::write(std::vector<Rent*> rent) {
         QDomElement day1 = dom->createElement("day1");
         begin.appendChild(day1);
         QDomElement day2 = dom->createElement("day2");
-        begin.appendChild(day2);
+        end.appendChild(day2);
         QDomElement month1 = dom->createElement("month1");
         begin.appendChild(month1);
         QDomElement month2 = dom->createElement("month2");
-        begin.appendChild(month2);
+        end.appendChild(month2);
         QDomElement year1 = dom->createElement("year1");
         begin.appendChild(year1);
         QDomElement year2 = dom->createElement("year2");
-        begin.appendChild(year2);
+        end.appendChild(year2);
 
         copy.appendChild(QDomText(dom->createTextNode(QString::number((*it)->getCopy()->getId()))));
         borrower.appendChild(QDomText(dom->createTextNode(QString::number((*it)->getBorrower()->getId()))));

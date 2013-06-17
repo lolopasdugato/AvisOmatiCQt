@@ -12,6 +12,7 @@
 #include "../include/Address.h"
 #include "../include/Date.h"
 #include "../include/XmlCopy.h"
+#include "../include/XmlRent.h"
 
 std::string toString(const int& i);
 

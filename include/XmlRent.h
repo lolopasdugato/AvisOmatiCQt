@@ -1,7 +1,7 @@
 #ifndef XMLRENT_H
 #define XMLRENT_H
 
-#include "../include/rent.h"
+#include "../include/Rent.h"
 #include "../include/CopyContainer.h"
 #include "../include/BorrowerContainer.h"
 #include <QWidget>
@@ -15,7 +15,7 @@ class XmlRent : public QWidget
 public:
     explicit XmlRent(QWidget *parent = 0);
 
-    bool read(std::vector<Rent*>, CopyContainer* copyContainer, BorrowerContainer* borrowerContainer);
+    bool read(std::vector<Rent*>*, CopyContainer* copyContainer, BorrowerContainer* borrowerContainer);
     bool write(std::vector<Rent*>);
 
     virtual ~XmlRent();
