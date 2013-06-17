@@ -79,6 +79,8 @@ private slots:
 
     void on_radio_noinsu_clicked();
 
+    void on_pushButton_3_clicked();
+
 private:
     Ui::MainWindow *ui;
 

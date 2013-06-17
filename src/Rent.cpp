@@ -138,7 +138,7 @@ std::istream& operator>> (std::istream& in, Rent& rent) {
 }
 
 
-const Borrower* Rent::getBorrower() const{
+Borrower* Rent::getBorrower() const{
     return _borrower;
 }
 

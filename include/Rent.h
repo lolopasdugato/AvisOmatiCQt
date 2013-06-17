@@ -30,7 +30,7 @@ public:
     const bool getStatus() const;
     void setStatus(const bool& i);
     Copy *getCopy();
-    const Borrower* getBorrower() const;
+    Borrower *getBorrower() const;
 
     bool isReturned();
 

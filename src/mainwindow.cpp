@@ -458,3 +458,52 @@ int MainWindow::calculatePrice(int price, bool insu, int NbOfDay, int nbKm, int 
 
     return price2;
 }
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    //Generate the bill and change the page
+
+    //Borrower info
+    ui->label_bill_fname->setText(selectedRent->getBorrower()->getFirstName().c_str());
+    ui->label_bill_lname->setText(selectedRent->getBorrower()->getLastName().c_str());
+    ui->label_bill_add->setText(selectedRent->getBorrower()->getAddress().display().c_str());
+    ui->label_bill_phone->setText(selectedRent->getBorrower()->getPhoneNumber().c_str());
+
+    //Vehicule info
+    ui->label_bill_brand->setText(selectedRent->getCopy()->getVehicle()->getBrand().c_str());
+    ui->label_bill_model->setText(selectedRent->getCopy()->getVehicle()->getName().c_str());
+    switch(selectedRent->getCopy()->getVehicle()->getType()){
+    case Vehicle::car:
+        ui->label_bill_type->setText("Car");
+        break;
+    case Vehicle::moto:
+        ui->label_bill_type->setText("Motorcycle");
+        break;
+    }
+    ui->label_bill_km->setText(QString::number(selectedRent->getCopy()->getKilometers()));
+
+    //Bill info
+    ui->label_bill_dc->setText(QString::number(selectedRent->getCopy()->getVehicle()->getDailyCost()));
+    int NbOfDays = QDate(selectedRent->getBegin().getYear(),selectedRent->getBegin().getMonth(),selectedRent->getBegin().getDay()).daysTo(QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()));
+    ui->label_bill_nbod->setText(QString::number(NbOfDays));
+    int price = selectedRent->getCopy()->getVehicle()->getDailyCost()*NbOfDays*1.0;
+    if(selectedRent->getInsurance()){
+        float insuranceCost = (price*10.0)/100.0;
+        ui->label_bill_insu->setText(QString::number(insuranceCost));
+    }
+    else
+        ui->label_bill_insu->setText(QString::number(0));
+
+    ui->label_bill_kilo->setText(QString::number((floor(selectedRent->getCopy()->getKilometers()/50000.0)*price)/10*-1));
+
+    int daysOver = QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()).daysTo(QDate::currentDate());
+    if(daysOver>0)
+        ui->label_bill_ot->setText(QString::number(daysOver*50));
+    else
+        ui->label_bill_ot->setText(QString::number(0));
+
+    //Display total
+    ui->label_bill_tot->setText(QString::number(calculatePrice(selectedRent->getCopy()->getVehicle()->getDailyCost(),selectedRent->getInsurance(),NbOfDays,selectedRent->getCopy()->getKilometers(),QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()).daysTo(QDate::currentDate()))));
+
+    ui->stackedWidget->setCurrentIndex(1);
+}
