@@ -1,0 +1,244 @@
+<?xml version="1.0"?>
+<!DOCTYPE BorrowerList>
+<xml>
+  <borrower>
+    <firstname>Loïc</firstname>
+    <lastname>Benet</lastname>
+    <address>
+      <street>Avenue Jacques Brel</street>
+      <nb>57</nb>
+      <city>Chevilly-Larue</city>
+      <pc>94550</pc>
+    </address>
+    <phone>0663952196</phone>
+    <id>0</id>
+  </borrower>
+  <borrower>
+    <firstname>Jean</firstname>
+    <lastname>Lapin</lastname>
+    <address>
+      <street>Avenue Dujardin</street>
+      <nb>666</nb>
+      <city>Coquelicot</city>
+      <pc>94550</pc>
+    </address>
+    <phone>36987412</phone>
+    <id>1</id>
+  </borrower>
+  <borrower>
+    <firstname>Good</firstname>
+    <lastname>Deal</lastname>
+    <address>
+      <street>Avenue des maréchaux</street>
+      <nb>88</nb>
+      <city>Dolbrix en Gourre</city>
+      <pc>85226</pc>
+    </address>
+    <phone>36987412</phone>
+    <id>2</id>
+  </borrower>
+  <borrower>
+    <firstname>Kal</firstname>
+    <lastname>Brandoux</lastname>
+    <address>
+      <street>Tularia</street>
+      <nb>58</nb>
+      <city>Jiklo</city>
+      <pc>879696</pc>
+    </address>
+    <phone>589321</phone>
+    <id>3</id>
+  </borrower>
+  <borrower>
+    <firstname>Guy</firstname>
+    <lastname>Dont</lastname>
+    <address>
+      <street>Rue de la Pissiclette</street>
+      <nb>56</nb>
+      <city>Roue en Brix</city>
+      <pc>587412</pc>
+    </address>
+    <phone>5412369</phone>
+    <id>4</id>
+  </borrower>
+  <borrower>
+    <firstname>Cartonas</firstname>
+    <lastname>Cabannonis</lastname>
+    <address>
+      <street>Parc Saint Jean</street>
+      <nb>58</nb>
+      <city>Sirap</city>
+      <pc>75550</pc>
+    </address>
+    <phone>5896321</phone>
+    <id>5</id>
+  </borrower>
+  <borrower>
+    <firstname>Maxime</firstname>
+    <lastname>Kelhar</lastname>
+    <address>
+      <street>Rue du Gelgedur</street>
+      <nb>69</nb>
+      <city>Tartala</city>
+      <pc>58963</pc>
+    </address>
+    <phone>874123</phone>
+    <id>6</id>
+  </borrower>
+  <borrower>
+    <firstname>Arah</firstname>
+    <lastname>Knide</lastname>
+    <address>
+      <street>Boulevard des orchidées</street>
+      <nb>77</nb>
+      <city>Toyl</city>
+      <pc>60699</pc>
+    </address>
+    <phone>5589632</phone>
+    <id>7</id>
+  </borrower>
+  <borrower>
+    <firstname>Julia</firstname>
+    <lastname>Porlis</lastname>
+    <address>
+      <street>Rue du Jerroud</street>
+      <nb>89</nb>
+      <city>Kalamo</city>
+      <pc>98745</pc>
+    </address>
+    <phone>547896</phone>
+    <id>8</id>
+  </borrower>
+  <borrower>
+    <firstname>Tydus</firstname>
+    <lastname>Lapierre</lastname>
+    <address>
+      <street>Place de Balthazard</street>
+      <nb>58</nb>
+      <city>Ascalon</city>
+      <pc>999995</pc>
+    </address>
+    <phone>5478214</phone>
+    <id>9</id>
+  </borrower>
+  <borrower>
+    <firstname>Malik</firstname>
+    <lastname>Powel</lastname>
+    <address>
+      <street>Rue des Sorbinasses</street>
+      <nb>89</nb>
+      <city>Thiais</city>
+      <pc>547869</pc>
+    </address>
+    <phone>54123</phone>
+    <id>10</id>
+  </borrower>
+  <borrower>
+    <firstname>Jean</firstname>
+    <lastname>Moulinet</lastname>
+    <address>
+      <street>Place des Zarad</street>
+      <nb>87</nb>
+      <city>Londris</city>
+      <pc>879654</pc>
+    </address>
+    <phone>58741</phone>
+    <id>11</id>
+  </borrower>
+  <borrower>
+    <firstname>John</firstname>
+    <lastname>Doe</lastname>
+    <address>
+      <street>Rue des Oranger</street>
+      <nb>57</nb>
+      <city>Koulkour</city>
+      <pc>87452</pc>
+    </address>
+    <phone>5896321</phone>
+    <id>12</id>
+  </borrower>
+  <borrower>
+    <firstname>John</firstname>
+    <lastname>Smith</lastname>
+    <address>
+      <street>Boulevard de la Tyrolière</street>
+      <nb>513</nb>
+      <city>Jackson's Ville</city>
+      <pc>541236</pc>
+    </address>
+    <phone>58213</phone>
+    <id>13</id>
+  </borrower>
+  <borrower>
+    <firstname>Mehdi</firstname>
+    <lastname>Messirdi</lastname>
+    <address>
+      <street>Rue du Bentaï</street>
+      <nb>57</nb>
+      <city>Bouilinasse</city>
+      <pc>521236</pc>
+    </address>
+    <phone>741963</phone>
+    <id>14</id>
+  </borrower>
+  <borrower>
+    <firstname>Nyanh</firstname>
+    <lastname>Kat</lastname>
+    <address>
+      <street>Place Boule de Poil</street>
+      <nb>999</nb>
+      <city>Poilopate</city>
+      <pc>57859</pc>
+    </address>
+    <phone>856321</phone>
+    <id>15</id>
+  </borrower>
+  <borrower>
+    <firstname>Christian</firstname>
+    <lastname>Clavier</lastname>
+    <address>
+      <street>Rue des Computer</street>
+      <nb>101</nb>
+      <city>Linus</city>
+      <pc>1011101</pc>
+    </address>
+    <phone>563789</phone>
+    <id>16</id>
+  </borrower>
+  <borrower>
+    <firstname>Aradin</firstname>
+    <lastname>Zouketu</lastname>
+    <address>
+      <street>Rue du Wardinburg</street>
+      <nb>78</nb>
+      <city>Kalark</city>
+      <pc>753159</pc>
+    </address>
+    <phone>842698</phone>
+    <id>17</id>
+  </borrower>
+  <borrower>
+    <firstname>Lyco</firstname>
+    <lastname>Nebet</lastname>
+    <address>
+      <street>Pourald</street>
+      <nb>85</nb>
+      <city>Chevizy-Zarue</city>
+      <pc>94055</pc>
+    </address>
+    <phone></phone>
+    <id>18</id>
+  </borrower>
+  <borrower>
+    <firstname>Jack</firstname>
+    <lastname>Daniel</lastname>
+    <address>
+      <street>Avenue Ioza</street>
+      <nb>896</nb>
+      <city>Pournilass</city>
+      <pc>8563</pc>
+    </address>
+    <phone></phone>
+    <id>19</id>
+  </borrower>
+</xml>
