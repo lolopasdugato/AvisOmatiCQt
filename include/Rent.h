@@ -25,8 +25,12 @@ public:
 	void setEnd(const Date& _end);
     int getId() const;
     void setId(int id);
+    void setInsurance(const bool& i);
+    const bool getInsurance() const;
     const Copy* getCopy() const;
     const Borrower* getBorrower() const;
+
+    bool isReturned();
 
     static int currentId;
 
@@ -36,6 +40,8 @@ public:
 private:
     int _id;
 	int _price;
+    bool _status; //true = returned
+    bool _insurance;
 	Copy* _copy;
     Borrower* _borrower;
 	Date _begin;

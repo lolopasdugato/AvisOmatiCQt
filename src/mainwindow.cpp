@@ -28,6 +28,9 @@ MainWindow::MainWindow(QWidget *parent) :
     selectedBorrower=NULL;
     selectedVehicle=NULL;
     selectedCopy=NULL;
+
+    ui->date_rent_start->setMinimumDate(QDate::currentDate());
+    ui->date_rent_return->setMinimumDate(QDate::currentDate());
 }
 
 MainWindow::~MainWindow()
@@ -66,6 +69,10 @@ void MainWindow::on_NewRent_Clicked(){
 
 void MainWindow::on_RentList_Clicked(){
     ui->stackedWidget->setCurrentIndex(8);
+}
+
+void MainWindow::on_returnRent_Clicked(){
+    ui->stackedWidget->setCurrentIndex(9);
 }
 
 
@@ -252,6 +259,10 @@ void MainWindow::renderRentContainer(){
         data.push_back(_rentContainer[i]->getBorrower()->getFirstName()+" "+_rentContainer[i]->getBorrower()->getLastName());
 
         renderRowInTable(ui->tableWidget_3,i,data);
+        if(_rentContainer[i]->isReturned())
+            ui->tableWidget_3->item(i, 0)->setBackground(Qt::green);
+        else
+            ui->tableWidget_3->item(i, 0)->setBackground(Qt::red);
     }
 }
 
@@ -283,18 +294,22 @@ void MainWindow::renderRowInTable(QTableWidget *table, int row, std::vector<std:
 
 void MainWindow::on_date_rent_return_userDateChanged(const QDate &date)
 {
-    QDate start = ui->date_rent_start->date();
-    int NbOfDay = start.daysTo(date);
+    if(selectedBorrower||selectedCopy){
+        QDate start = ui->date_rent_start->date();
+        int NbOfDay = start.daysTo(date);
 
-    ui->label_rent_totalCost->setText(QString::number(selectedCopy->getVehicle()->getDailyCost()*NbOfDay));
+        ui->label_rent_totalCost->setText(QString::number(selectedCopy->getVehicle()->getDailyCost()*NbOfDay));
+    }
 }
 
 void MainWindow::on_date_rent_start_userDateChanged(const QDate &date)
 {
-    QDate end = ui->date_rent_return->date();
-    int NbOfDay = date.daysTo(end);
+    if(selectedBorrower||selectedCopy){
+        QDate end = ui->date_rent_return->date();
+        int NbOfDay = date.daysTo(end);
 
-    ui->label_rent_totalCost->setText(QString::number(selectedCopy->getVehicle()->getDailyCost()*NbOfDay));
+        ui->label_rent_totalCost->setText(QString::number(selectedCopy->getVehicle()->getDailyCost()*NbOfDay));
+    }
 }
 
 void MainWindow::on_pushButton_2_clicked()
@@ -302,6 +317,12 @@ void MainWindow::on_pushButton_2_clicked()
     if(selectedCopy->isDispo()){
         Rent* rent = new Rent(selectedCopy, selectedBorrower, Date(ui->date_rent_start->date().day(),ui->date_rent_start->date().month(),ui->date_rent_start->date().year()), Date(ui->date_rent_return->date().day(),ui->date_rent_return->date().month(),ui->date_rent_return->date().year()));
         _rentContainer.push_back(rent);
+
+        bool b=true;
+        if(ui->radio_noinsu->isChecked())
+            b=false;
+
+        _rentContainer[_rentContainer.size()-1]->setInsurance(b);
 
         selectedCopy->setDispo(false);
         renderRentContainer();
@@ -367,4 +388,26 @@ void MainWindow::on_radioButton_clicked()
         else
             minorV++;
     }
+}
+
+void MainWindow::on_tableWidget_3_clicked(const QModelIndex &index)
+{
+    int id = ui->tableWidget_2->item(index.row(),0)->text().toInt();
+
+    //set selected
+    selectedRent = _rentContainer[id-1];
+
+    //diplay
+    std::string buffer1 = selectedRent->getBorrower()->getFirstName()+" "+selectedRent->getBorrower()->getLastName();
+    std::string buffer2 = selectedRent->getCopy()->getVehicle()->getBrand()+" "+selectedRent->getCopy()->getVehicle()->getName();
+
+    ui->label_return_name->setText(buffer1.c_str());
+    ui->label_return_vehicle->setText(buffer2.c_str());
+    ui->label_return_inod->setText(QString::number(QDate(selectedRent->getBegin().getYear(),selectedRent->getBegin().getMonth(),selectedRent->getBegin().getDay()).daysTo(QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()))));
+    ui->label_return_rnod->setText(QString::number(QDate(selectedRent->getBegin().getYear(),selectedRent->getBegin().getMonth(),selectedRent->getBegin().getDay()).daysTo(QDate::currentDate())));
+}
+
+void MainWindow::on_pushButton_4_clicked()
+{
+
 }

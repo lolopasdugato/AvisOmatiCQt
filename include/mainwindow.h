@@ -37,6 +37,7 @@ private slots:
     void on_NewRent_Clicked();
     void on_ListCopy_Clicked();
     void on_RentList_Clicked();
+    void on_returnRent_Clicked();
 
     void on_button_newBorrower_clicked();
 
@@ -68,6 +69,10 @@ private slots:
 
     void on_refresh_clicked();
 
+    void on_tableWidget_3_clicked(const QModelIndex &index);
+
+    void on_pushButton_4_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -81,6 +86,7 @@ private:
     Vehicle* selectedVehicle;
     Borrower* selectedBorrower;
     Copy* selectedCopy;
+    Rent* selectedRent;
 
     //Render function
     void renderBorrowerContainer();

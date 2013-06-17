@@ -144,3 +144,15 @@ const Borrower* Rent::getBorrower() const{
 const Copy* Rent::getCopy() const{
     return _copy;
 }
+
+bool Rent::isReturned(){
+    return _status;
+}
+
+const bool Rent::getInsurance() const{
+    return _insurance;
+}
+
+void Rent::setInsurance(const bool &i){
+    _insurance=i;
+}
