@@ -60,6 +60,10 @@ void MainWindow::on_NewVehicle_Clicked(){
 
 void MainWindow::on_ListVehicle_Clicked(){
     ui->stackedWidget->setCurrentIndex(2);
+    if(!selectedVehicle){
+        ui->label_vehicle_copy->setEnabled(false);
+        ui->pushButton->setEnabled(false);
+    }
 }
 
 void MainWindow::on_NewRent_Clicked(){
@@ -151,6 +155,9 @@ void MainWindow::on_table_vehicle_clicked(const QModelIndex &index)
     }
 
     ui->label_vehicle_copy->setValue(_copyContainer.getNumberOf(returnValue->at(0)));
+
+    ui->label_vehicle_copy->setEnabled(true);
+    ui->pushButton->setEnabled(true);
 }
 
 void MainWindow::on_pushButton_clicked()
