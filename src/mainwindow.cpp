@@ -261,6 +261,8 @@ void MainWindow::renderRentContainer(){
         data.push_back(toString(_rentContainer[i]->getId()));
         data.push_back(_rentContainer[i]->getCopy()->getVehicle()->getBrand()+" "+_rentContainer[i]->getCopy()->getVehicle()->getName());
         data.push_back(_rentContainer[i]->getBorrower()->getFirstName()+" "+_rentContainer[i]->getBorrower()->getLastName());
+        data.push_back(toString(QDate(_rentContainer[i]->getEnd().getYear(),_rentContainer[i]->getEnd().getMonth(),_rentContainer[i]->getEnd().getDay()).daysTo(QDate::currentDate())*-1));
+
 
         renderRowInTable(ui->tableWidget_3,i,data);
         if(_rentContainer[i]->getStatus())
@@ -301,8 +303,7 @@ void MainWindow::on_date_rent_return_userDateChanged(const QDate &date)
     if(selectedBorrower||selectedCopy){
         QDate start = ui->date_rent_start->date();
         int NbOfDay = start.daysTo(date);
-
-        ui->label_rent_totalCost->setText(QString::number(selectedCopy->getVehicle()->getDailyCost()*NbOfDay));
+        ui->label_rent_totalCost->setText(QString::number(calculatePrice(selectedCopy->getVehicle()->getDailyCost(),ui->radio_insu->isChecked(),NbOfDay,selectedCopy->getKilometers())));
     }
 }
 
@@ -312,7 +313,7 @@ void MainWindow::on_date_rent_start_userDateChanged(const QDate &date)
         QDate end = ui->date_rent_return->date();
         int NbOfDay = date.daysTo(end);
 
-        ui->label_rent_totalCost->setText(QString::number(selectedCopy->getVehicle()->getDailyCost()*NbOfDay));
+        ui->label_rent_totalCost->setText(QString::number(calculatePrice(selectedCopy->getVehicle()->getDailyCost(),ui->radio_insu->isChecked(),NbOfDay,selectedCopy->getKilometers())));
     }
 }
 
@@ -411,9 +412,45 @@ void MainWindow::on_tableWidget_3_clicked(const QModelIndex &index)
     ui->label_return_vehicle->setText(buffer2.c_str());
     ui->label_return_inod->setText(QString::number(QDate(selectedRent->getBegin().getYear(),selectedRent->getBegin().getMonth(),selectedRent->getBegin().getDay()).daysTo(QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()))));
     ui->label_return_rnod->setText(QString::number(QDate(selectedRent->getBegin().getYear(),selectedRent->getBegin().getMonth(),selectedRent->getBegin().getDay()).daysTo(QDate::currentDate())));
+
+    int NbOfDays = QDate(selectedRent->getBegin().getYear(),selectedRent->getBegin().getMonth(),selectedRent->getBegin().getDay()).daysTo(QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()));
+
+    ui->label_retur_firstPrice->setText(QString::number(calculatePrice(selectedRent->getCopy()->getVehicle()->getDailyCost(),selectedRent->getInsurance(),NbOfDays,selectedRent->getCopy()->getKilometers())));
+    ui->label_return_realPrice->setText(QString::number(calculatePrice(selectedRent->getCopy()->getVehicle()->getDailyCost(),selectedRent->getInsurance(),NbOfDays,QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()).daysTo(QDate::currentDate())*-1)));
 }
 
 void MainWindow::on_pushButton_4_clicked()
 {
 
+}
+
+void MainWindow::on_radio_insu_clicked()
+{
+    if(selectedBorrower||selectedCopy){
+        QDate end = ui->date_rent_return->date();
+        int NbOfDay = ui->date_rent_start->date().daysTo(end);
+        ui->label_rent_totalCost->setText(QString::number(calculatePrice(selectedCopy->getVehicle()->getDailyCost(),true,NbOfDay,selectedCopy->getKilometers())));
+    }
+}
+
+void MainWindow::on_radio_noinsu_clicked()
+{
+    if(selectedBorrower||selectedCopy){
+        QDate end = ui->date_rent_return->date();
+        int NbOfDay = ui->date_rent_start->date().daysTo(end);
+        ui->label_rent_totalCost->setText(QString::number(calculatePrice(selectedCopy->getVehicle()->getDailyCost(),false,NbOfDay,selectedCopy->getKilometers())));
+    }
+}
+
+int MainWindow::calculatePrice(int price, bool insu, int NbOfDay, int nbKm, int daysOver){
+    int price2 = price*NbOfDay*1.0;
+    if(insu)
+        price2 += (price2*10.0)/100.0;
+    price2 -= (floor(nbKm/50000.0)*price2)/10;
+
+    if(daysOver>0){
+        price2 += daysOver*50;
+    }
+
+    return price2;
 }

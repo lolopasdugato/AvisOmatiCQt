@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QTableWidget>
+#include <math.h>
 #include "../include/Rent.h"
 #include "../include/BorrowerContainer.h"
 #include "../include/VehicleContainer.h"
@@ -74,6 +75,10 @@ private slots:
 
     void on_pushButton_4_clicked();
 
+    void on_radio_insu_clicked();
+
+    void on_radio_noinsu_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -98,6 +103,9 @@ private:
     //Tools for editing QTableWidget
     void removeAllRows(QTableWidget* table);
     void renderRowInTable(QTableWidget* table, int row, std::vector<std::string> list);
+
+    //Other cool function
+    int calculatePrice(int price, bool insu, int NbOfDay, int nbKm, int daysOver=0);
 };
 
 #endif // MAINWINDOW_H
