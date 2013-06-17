@@ -217,6 +217,9 @@ void MainWindow::renderCopyContainer(){
 
     for(int i=0; i<_copyContainer.size();i++){
         renderRowInTable(ui->tableWidget_2,i,_copyContainer.display(i));
+                ui->tableWidget_2->item(i, 0)->setBackground(Qt::white);
+        if(!_copyContainer.getCopyContainer()[i+1]->isDispo())
+            ui->tableWidget_2->item(i, 0)->setBackground(Qt::red);
     }
 }
 
@@ -250,6 +253,13 @@ void MainWindow::renderRentContainer(){
 
         renderRowInTable(ui->tableWidget_3,i,data);
     }
+}
+
+void MainWindow::on_refresh_clicked(){
+    renderCopyContainer();
+    renderRentContainer();
+    renderBorrowerContainer();
+    renderVehicleContainer();
 }
 
 //-----------------------------------------------------------------------//
@@ -289,11 +299,27 @@ void MainWindow::on_date_rent_start_userDateChanged(const QDate &date)
 
 void MainWindow::on_pushButton_2_clicked()
 {
-    Rent* rent = new Rent(selectedCopy, selectedBorrower, Date(ui->date_rent_start->date().day(),ui->date_rent_start->date().month(),ui->date_rent_start->date().year()), Date(ui->date_rent_return->date().day(),ui->date_rent_return->date().month(),ui->date_rent_return->date().year()));
-    _rentContainer.push_back(rent);
+    if(selectedCopy->isDispo()){
+        Rent* rent = new Rent(selectedCopy, selectedBorrower, Date(ui->date_rent_start->date().day(),ui->date_rent_start->date().month(),ui->date_rent_start->date().year()), Date(ui->date_rent_return->date().day(),ui->date_rent_return->date().month(),ui->date_rent_return->date().year()));
+        _rentContainer.push_back(rent);
 
-    selectedCopy->setDispo(false);
-    renderRentContainer();
+        selectedCopy->setDispo(false);
+        renderRentContainer();
+        renderCopyContainer();
+
+        ui->label_borro_name->clear();
+        ui->label_borro_address->clear();
+        ui->label_borro_phone->clear();
+
+        selectedBorrower=NULL;
+    }
+    selectedCopy=NULL;
+    ui->label_vehicle_brand_2->clear();
+    ui->label_vehicle_name_2->clear();
+    ui->label_vehicle_id_2->clear();
+    ui->label_vehicle_type_2->clear();
+    ui->label_rent_dailyCost->clear();
+    ui->pushButton_2->setEnabled(false);
 }
 
 void MainWindow::on_save_clicked(){
