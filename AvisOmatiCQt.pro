@@ -28,7 +28,8 @@ SOURCES +=\
     src/Address.cpp \
     src/mainwindow.cpp \
     src/XmlBorrower.cpp \
-    src/XmlCopy.cpp
+    src/XmlCopy.cpp \
+    src/XmlRent.cpp
 
 HEADERS  += \
     include/VehicleContainer.h \
@@ -44,6 +45,7 @@ HEADERS  += \
     include/Address.h \
     include/mainwindow.h \
     include/XmlBorrower.h \
-    include/XmlCopy.h
+    include/XmlCopy.h \
+    include/XmlRent.h
 
 FORMS    += mainwindow.ui

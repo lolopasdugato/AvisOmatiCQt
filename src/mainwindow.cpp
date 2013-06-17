@@ -259,7 +259,7 @@ void MainWindow::renderRentContainer(){
         data.push_back(_rentContainer[i]->getBorrower()->getFirstName()+" "+_rentContainer[i]->getBorrower()->getLastName());
 
         renderRowInTable(ui->tableWidget_3,i,data);
-        if(_rentContainer[i]->isReturned())
+        if(_rentContainer[i]->getStatus())
             ui->tableWidget_3->item(i, 0)->setBackground(Qt::green);
         else
             ui->tableWidget_3->item(i, 0)->setBackground(Qt::red);

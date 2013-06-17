@@ -27,6 +27,8 @@ public:
     void setId(int id);
     void setInsurance(const bool& i);
     const bool getInsurance() const;
+    const bool getStatus() const;
+    void setStatus(const bool& i);
     const Copy* getCopy() const;
     const Borrower* getBorrower() const;
 

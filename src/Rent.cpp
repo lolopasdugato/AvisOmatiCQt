@@ -145,12 +145,16 @@ const Copy* Rent::getCopy() const{
     return _copy;
 }
 
-bool Rent::isReturned(){
-    return _status;
+void Rent::setStatus(const bool &i){
+    _insurance = i;
 }
 
 const bool Rent::getInsurance() const{
     return _insurance;
+}
+
+const bool Rent::getStatus() const{
+    return _status;
 }
 
 void Rent::setInsurance(const bool &i){

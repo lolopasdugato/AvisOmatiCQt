@@ -14,7 +14,7 @@ BorrowerContainer::BorrowerContainer() {
 
 }
 
-const std::map<int,Borrower*>& BorrowerContainer::getBorrowerContainer() const {
+std::map<int,Borrower*>& BorrowerContainer::getBorrowerContainer() {
 	return _borrowerContainer;
 }
 
