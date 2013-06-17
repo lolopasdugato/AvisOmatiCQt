@@ -303,3 +303,42 @@ void MainWindow::on_save_clicked(){
     xmlBorrower.write(&_borrowerContainer);
     xmlCopy.write(&_copyContainer);
 }
+
+void MainWindow::on_radioButton_2_clicked()
+{
+    renderVehicleContainer();
+}
+
+void MainWindow::on_radioButton_3_clicked()
+{
+    removeAllRows(ui->table_vehicle);
+
+    std::vector<std::string>buffer;
+    int minorV=0;
+
+    for(int i=0; i<_vehicleContainer.size();i++){
+        buffer.clear();
+        buffer=_vehicleContainer.display(i,Vehicle::car);
+        if(buffer.size()>0)
+            renderRowInTable(ui->table_vehicle,i-minorV,buffer);
+        else
+            minorV--;
+    }
+}
+
+void MainWindow::on_radioButton_clicked()
+{
+    removeAllRows(ui->table_vehicle);
+
+    std::vector<std::string>buffer;
+    int minorV=0;
+
+    for(int i=0; i<_vehicleContainer.size();i++){
+        buffer.clear();
+        buffer=_vehicleContainer.display(i,Vehicle::moto);
+        if(buffer.size()>0)
+            renderRowInTable(ui->table_vehicle,i-minorV,buffer);
+        else
+            minorV++;
+    }
+}

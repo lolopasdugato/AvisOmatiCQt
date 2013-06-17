@@ -30,6 +30,7 @@ public:
     int size();
 
     std::vector<std::string> display(int i);
+    std::vector<std::string> display(int i, Vehicle::Type t);
 
     void add(const std::string& brand, const std::string& name, const Vehicle::Type &type, float dailyCost);
 
