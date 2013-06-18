@@ -49,6 +49,18 @@ std::vector<std::string> CopyContainer::display(int i){
 
     returnVector.push_back(vehicle->getName());
 
+    switch(_copyContainer[i]->getStatus()){
+    case Copy::NEW:
+        returnVector.push_back("New");
+        break;
+    case Copy::DAMAGED:
+        returnVector.push_back("Damaged");
+        break;
+    case Copy::UNUSABLE:
+        returnVector.push_back("Unusable");
+        break;
+    }
+
     std::string s;
     std::stringstream out;
     out << _copyContainer[i]->getKilometers();

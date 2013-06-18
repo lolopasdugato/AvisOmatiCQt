@@ -39,11 +39,12 @@ public:
 
 	friend std::ostream& operator<< (std::ostream& out, const Copy& copy);
 	friend std::istream& operator>> (std::istream& in, Copy& copy);
+    Status _status;
 private:
     int _id;
 	int _kilometers;
     bool _dispo;
-    Status _status;
+
 	Vehicle* _vehicle;
 };
 

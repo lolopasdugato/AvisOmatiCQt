@@ -298,7 +298,7 @@ void MainWindow::removeAllRows(QTableWidget* table){
 void MainWindow::renderRowInTable(QTableWidget *table, int row, std::vector<std::string> list){
     table->insertRow(row);
     for(std::vector<std::string>::iterator it=list.begin();it<list.end();it++){
-        QTableWidgetItem *item = new QTableWidgetItem(QString::fromStdString((*it)));
+        QTableWidgetItem *item = new QTableWidgetItem((*it).c_str());
         table->setItem(row, it-list.begin(), item);
     }
 }
@@ -423,7 +423,7 @@ void MainWindow::on_tableWidget_3_clicked(const QModelIndex &index)
     int NbOfDays = QDate(selectedRent->getBegin().getYear(),selectedRent->getBegin().getMonth(),selectedRent->getBegin().getDay()).daysTo(QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()));
 
     ui->label_retur_firstPrice->setText(QString::number(calculatePrice(selectedRent->getCopy()->getVehicle()->getDailyCost(),selectedRent->getInsurance(),NbOfDays,selectedRent->getCopy()->getKilometers())));
-    ui->label_return_realPrice->setText(QString::number(calculatePrice(selectedRent->getCopy()->getVehicle()->getDailyCost(),selectedRent->getInsurance(),NbOfDays,selectedRent->getCopy()->getKilometers(),ui->combo_fuel->currentIndex()*50,QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()).daysTo(QDate::currentDate()))));
+    ui->label_return_realPrice->setText(QString::number(calculatePrice(selectedRent->getCopy()->getVehicle()->getDailyCost(),selectedRent->getInsurance(),NbOfDays,selectedRent->getCopy()->getKilometers(),ui->combo_fuel->currentIndex()*50,ui->comboBox->currentIndex(),QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()).daysTo(QDate::currentDate()))));
 }
 
 void MainWindow::on_pushButton_4_clicked()
@@ -435,6 +435,9 @@ void MainWindow::on_pushButton_4_clicked()
     renderCopyContainer();
 
     selectedRent->setFuelMalus(ui->combo_fuel->currentIndex()*50);
+    selectedRent->getCopy()->setStatus(Copy::Status(ui->comboBox->currentIndex()));
+
+    renderCopyContainer();
 }
 
 void MainWindow::on_radio_insu_clicked()
@@ -455,10 +458,11 @@ void MainWindow::on_radio_noinsu_clicked()
     }
 }
 
-int MainWindow::calculatePrice(int price, bool insu, int NbOfDay, int nbKm, int fuelMalus, int daysOver){
+int MainWindow::calculatePrice(int price, bool insu, int NbOfDay, int nbKm, int fuelMalus, int damageMalus, int daysOver){
     int price2 = price*NbOfDay*1.0;
     int insuVal =0;
     int km=0;
+    int damage=0;
 
     if(insu)
         insuVal += (price2*10.0)/100.0;
@@ -468,7 +472,21 @@ int MainWindow::calculatePrice(int price, bool insu, int NbOfDay, int nbKm, int 
         price2 += daysOver*50;
     }
 
-    return price2+fuelMalus+insuVal+km;
+    if(!insu){
+        switch(damageMalus){
+        case 0:
+            damage=0;
+            break;
+        case 1:
+            damage=1000;
+            break;
+        case 2:
+            damage=5000;
+            break;
+        }
+    }
+
+    return price2+fuelMalus+insuVal+km+damage;
 }
 
 void MainWindow::on_pushButton_3_clicked()
@@ -516,8 +534,22 @@ void MainWindow::on_pushButton_3_clicked()
 
     ui->label_bill_fuel->setText(QString::number(selectedRent->getFuelMalus()));
 
+    if(!selectedRent->getInsurance()){
+        switch(selectedRent->getCopy()->getStatus()){
+        case Copy::NEW:
+            ui->label_bill_dam->setText(QString::number(0));
+            break;
+        case Copy::DAMAGED:
+            ui->label_bill_dam->setText(QString::number(1000));
+            break;
+        case Copy::UNUSABLE:
+            ui->label_bill_dam->setText(QString::number(5000));
+            break;
+        }
+    }
+
     //Display total
-    ui->label_bill_tot->setText(QString::number(calculatePrice(selectedRent->getCopy()->getVehicle()->getDailyCost(),selectedRent->getInsurance(),NbOfDays,selectedRent->getCopy()->getKilometers(),QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()).daysTo(QDate::currentDate()))));
+    ui->label_bill_tot->setText(QString::number(calculatePrice(selectedRent->getCopy()->getVehicle()->getDailyCost(),selectedRent->getInsurance(),NbOfDays,selectedRent->getCopy()->getKilometers(),ui->combo_fuel->currentIndex()*50,ui->comboBox->currentIndex(),QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()).daysTo(QDate::currentDate()))));
 
     ui->stackedWidget->setCurrentIndex(1);
 }
@@ -525,5 +557,11 @@ void MainWindow::on_pushButton_3_clicked()
 void MainWindow::on_combo_fuel_currentIndexChanged(int index)
 {
     int NbOfDays = QDate(selectedRent->getBegin().getYear(),selectedRent->getBegin().getMonth(),selectedRent->getBegin().getDay()).daysTo(QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()));
-    ui->label_return_realPrice->setText(QString::number(calculatePrice(selectedRent->getCopy()->getVehicle()->getDailyCost(),selectedRent->getInsurance(),NbOfDays,selectedRent->getCopy()->getKilometers(),ui->combo_fuel->currentIndex()*50,QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()).daysTo(QDate::currentDate()))));
+    ui->label_return_realPrice->setText(QString::number(calculatePrice(selectedRent->getCopy()->getVehicle()->getDailyCost(),selectedRent->getInsurance(),NbOfDays,selectedRent->getCopy()->getKilometers(),ui->combo_fuel->currentIndex()*50,ui->comboBox->currentIndex(),QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()).daysTo(QDate::currentDate()))));
+}
+
+void MainWindow::on_comboBox_currentIndexChanged(int index)
+{
+    int NbOfDays = QDate(selectedRent->getBegin().getYear(),selectedRent->getBegin().getMonth(),selectedRent->getBegin().getDay()).daysTo(QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()));
+    ui->label_return_realPrice->setText(QString::number(calculatePrice(selectedRent->getCopy()->getVehicle()->getDailyCost(),selectedRent->getInsurance(),NbOfDays,selectedRent->getCopy()->getKilometers(),ui->combo_fuel->currentIndex()*50,ui->comboBox->currentIndex(),QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()).daysTo(QDate::currentDate()))));
 }

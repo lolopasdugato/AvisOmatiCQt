@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>7</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QWidget" name="horizontalLayoutWidget">
@@ -1430,12 +1430,12 @@
          </column>
          <column>
           <property name="text">
-           <string>Kilometers</string>
+           <string>Status</string>
           </property>
          </column>
          <column>
           <property name="text">
-           <string>Etat</string>
+           <string>Kilometers</string>
           </property>
          </column>
         </widget>
@@ -1636,6 +1636,32 @@
              <item>
               <property name="text">
                <string>1/4</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item row="5" column="0">
+            <widget class="QLabel" name="label_53">
+             <property name="text">
+              <string>Damage</string>
+             </property>
+            </widget>
+           </item>
+           <item row="5" column="1">
+            <widget class="QComboBox" name="comboBox">
+             <item>
+              <property name="text">
+               <string>New</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Damaged</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Unusable</string>
               </property>
              </item>
             </widget>
