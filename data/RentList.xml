@@ -2,7 +2,7 @@
 <!DOCTYPE RentList>
 <xml>
   <rent>
-    <copy>2</copy>
+    <copy>1</copy>
     <borrower>0</borrower>
     <begin>
       <day1>17</day1>
@@ -15,6 +15,22 @@
       <year2>2013</year2>
     </end>
     <status>0</status>
+    <insurance>1</insurance>
+  </rent>
+  <rent>
+    <copy>2</copy>
+    <borrower>0</borrower>
+    <begin>
+      <day1>17</day1>
+      <month1>6</month1>
+      <year1>2013</year1>
+    </begin>
+    <end>
+      <day2>18</day2>
+      <month2>6</month2>
+      <year2>2013</year2>
+    </end>
+    <status>1</status>
     <insurance>1</insurance>
   </rent>
 </xml>
