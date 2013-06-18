@@ -466,12 +466,12 @@
   <copy>
     <vehicle>
       <type>moto</type>
-      <brand>Bobber</brand>
-      <model>125tw</model>
-      <dailyprice>60</dailyprice>
+      <brand>Suzuki</brand>
+      <model>gsrf650</model>
+      <dailyprice>100</dailyprice>
     </vehicle>
     <characteristics>
-      <kilometers>121</kilometers>
+      <kilometers>64551</kilometers>
       <status>new</status>
       <dispo>1</dispo>
       <id>34</id>
@@ -480,12 +480,12 @@
   <copy>
     <vehicle>
       <type>moto</type>
-      <brand>Bobber</brand>
-      <model>125tw</model>
-      <dailyprice>60</dailyprice>
+      <brand>Suzuki</brand>
+      <model>gsrf650</model>
+      <dailyprice>100</dailyprice>
     </vehicle>
     <characteristics>
-      <kilometers>456</kilometers>
+      <kilometers>453</kilometers>
       <status>new</status>
       <dispo>1</dispo>
       <id>35</id>
@@ -495,11 +495,11 @@
     <vehicle>
       <type>moto</type>
       <brand>Suzuki</brand>
-      <model>gsxf650</model>
+      <model>gsrf650</model>
       <dailyprice>100</dailyprice>
     </vehicle>
     <characteristics>
-      <kilometers>21312</kilometers>
+      <kilometers>123</kilometers>
       <status>new</status>
       <dispo>1</dispo>
       <id>36</id>
@@ -509,11 +509,11 @@
     <vehicle>
       <type>moto</type>
       <brand>Suzuki</brand>
-      <model>gsxf650</model>
+      <model>gsrf650</model>
       <dailyprice>100</dailyprice>
     </vehicle>
     <characteristics>
-      <kilometers>123</kilometers>
+      <kilometers>123123</kilometers>
       <status>new</status>
       <dispo>1</dispo>
       <id>37</id>
@@ -523,11 +523,11 @@
     <vehicle>
       <type>moto</type>
       <brand>Suzuki</brand>
-      <model>gsxf650</model>
+      <model>gsrf650</model>
       <dailyprice>100</dailyprice>
     </vehicle>
     <characteristics>
-      <kilometers>54478</kilometers>
+      <kilometers>123</kilometers>
       <status>new</status>
       <dispo>1</dispo>
       <id>38</id>
@@ -537,11 +537,11 @@
     <vehicle>
       <type>moto</type>
       <brand>Suzuki</brand>
-      <model>gsxf650</model>
+      <model>gsrf650</model>
       <dailyprice>100</dailyprice>
     </vehicle>
     <characteristics>
-      <kilometers>869</kilometers>
+      <kilometers>123</kilometers>
       <status>new</status>
       <dispo>1</dispo>
       <id>39</id>
@@ -551,11 +551,11 @@
     <vehicle>
       <type>moto</type>
       <brand>Suzuki</brand>
-      <model>gsxf650</model>
+      <model>gsrf650</model>
       <dailyprice>100</dailyprice>
     </vehicle>
     <characteristics>
-      <kilometers>951</kilometers>
+      <kilometers>354</kilometers>
       <status>new</status>
       <dispo>1</dispo>
       <id>40</id>
@@ -565,11 +565,11 @@
     <vehicle>
       <type>moto</type>
       <brand>Suzuki</brand>
-      <model>gsxr600</model>
+      <model>gsrf650</model>
       <dailyprice>100</dailyprice>
     </vehicle>
     <characteristics>
-      <kilometers>486</kilometers>
+      <kilometers>0</kilometers>
       <status>new</status>
       <dispo>1</dispo>
       <id>41</id>
@@ -578,12 +578,12 @@
   <copy>
     <vehicle>
       <type>moto</type>
-      <brand>Suzuki</brand>
-      <model>gsxr600</model>
-      <dailyprice>100</dailyprice>
+      <brand>Bobber</brand>
+      <model>125tw</model>
+      <dailyprice>90</dailyprice>
     </vehicle>
     <characteristics>
-      <kilometers>56</kilometers>
+      <kilometers>546</kilometers>
       <status>new</status>
       <dispo>1</dispo>
       <id>42</id>
@@ -592,9 +592,9 @@
   <copy>
     <vehicle>
       <type>moto</type>
-      <brand>Suzuki</brand>
-      <model>gsxr600</model>
-      <dailyprice>100</dailyprice>
+      <brand>Bobber</brand>
+      <model>125tw</model>
+      <dailyprice>90</dailyprice>
     </vehicle>
     <characteristics>
       <kilometers>0</kilometers>
@@ -608,10 +608,10 @@
       <type>moto</type>
       <brand>Bobber</brand>
       <model>125tw</model>
-      <dailyprice>60</dailyprice>
+      <dailyprice>90</dailyprice>
     </vehicle>
     <characteristics>
-      <kilometers>0</kilometers>
+      <kilometers>6786</kilometers>
       <status>new</status>
       <dispo>1</dispo>
       <id>44</id>
@@ -622,97 +622,13 @@
       <type>moto</type>
       <brand>Bobber</brand>
       <model>125tw</model>
-      <dailyprice>60</dailyprice>
+      <dailyprice>90</dailyprice>
     </vehicle>
     <characteristics>
-      <kilometers>56</kilometers>
+      <kilometers>652</kilometers>
       <status>new</status>
       <dispo>1</dispo>
       <id>45</id>
-    </characteristics>
-  </copy>
-  <copy>
-    <vehicle>
-      <type>moto</type>
-      <brand>Bobber</brand>
-      <model>125tw</model>
-      <dailyprice>60</dailyprice>
-    </vehicle>
-    <characteristics>
-      <kilometers>0</kilometers>
-      <status>new</status>
-      <dispo>1</dispo>
-      <id>46</id>
-    </characteristics>
-  </copy>
-  <copy>
-    <vehicle>
-      <type>moto</type>
-      <brand>Bobber</brand>
-      <model>125tw</model>
-      <dailyprice>60</dailyprice>
-    </vehicle>
-    <characteristics>
-      <kilometers>896</kilometers>
-      <status>new</status>
-      <dispo>1</dispo>
-      <id>47</id>
-    </characteristics>
-  </copy>
-  <copy>
-    <vehicle>
-      <type>moto</type>
-      <brand>Bobber</brand>
-      <model>125tw</model>
-      <dailyprice>60</dailyprice>
-    </vehicle>
-    <characteristics>
-      <kilometers>415</kilometers>
-      <status>new</status>
-      <dispo>1</dispo>
-      <id>48</id>
-    </characteristics>
-  </copy>
-  <copy>
-    <vehicle>
-      <type>moto</type>
-      <brand>Bobber</brand>
-      <model>125tw</model>
-      <dailyprice>60</dailyprice>
-    </vehicle>
-    <characteristics>
-      <kilometers>563</kilometers>
-      <status>new</status>
-      <dispo>1</dispo>
-      <id>49</id>
-    </characteristics>
-  </copy>
-  <copy>
-    <vehicle>
-      <type>moto</type>
-      <brand>Suzuki</brand>
-      <model>gsxr600</model>
-      <dailyprice>100</dailyprice>
-    </vehicle>
-    <characteristics>
-      <kilometers>896</kilometers>
-      <status>new</status>
-      <dispo>1</dispo>
-      <id>50</id>
-    </characteristics>
-  </copy>
-  <copy>
-    <vehicle>
-      <type>moto</type>
-      <brand>Suzuki</brand>
-      <model>gsxr600</model>
-      <dailyprice>100</dailyprice>
-    </vehicle>
-    <characteristics>
-      <kilometers>23</kilometers>
-      <status>new</status>
-      <dispo>1</dispo>
-      <id>51</id>
     </characteristics>
   </copy>
 </xml>
