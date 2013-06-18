@@ -40,6 +40,17 @@ void BorrowerContainer::add(const std::string& firstname, const std::string& las
 
 void BorrowerContainer::erase(Borrower* borrower) {
     _borrowerContainer.erase(borrower->getId());
+
+    std::map<int, Borrower*> newContainer;
+
+    int i=0;
+    for(std::map<int, Borrower*>::iterator it = _borrowerContainer.begin(); it != _borrowerContainer.end(); it++) {
+        newContainer[i]=(*it).second;
+        newContainer[i]->setId(i);
+        i++;
+    }
+
+    _borrowerContainer=newContainer;
     return;
 }
 

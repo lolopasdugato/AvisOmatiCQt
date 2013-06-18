@@ -109,6 +109,17 @@ void CopyContainer::add(const int& kilometers, const Copy::Status& status, const
 
 void CopyContainer::erase(Copy* copy) {
     _copyContainer.erase(copy->getId());
+
+    std::map<int, Copy*> newContainer;
+
+    int i=1;
+    for(std::map<int, Copy*>::iterator it = _copyContainer.begin(); it != _copyContainer.end(); it++) {
+        newContainer[i]=(*it).second;
+        newContainer[i]->setId(i);
+        i++;
+    }
+
+    _copyContainer=newContainer;
     return;
 }
 

@@ -48,10 +48,14 @@ void MainWindow::on_NewBorrower_Clicked(){
 
 void MainWindow::on_ListBorrower_Clicked(){
     ui->stackedWidget->setCurrentIndex(6);
+    if(!selectedBorrower)
+        ui->pushButton_5->setEnabled(false);
 }
 
 void MainWindow::on_ListCopy_Clicked(){
     ui->stackedWidget->setCurrentIndex(7);
+    if(!selectedCopy)
+        ui->pushButton_6->setEnabled(false);
 }
 
 void MainWindow::on_NewVehicle_Clicked(){
@@ -189,6 +193,8 @@ void MainWindow::on_tableWidget_clicked(const QModelIndex &index)
 
     //Set selected
     selectedBorrower = new Borrower(*returnValue->at(0));
+
+    ui->pushButton_5->setEnabled(true);
 }
 
 void MainWindow::on_tableWidget_2_cellChanged(int row, int column)
@@ -226,6 +232,8 @@ void MainWindow::on_tableWidget_2_clicked(const QModelIndex &index)
     int NbOfDay = start.daysTo(end);
 
     ui->label_rent_totalCost->setText(QString::number(selectedCopy->getVehicle()->getDailyCost()*NbOfDay));
+
+    ui->pushButton_6->setEnabled(true);
 }
 
 //-----------------------------------------------------------------------//
@@ -564,4 +572,20 @@ void MainWindow::on_comboBox_currentIndexChanged(int index)
 {
     int NbOfDays = QDate(selectedRent->getBegin().getYear(),selectedRent->getBegin().getMonth(),selectedRent->getBegin().getDay()).daysTo(QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()));
     ui->label_return_realPrice->setText(QString::number(calculatePrice(selectedRent->getCopy()->getVehicle()->getDailyCost(),selectedRent->getInsurance(),NbOfDays,selectedRent->getCopy()->getKilometers(),ui->combo_fuel->currentIndex()*50,ui->comboBox->currentIndex(),QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()).daysTo(QDate::currentDate()))));
+}
+
+void MainWindow::on_pushButton_5_clicked()
+{
+    _borrowerContainer.erase(selectedBorrower);
+    renderBorrowerContainer();
+    selectedBorrower=NULL;
+    ui->pushButton_5->setEnabled(false);
+}
+
+void MainWindow::on_pushButton_6_clicked()
+{
+    _copyContainer.erase(selectedCopy);
+    renderCopyContainer();
+    selectedCopy=NULL;
+    ui->pushButton_6->setEnabled(false);
 }
