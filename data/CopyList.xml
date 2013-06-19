@@ -13,6 +13,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>1</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -27,6 +28,7 @@
       <status>new</status>
       <dispo>0</dispo>
       <id>2</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -41,6 +43,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>3</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -55,6 +58,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>4</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -69,6 +73,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>5</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -83,6 +88,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>6</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -97,6 +103,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>7</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -111,6 +118,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>8</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -125,6 +133,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>9</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -139,6 +148,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>10</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -153,6 +163,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>11</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -167,6 +178,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>12</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -181,6 +193,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>13</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -195,6 +208,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>14</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -209,6 +223,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>15</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -223,6 +238,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>16</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -237,6 +253,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>17</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -251,6 +268,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>18</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -265,6 +283,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>19</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -279,6 +298,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>20</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -293,6 +313,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>21</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -307,6 +328,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>22</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -321,6 +343,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>23</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -335,6 +358,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>24</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -349,6 +373,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>25</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -363,6 +388,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>26</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -377,6 +403,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>27</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -391,6 +418,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>28</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -405,6 +433,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>29</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -419,6 +448,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>30</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -433,6 +463,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>31</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -447,6 +478,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>32</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -461,6 +493,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>33</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -475,6 +508,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>34</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -489,6 +523,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>35</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -503,6 +538,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>36</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -517,6 +553,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>37</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -531,6 +568,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>38</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -545,6 +583,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>39</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -559,6 +598,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>40</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -573,6 +613,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>41</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -587,6 +628,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>42</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -601,6 +643,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>43</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -615,6 +658,7 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>44</id>
+      <active>1</active>
     </characteristics>
   </copy>
   <copy>
@@ -629,6 +673,67 @@
       <status>new</status>
       <dispo>1</dispo>
       <id>45</id>
+      <active>1</active>
+    </characteristics>
+  </copy>
+  <copy>
+    <vehicle>
+      <type>moto</type>
+      <brand>Renault</brand>
+      <model>Clio</model>
+      <dailyprice>150</dailyprice>
+    </vehicle>
+    <characteristics>
+      <kilometers>-1</kilometers>
+      <status>new</status>
+      <dispo>1</dispo>
+      <id>46</id>
+      <active>0</active>
+    </characteristics>
+  </copy>
+  <copy>
+    <vehicle>
+      <type>moto</type>
+      <brand>Renault</brand>
+      <model>Clio</model>
+      <dailyprice>150</dailyprice>
+    </vehicle>
+    <characteristics>
+      <kilometers>-1</kilometers>
+      <status>new</status>
+      <dispo>1</dispo>
+      <id>47</id>
+      <active>1</active>
+    </characteristics>
+  </copy>
+  <copy>
+    <vehicle>
+      <type>moto</type>
+      <brand>Suzuki</brand>
+      <model>gsrf650</model>
+      <dailyprice>100</dailyprice>
+    </vehicle>
+    <characteristics>
+      <kilometers>-1</kilometers>
+      <status>new</status>
+      <dispo>1</dispo>
+      <id>48</id>
+      <active>0</active>
+    </characteristics>
+  </copy>
+  <copy>
+    <vehicle>
+      <type>moto</type>
+      <brand>Suzuki</brand>
+      <model>gsrf650</model>
+      <dailyprice>100</dailyprice>
+    </vehicle>
+    <characteristics>
+      <kilometers>-1</kilometers>
+      <status>new</status>
+      <dispo>1</dispo>
+      <id>49</id>
+      <active>0</active>
     </characteristics>
   </copy>
 </xml>
