@@ -38,7 +38,7 @@ std::vector<std::string> VehicleContainer::search(std::string brand) {
 
 std::vector<Vehicle*> VehicleContainer::search(std::vector<std::string> keywords) {
     int counter=0;
-    std::multimap<int,Vehicle*> list;
+    std::multimap<int,Vehicle*> list2;
     std::string concat="";
 
     for(std::vector<Vehicle*>::iterator iter2=_vehicleList.begin();iter2 != _vehicleList.end();iter2++){
@@ -48,14 +48,14 @@ std::vector<Vehicle*> VehicleContainer::search(std::vector<std::string> keywords
                 counter++;
         }
         if(counter!=0){ //One or more match found
-            list.insert(std::make_pair(counter,(*iter2)));
+            list2.insert(std::make_pair(counter,(*iter2)));
         }
 
         counter=0;
     }
 
     std::vector<Vehicle*> returnValue;
-    for(std::multimap<int, Vehicle*>::iterator it3 = list.begin(); it3 != list.end(); it3++) {
+    for(std::multimap<int, Vehicle*>::reverse_iterator it3 = list2.rbegin(); it3 != list2.rend(); it3++) {
         returnValue.push_back((*it3).second);
     }
 

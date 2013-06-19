@@ -90,7 +90,7 @@ std::vector<Borrower*> BorrowerContainer::search(std::vector<std::string> keywor
     }
 
     std::vector<Borrower*> returnValue;
-    for(std::multimap<int, Borrower*>::iterator it3 = list.begin(); it3 != list.end(); it3++) {
+    for(std::multimap<int, Borrower*>::reverse_iterator it3 = list.rbegin(); it3 != list.rend(); it3++) {
         returnValue.push_back((*it3).second);
     }
 

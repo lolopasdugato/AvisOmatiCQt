@@ -82,12 +82,13 @@ void MainWindow::on_ListVehicle_Clicked(){
 }
 
 void MainWindow::on_NewRent_Clicked(){
-    ui->stackedWidget->setCurrentIndex(5);
-    if(!selectedBorrower||!selectedCopy){
-        ui->pushButton_2->setEnabled(false);
+    if(selectedBorrower&&selectedCopy)
+        ui->stackedWidget->setCurrentIndex(5);
+    else{
+        QMessageBox::critical(this, "AvisOmatiC", "Please, select a borrower and a copy before.");
         return;
     }
-    ui->pushButton_2->setEnabled(true);
+
 }
 
 void MainWindow::on_RentList_Clicked(){
