@@ -382,6 +382,7 @@ void MainWindow::on_pushButton_2_clicked()
 
         selectedBorrower=NULL;
     }
+    QMessageBox::critical(this, "AvisOmatiC", "This copy is already in rent.");
     selectedCopy=NULL;
     ui->label_vehicle_brand_2->clear();
     ui->label_vehicle_name_2->clear();
