@@ -24,7 +24,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>2</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="page">
      <widget class="QWidget" name="horizontalLayoutWidget">
@@ -1830,12 +1830,6 @@
      <addaction name="actionNew_borrower"/>
      <addaction name="actionBorrower_list"/>
     </widget>
-    <widget class="QMenu" name="menuBill">
-     <property name="title">
-      <string>Bill</string>
-     </property>
-     <addaction name="actionEdit_bill"/>
-    </widget>
     <widget class="QMenu" name="menuVehicle">
      <property name="title">
       <string>Vehicle</string>
@@ -1854,7 +1848,6 @@
      <addaction name="actionConsult_rent"/>
     </widget>
     <addaction name="menuBorrower"/>
-    <addaction name="menuBill"/>
     <addaction name="menuVehicle"/>
     <addaction name="menuRent"/>
     <addaction name="separator"/>
@@ -1988,6 +1981,9 @@
   <action name="actionView_Edit_Copy">
    <property name="text">
     <string>View/Edit Copy</string>
+   </property>
+   <property name="shortcut">
+    <string>F3</string>
    </property>
   </action>
   <action name="actionRefresh">
