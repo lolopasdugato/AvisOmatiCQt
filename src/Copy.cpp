@@ -25,6 +25,7 @@ Copy::Copy(const int &kilometers, const Status& status, const bool& dispo, Vehic
     _status = status;
     _dispo = dispo;
 	_vehicle = vehicle;
+    _active=true;
 
     currentId++;
 }
@@ -35,6 +36,7 @@ Copy::Copy(Vehicle* vehicle) {
     _vehicle = vehicle;
     _dispo = true;
     _status = NEW;
+    _active=true;
     currentId++;
 }
 

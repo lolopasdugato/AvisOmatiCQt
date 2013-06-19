@@ -25,7 +25,8 @@ Borrower::Borrower(const std::string& firstname,  const std::string& lastname, c
     else _id = _nbInstance;
 	_firstName = firstname;
 	_lastName = lastname;
-	_address = address;
+    _address = address;
+    _active=true;
 
 	// Optional members
 	_phoneNumber = phoneNumber;
@@ -37,8 +38,8 @@ Borrower::Borrower(const Borrower& borrower) {
 	_firstName = borrower._firstName;
 	_lastName = borrower._lastName;
 	_address = borrower._address;
-
-	// Optional members
+    _active=true;
+        // Optional members
 	_phoneNumber = borrower._phoneNumber;
 }
 

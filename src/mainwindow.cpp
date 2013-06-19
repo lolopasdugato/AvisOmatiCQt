@@ -635,9 +635,13 @@ void MainWindow::on_radioButton_5_clicked()
 
     for(int i=0; i<_copyContainer.size();i++){
         buffer.clear();
-        buffer=_copyContainer.display(i+1,Vehicle::car);
-        if(buffer.size()>0)
-            renderRowInTable(ui->tableWidget_2,i-minorV,buffer);
+        if(_copyContainer.getCopyContainer()[i+1]->isActive()){
+            buffer=_copyContainer.display(i+1,Vehicle::car);
+            if(buffer.size()>0)
+                renderRowInTable(ui->tableWidget_2,i-minorV,buffer);
+            else
+                minorV++;
+        }
         else
             minorV++;
     }
@@ -651,10 +655,14 @@ void MainWindow::on_radioButton_6_clicked()
     int minorV=0;
 
     for(int i=0; i<_copyContainer.size();i++){
-        buffer.clear();
-        buffer=_copyContainer.display(i+1,Vehicle::moto);
-        if(buffer.size()>0)
-            renderRowInTable(ui->tableWidget_2,i-minorV,buffer);
+        if(_copyContainer.getCopyContainer()[i+1]->isActive()){
+            buffer.clear();
+            buffer=_copyContainer.display(i+1,Vehicle::moto);
+            if(buffer.size()>0)
+                renderRowInTable(ui->tableWidget_2,i-minorV,buffer);
+            else
+                minorV++;
+        }
         else
             minorV++;
     }
@@ -665,6 +673,7 @@ void MainWindow::on_search_Clicked(){
     int i=0;
     bool ok=false;
     QString searchValue;
+    int minorV=0;
 
     switch(currentId){
     default:
@@ -690,7 +699,12 @@ void MainWindow::on_search_Clicked(){
             std::vector<std::string> search = split(searchValue);
             std::vector<Borrower*> returnValue = _borrowerContainer.search(search);
             for(i=0; i<returnValue.size();i++){
-                renderRowInTable(ui->tableWidget,i,returnValue[i]->display());
+                for(i=0; i<returnValue.size();i++){
+                    if(returnValue[i]->isActive())
+                        renderRowInTable(ui->tableWidget,i-minorV,returnValue[i]->display());
+                    else
+                        minorV++;
+                }
             }
         }
         break;
