@@ -10,6 +10,7 @@
 
 #include <string>
 #include "Address.h"
+#include <vector>
 
 class Borrower {
 public:
@@ -31,6 +32,8 @@ public:
 	const std::string& getPhoneNumber() const;
     Address& getAddress();
 	void setPhoneNumber(const std::string& phoneNumber);
+
+    std::vector<std::string> display();
 
 	friend std::ostream& operator<< (std::ostream& out, const Borrower& borrower);
 	friend std::istream& operator>> (std::istream& in, Borrower& borrower);

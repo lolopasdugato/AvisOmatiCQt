@@ -10,6 +10,8 @@
 
 #include <string>
 #include <iostream>
+#include <vector>
+#include <sstream>
 
 class Vehicle {
 public:
@@ -27,6 +29,8 @@ public:
     void setDailyCost(const float& cost);
 	void setBrand(const std::string& brand);
 	virtual const std::string& getName() const=0;
+
+    std::vector<std::string> display();
 
     virtual const Type& getType() const=0;
 

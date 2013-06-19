@@ -7,6 +7,17 @@ std::string toString(const int& i){
     return oss.str();
 }
 
+std::vector<std::string> split(QString string){
+    std::vector<std::string> returnValue;
+    QStringList fields = string.split(QRegExp(",| "));
+
+    for(int i = 0; i<fields.size(); ++i){
+        returnValue.push_back(fields[i].toStdString());
+    }
+
+    return returnValue;
+}
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -626,5 +637,42 @@ void MainWindow::on_radioButton_6_clicked()
             renderRowInTable(ui->tableWidget_2,i-minorV,buffer);
         else
             minorV++;
+    }
+}
+
+void MainWindow::on_search_Clicked(){
+    int currentId = ui->stackedWidget->currentIndex();
+    int i=0;
+    bool ok=false;
+    QString searchValue;
+
+    switch(currentId){
+    default:
+        QMessageBox::critical(this, "AvisOmatiC", "You can't make a search on this page.");
+        break;
+    case 2:
+        ok=false;
+        searchValue = QInputDialog::getText(this, "AvisOmatiC", "Enter the search parameters:", QLineEdit::Normal, QString(), &ok);
+        if(ok){
+            removeAllRows(ui->table_vehicle);
+            std::vector<std::string> search = split(searchValue);
+            std::vector<Vehicle*> returnValue = _vehicleContainer.search(search);
+            for(i=0; i<returnValue.size();i++){
+                renderRowInTable(ui->table_vehicle,i,returnValue[i]->display());
+            }
+        }
+        break;
+    case 6:
+        ok=false;
+        searchValue = QInputDialog::getText(this, "AvisOmatiC", "Enter the search parameters:", QLineEdit::Normal, QString(), &ok);
+        if(ok){
+            removeAllRows(ui->tableWidget);
+            std::vector<std::string> search = split(searchValue);
+            std::vector<Borrower*> returnValue = _borrowerContainer.search(search);
+            for(i=0; i<returnValue.size();i++){
+                renderRowInTable(ui->tableWidget,i,returnValue[i]->display());
+            }
+        }
+        break;
     }
 }

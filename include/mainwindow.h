@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QTableWidget>
+#include <QInputDialog>
 #include <math.h>
 #include "../include/Rent.h"
 #include "../include/BorrowerContainer.h"
@@ -94,6 +95,8 @@ private slots:
     void on_radioButton_5_clicked();
 
     void on_radioButton_6_clicked();
+
+    void on_search_Clicked();
 
 private:
     Ui::MainWindow *ui;

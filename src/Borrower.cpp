@@ -187,3 +187,12 @@ std::istream& operator>> (std::istream& in, Borrower& borrower) {
 	in >> borrower._phoneNumber;
 	return in;
 }
+
+std::vector<std::string> Borrower::display(){
+    std::vector<std::string> returnVector;
+    returnVector.push_back(getFirstName());
+    returnVector.push_back(getLastName());
+    returnVector.push_back(getAddress().display());
+    returnVector.push_back(getPhoneNumber());
+    return returnVector;
+}

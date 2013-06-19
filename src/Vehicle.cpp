@@ -59,3 +59,25 @@ const float& Vehicle::getDailyCost() const {
 void Vehicle::setDailyCost(const float& cost) {
     this->_dailyCost = cost;
 }
+
+std::vector<std::string> Vehicle::display(){
+    std::vector<std::string> returnVector;
+
+    switch(getType()){
+    case Vehicle::car:
+        returnVector.push_back("Car");
+        break;
+    case Vehicle::moto:
+        returnVector.push_back("Motorcycle");
+        break;
+    }
+    returnVector.push_back(getBrand());
+
+    returnVector.push_back(getName());
+
+    std::ostringstream os;
+      os << getDailyCost();
+
+    returnVector.push_back(os.str());
+    return returnVector;
+}
