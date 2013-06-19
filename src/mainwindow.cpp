@@ -278,8 +278,13 @@ void MainWindow::renderVehicleContainer(){
 void MainWindow::renderBorrowerContainer(){
     removeAllRows(ui->tableWidget);
 
+    int minorV=0;
+
     for(int i=0; i<_borrowerContainer.size();i++){
-        renderRowInTable(ui->tableWidget,i,_borrowerContainer.display(i));
+        if(_borrowerContainer.getBorrowerContainer()[i]->isActive())
+            renderRowInTable(ui->tableWidget,i-minorV,_borrowerContainer.display(i));
+        else
+            minorV++;
     }
 }
 
@@ -598,8 +603,8 @@ void MainWindow::on_comboBox_currentIndexChanged(int index)
 void MainWindow::on_pushButton_5_clicked()
 {
     _borrowerContainer.erase(selectedBorrower);
-    renderBorrowerContainer();
     selectedBorrower=NULL;
+    renderBorrowerContainer();
     ui->pushButton_5->setEnabled(false);
 }
 

@@ -32,6 +32,8 @@ public:
 	const std::string& getPhoneNumber() const;
     Address& getAddress();
 	void setPhoneNumber(const std::string& phoneNumber);
+    const bool& isActive();
+    void setActive(bool b);
 
     std::vector<std::string> display();
 
@@ -44,6 +46,7 @@ private:
 	std::string _firstName;
 	std::string _lastName;
 	Address _address;
+    bool _active;
 
 	// Optional members
 	std::string _phoneNumber;

@@ -32,16 +32,17 @@ std::map<int, Borrower*> BorrowerContainer::search(std::string firstName, std::s
 	return sorted;
 }
 
-void BorrowerContainer::add(const std::string& firstname, const std::string& lastname, const Address& address, const std::string& phoneNumber = "None", int id) {
+void BorrowerContainer::add(const std::string& firstname, const std::string& lastname, const Address& address, const std::string& phoneNumber = "None", int id, bool active) {
     Borrower* a = new Borrower (firstname, lastname, address, phoneNumber, id);
     _borrowerContainer[a->getId()] = a;
+    a->setActive(active);
     return;
 }
 
 void BorrowerContainer::erase(Borrower* borrower) {
-    _borrowerContainer.erase(borrower->getId());
-
-    std::map<int, Borrower*> newContainer;
+    //_borrowerContainer.erase(borrower->getId());
+    _borrowerContainer[borrower->getId()]->setActive(false);
+    /*std::map<int, Borrower*> newContainer;
 
     int i=0;
     for(std::map<int, Borrower*>::iterator it = _borrowerContainer.begin(); it != _borrowerContainer.end(); it++) {
@@ -51,16 +52,11 @@ void BorrowerContainer::erase(Borrower* borrower) {
     }
 
     _borrowerContainer=newContainer;
-    return;
+    return;*/
 }
 
 std::vector<std::string> BorrowerContainer::display(int i){
-    std::vector<std::string> returnVector;
-    returnVector.push_back(_borrowerContainer[i]->getFirstName());
-    returnVector.push_back(_borrowerContainer[i]->getLastName());
-    returnVector.push_back(_borrowerContainer[i]->getAddress().display());
-    returnVector.push_back(_borrowerContainer[i]->getPhoneNumber());
-    return returnVector;
+    return _borrowerContainer[i]->display();
 }
 
 BorrowerContainer::~BorrowerContainer() {

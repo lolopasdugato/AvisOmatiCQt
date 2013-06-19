@@ -196,3 +196,12 @@ std::vector<std::string> Borrower::display(){
     returnVector.push_back(getPhoneNumber());
     return returnVector;
 }
+
+
+const bool &Borrower::isActive(){
+    return _active;
+}
+
+void Borrower::setActive(bool b){
+    _active=b;
+}

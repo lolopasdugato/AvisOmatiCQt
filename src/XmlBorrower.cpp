@@ -33,6 +33,7 @@ bool XmlBorrower::read(BorrowerContainer* borrowerContainer) {
     std::string firstname("Default"), lastname("Default"), phoneNumber("Default");
     Address address;
     int id(-1);
+    bool active(true);
 
 
     while(!noeud.isNull())
@@ -53,6 +54,7 @@ bool XmlBorrower::read(BorrowerContainer* borrowerContainer) {
                 else if (n.toElement().tagName() == "lastname") lastname = n.firstChild().toText().data().toStdString();
                 else if (n.toElement().tagName() == "phone") phoneNumber = n.firstChild().toText().data().toStdString();
                 else if (n.toElement().tagName() == "id") id = n.firstChild().toText().data().toInt();
+                else if (n.toElement().tagName() == "active") active = n.firstChild().toText().data().toInt();
                 else if (n.toElement().tagName() == "address") { // On réitère le traitement dans le cas d'une adresse
                     tab2 = n.toElement().childNodes();
                     for(j = 0; j < tab2.length(); j++) {
@@ -67,7 +69,7 @@ bool XmlBorrower::read(BorrowerContainer* borrowerContainer) {
             }
             // a.setText(affichage); // affichage dans un QMessageBox
             // a.exec();
-            borrowerContainer->add(firstname, lastname, address, phoneNumber, id);
+            borrowerContainer->add(firstname, lastname, address, phoneNumber, id, active);
         }
         noeud = noeud.nextSibling(); // passe à la "mesure" suivante
     }
@@ -120,6 +122,8 @@ bool XmlBorrower::write(BorrowerContainer* borrowerContainer) {
         borrower.appendChild(phone);
         QDomElement id = dom->createElement("id");
         borrower.appendChild(id);
+        QDomElement active = dom->createElement("active");
+        borrower.appendChild(active);
 
         firstname.appendChild(QDomText(dom->createTextNode((*it).second->getFirstName().c_str())));
         lastname.appendChild(QDomText(dom->createTextNode((*it).second->getLastName().c_str())));
@@ -129,6 +133,7 @@ bool XmlBorrower::write(BorrowerContainer* borrowerContainer) {
         pc.appendChild(QDomText(dom->createTextNode((*it).second->getAddress().getPc().c_str())));
         phone.appendChild(QDomText(dom->createTextNode((*it).second->getPhoneNumber().c_str())));
         id.appendChild(QDomText(dom->createTextNode(QString::number((*it).first))));
+        active.appendChild(QDomText(dom->createTextNode(QString::number((*it).second->isActive()))));
 
     }
 
