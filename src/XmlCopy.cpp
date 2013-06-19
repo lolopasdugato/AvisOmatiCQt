@@ -34,6 +34,7 @@ bool XmlCopy::read(VehicleContainer* vehicleContainer, CopyContainer* copyContai
     Copy::Status status = Copy::NEW;
     bool dispo(false);
     int id(-1);
+    bool active=false;
 
     // variables liées à un véhicule
     std::string brand("Default"), name("Default"), stringType("Default");
@@ -87,9 +88,10 @@ bool XmlCopy::read(VehicleContainer* vehicleContainer, CopyContainer* copyContai
                         }
                         else if (n.toElement().tagName() == "dispo") dispo = n.firstChild().toText().data().toInt();
                         else if (n.toElement().tagName() == "id") id = n.firstChild().toText().data().toInt();
+                        else if (n.toElement().tagName() == "active") active = n.firstChild().toText().data().toInt();
                     }
                     if (b.size() == 0 || (b.size() != 0 && !(b.front()->getName() == name && b.front()->getBrand() == brand))) copyContainer->add(kilometers, status, dispo, vehicleContainer->getVehicleList().back(), id);
-                    else copyContainer->add(kilometers, status, dispo, b.front(), id);
+                    else copyContainer->add(kilometers, status, dispo, b.front(), id, active);
                 }
                 noeud2 = noeud2.nextSibling();
             }
@@ -147,6 +149,8 @@ bool XmlCopy::write(CopyContainer* copyContainer) {
         characteristics.appendChild(dispo);
         QDomElement id = dom->createElement("id");
         characteristics.appendChild(id);
+        QDomElement active = dom->createElement("active");
+        characteristics.appendChild(active);
 
         // Ecriture des données en mémoire pour le véhicule
         if((*it).second->getVehicle()->getType() == Vehicle::moto) type.appendChild(QDomText(dom->createTextNode("moto")));
@@ -162,6 +166,7 @@ bool XmlCopy::write(CopyContainer* copyContainer) {
         else if((*it).second->getStatus() == Copy::DAMAGED) status.appendChild(QDomText(dom->createTextNode("damaged")));
         else status.appendChild(QDomText(dom->createTextNode("unusable")));
         id.appendChild(QDomText(dom->createTextNode(QString::number((*it).first))));
+        active.appendChild(QDomText(dom->createTextNode(QString::number((*it).second->isActive()))));
 
     }
 

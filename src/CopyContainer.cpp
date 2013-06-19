@@ -145,16 +145,19 @@ void CopyContainer::add(int i, Vehicle* vehicle){
     }
 }
 
-void CopyContainer::add(const int& kilometers, const Copy::Status& status, const bool& dispo, Vehicle* vehicle, int id) {
+void CopyContainer::add(const int& kilometers, const Copy::Status& status, const bool& dispo, Vehicle* vehicle, int id, bool active) {
     Copy* a = new Copy (kilometers, status, dispo, vehicle, id);
     _copyContainer[a->getId()] = a;
+    a->setActive(active);
     return;
 }
 
 void CopyContainer::erase(Copy* copy) {
-    _copyContainer.erase(copy->getId());
+    //_copyContainer.erase(copy->getId());
 
-    std::map<int, Copy*> newContainer;
+    _copyContainer[copy->getId()]->setActive(false);
+
+    /*std::map<int, Copy*> newContainer;
 
     int i=1;
     for(std::map<int, Copy*>::iterator it = _copyContainer.begin(); it != _copyContainer.end(); it++) {
@@ -164,7 +167,7 @@ void CopyContainer::erase(Copy* copy) {
     }
 
     _copyContainer=newContainer;
-    return;
+    return;*/
 }
 
 CopyContainer::~CopyContainer() {

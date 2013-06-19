@@ -258,12 +258,17 @@ void MainWindow::on_tableWidget_2_clicked(const QModelIndex &index)
 
 void MainWindow::renderCopyContainer(){
     removeAllRows(ui->tableWidget_2);
+    int minorV= 0;
 
     for(int i=0; i<_copyContainer.size();i++){
-        renderRowInTable(ui->tableWidget_2,i,_copyContainer.display(i));
-                ui->tableWidget_2->item(i, 0)->setBackground(Qt::white);
-        if(!_copyContainer.getCopyContainer()[i+1]->isDispo())
-            ui->tableWidget_2->item(i, 0)->setBackground(Qt::red);
+        if(_copyContainer.getCopyContainer()[i+1]->isActive()){
+            renderRowInTable(ui->tableWidget_2,i-minorV,_copyContainer.display(i));
+                    ui->tableWidget_2->item(i-minorV, 0)->setBackground(Qt::white);
+            if(!_copyContainer.getCopyContainer()[i+1]->isDispo())
+                ui->tableWidget_2->item(i-minorV, 0)->setBackground(Qt::red);
+        }
+        else
+            minorV++;
     }
 }
 

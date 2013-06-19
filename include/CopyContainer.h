@@ -28,7 +28,7 @@ public:
     std::map<int, Copy*> search(const int& number = -1, const int& kilometers = -1);
 
     void add(int i, Vehicle* vehicle);
-    void add(const int& kilometers, const Copy::Status& status, const bool& dispo, Vehicle* vehicle, int id = -1);
+    void add(const int& kilometers, const Copy::Status& status, const bool& dispo, Vehicle* vehicle, int id = -1, bool active=true);
     void erase(Copy* copy);
 
     int getNumberOf(Vehicle*vehicle);

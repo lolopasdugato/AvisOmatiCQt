@@ -144,3 +144,11 @@ std::istream& operator>> (std::istream& in, Copy& copy) {
 const Vehicle* Copy::getVehicle() const{
     return _vehicle;
 }
+
+const bool &Copy::isActive(){
+    return _active;
+}
+
+void Copy::setActive(bool b){
+    _active=b;
+}

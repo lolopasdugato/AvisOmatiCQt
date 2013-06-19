@@ -34,6 +34,8 @@ public:
     bool isDispo();
     const Status& getStatus();
     void setStatus(Status status);
+    const bool& isActive();
+    void setActive(bool b);
 
     static int currentId;
 
@@ -44,6 +46,7 @@ private:
     int _id;
 	int _kilometers;
     bool _dispo;
+    bool _active;
 
 	Vehicle* _vehicle;
 };
