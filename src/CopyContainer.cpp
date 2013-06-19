@@ -69,6 +69,51 @@ std::vector<std::string> CopyContainer::display(int i){
     return returnVector;
 }
 
+std::vector<std::string> CopyContainer::display(int i, Vehicle::Type c){
+    std::vector<std::string> returnVector;
+    if(_copyContainer[i]->getVehicle()->getType()==c){
+        i++;
+        std::string s1;
+        std::stringstream out1;
+        out1 << _copyContainer[i]->getId();
+        returnVector.push_back(out1.str());
+
+        const Vehicle *vehicle = _copyContainer[i]->getVehicle();
+
+        switch(vehicle->getType()){
+        case Vehicle::car:
+            returnVector.push_back("Car");
+            break;
+        case Vehicle::moto:
+            returnVector.push_back("Motorcycle");
+            break;
+        }
+
+        returnVector.push_back(vehicle->getBrand());
+
+        returnVector.push_back(vehicle->getName());
+
+        switch(_copyContainer[i]->getStatus()){
+        case Copy::NEW:
+            returnVector.push_back("New");
+            break;
+        case Copy::DAMAGED:
+            returnVector.push_back("Damaged");
+            break;
+        case Copy::UNUSABLE:
+            returnVector.push_back("Unusable");
+            break;
+        }
+
+        std::string s;
+        std::stringstream out;
+        out << _copyContainer[i]->getKilometers();
+        returnVector.push_back(out.str());
+    }
+
+    return returnVector;
+}
+
 std::map<int, Copy*> CopyContainer::search(const int& number, const int& kilometers) {
     std::map<int, Copy*> sorted;
     std::map<int, Copy*>::iterator it;

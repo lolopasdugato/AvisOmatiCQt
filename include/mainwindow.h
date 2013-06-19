@@ -89,6 +89,10 @@ private slots:
 
     void on_pushButton_6_clicked();
 
+    void on_radioButton_4_clicked();
+
+    void on_radioButton_5_clicked();
+
 private:
     Ui::MainWindow *ui;
 

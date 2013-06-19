@@ -589,3 +589,25 @@ void MainWindow::on_pushButton_6_clicked()
     selectedCopy=NULL;
     ui->pushButton_6->setEnabled(false);
 }
+
+void MainWindow::on_radioButton_4_clicked()
+{
+    renderCopyContainer();
+}
+
+void MainWindow::on_radioButton_5_clicked()
+{
+    removeAllRows(ui->tableWidget_2);
+
+    std::vector<std::string>buffer;
+    int minorV=0;
+
+    for(int i=0; i<_copyContainer.size();i++){
+        buffer.clear();
+        buffer=_copyContainer.display(i,Vehicle::car);
+        if(buffer.size()>0)
+            renderRowInTable(ui->tableWidget_2,i-minorV,buffer);
+        else
+            minorV--;
+    }
+}

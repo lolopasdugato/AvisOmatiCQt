@@ -36,6 +36,7 @@ public:
     int size();
 
     std::vector<std::string> display(int i);
+    std::vector<std::string> display(int i, Vehicle::Type c);
 
     std::map<int, Copy*>& getCopyContainer();
     void setCopyContainer(const std::map<int, Copy*>& copyContainer);
