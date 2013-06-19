@@ -604,10 +604,27 @@ void MainWindow::on_radioButton_5_clicked()
 
     for(int i=0; i<_copyContainer.size();i++){
         buffer.clear();
-        buffer=_copyContainer.display(i,Vehicle::car);
+        buffer=_copyContainer.display(i+1,Vehicle::car);
         if(buffer.size()>0)
             renderRowInTable(ui->tableWidget_2,i-minorV,buffer);
         else
-            minorV--;
+            minorV++;
+    }
+}
+
+void MainWindow::on_radioButton_6_clicked()
+{
+    removeAllRows(ui->tableWidget_2);
+
+    std::vector<std::string>buffer;
+    int minorV=0;
+
+    for(int i=0; i<_copyContainer.size();i++){
+        buffer.clear();
+        buffer=_copyContainer.display(i+1,Vehicle::moto);
+        if(buffer.size()>0)
+            renderRowInTable(ui->tableWidget_2,i-minorV,buffer);
+        else
+            minorV++;
     }
 }

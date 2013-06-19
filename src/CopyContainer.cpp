@@ -72,7 +72,6 @@ std::vector<std::string> CopyContainer::display(int i){
 std::vector<std::string> CopyContainer::display(int i, Vehicle::Type c){
     std::vector<std::string> returnVector;
     if(_copyContainer[i]->getVehicle()->getType()==c){
-        i++;
         std::string s1;
         std::stringstream out1;
         out1 << _copyContainer[i]->getId();
