@@ -95,7 +95,13 @@ void MainWindow::on_RentList_Clicked(){
 }
 
 void MainWindow::on_returnRent_Clicked(){
-    ui->stackedWidget->setCurrentIndex(9);
+    if(selectedRent){
+        ui->stackedWidget->setCurrentIndex(9);
+    }
+    else{
+        QMessageBox::critical(this, "AvisOmatiC", "Please, select a rent before.");
+        ui->stackedWidget->setCurrentIndex(8);
+    }
 }
 
 
@@ -443,6 +449,9 @@ void MainWindow::on_tableWidget_3_clicked(const QModelIndex &index)
 
     ui->label_retur_firstPrice->setText(QString::number(calculatePrice(selectedRent->getCopy()->getVehicle()->getDailyCost(),selectedRent->getInsurance(),NbOfDays,selectedRent->getCopy()->getKilometers())));
     ui->label_return_realPrice->setText(QString::number(calculatePrice(selectedRent->getCopy()->getVehicle()->getDailyCost(),selectedRent->getInsurance(),NbOfDays,selectedRent->getCopy()->getKilometers(),ui->combo_fuel->currentIndex()*50,ui->comboBox->currentIndex(),QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()).daysTo(QDate::currentDate()))));
+
+    ui->pushButton_4->setEnabled(true);
+    ui->pushButton_3->setEnabled(true);
 }
 
 void MainWindow::on_pushButton_4_clicked()
