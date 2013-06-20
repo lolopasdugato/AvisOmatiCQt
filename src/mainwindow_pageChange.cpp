@@ -139,3 +139,11 @@ void MainWindow::on_refresh_clicked(){
     renderBorrowerContainer();
     renderVehicleContainer();
 }
+
+void MainWindow::on_about_clicked(){
+    QMessageBox::information(this, "AvisOmatiC", "This program was developed  by Loic Benet and Thomas Poulet for the C++/Uml course.\n This software is released under the term of the MIT License.");
+}
+
+void MainWindow::on_help_clicked(){
+    QMessageBox::information(this, "AvisOmatiC", "To consult the list of all the commands and functionalities, please go here:<a href='https://github.com/lolopasdugato/AvisOmatiCQt/wiki'>https://github.com/lolopasdugato/AvisOmatiCQt/wiki</a>");
+}

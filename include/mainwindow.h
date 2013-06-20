@@ -47,6 +47,8 @@ private slots:
     void on_stats_clicked();
     void on_save_clicked();
     void on_refresh_clicked();
+    void on_about_clicked();
+    void on_help_clicked();
 
     //Others
     void on_button_newBorrower_clicked();                           //Add New Borrower
