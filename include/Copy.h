@@ -29,7 +29,7 @@ public:
 	void setKilometers(int kilometers);
     int getId() const;
     void setId(int id);
-    const Vehicle* getVehicle() const;
+     Vehicle* getVehicle() const;
     void setDispo(const bool &dispo);
     bool isDispo();
     const Status& getStatus();

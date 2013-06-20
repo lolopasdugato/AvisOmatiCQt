@@ -143,7 +143,7 @@ std::istream& operator>> (std::istream& in, Copy& copy) {
 }
 
 
-const Vehicle* Copy::getVehicle() const{
+Vehicle *Copy::getVehicle() const{
     return _vehicle;
 }
 

@@ -18,6 +18,15 @@ std::vector<std::string> split(QString string){
     return returnValue;
 }
 
+template<typename Type> bool in(std::vector<Type> firstOp, Type secondOp)
+{
+    for(typename std::vector<Type>::iterator it=firstOp.begin(); it!= firstOp.end();it++){
+        if((*it)==secondOp)
+            return true;
+    }
+    return false;
+}
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -82,8 +91,10 @@ void MainWindow::on_ListVehicle_Clicked(){
 }
 
 void MainWindow::on_NewRent_Clicked(){
-    if(selectedBorrower&&selectedCopy)
+    if(selectedBorrower&&selectedCopy){
         ui->stackedWidget->setCurrentIndex(5);
+        ui->pushButton_2->setEnabled(true);
+    }
     else{
         QMessageBox::critical(this, "AvisOmatiC", "Please, select a borrower and a copy before.");
         return;
@@ -710,4 +721,59 @@ void MainWindow::on_search_Clicked(){
         }
         break;
     }
+}
+
+void MainWindow::on_stats_clicked(){
+    //Let's generate the stats!
+    std::vector<Vehicle*> statsCar = stats(Vehicle::car);
+    std::vector<Vehicle*> statsMoto = stats(Vehicle::moto);
+
+    //Car
+
+    if(statsCar.size()>0)
+        ui->label_stats_car_1->setText((statsCar[0]->getBrand()+" "+statsCar[0]->getName()).c_str());
+    if(statsCar.size()>1)
+        ui->label_stats_car_2->setText((statsCar[1]->getBrand()+" "+statsCar[1]->getName()).c_str());
+    if(statsCar.size()>2)
+        ui->label_stats_car_3->setText((statsCar[2]->getBrand()+" "+statsCar[2]->getName()).c_str());
+
+    if(statsMoto.size()>0)
+        ui->label_stats_moto_1->setText((statsMoto[0]->getBrand()+" "+statsMoto[0]->getName()).c_str());
+    if(statsMoto.size()>1)
+        ui->label_stats_moto_2->setText((statsMoto[1]->getBrand()+" "+statsMoto[1]->getName()).c_str());
+    if(statsMoto.size()>2)
+        ui->label_stats_moto_3->setText((statsMoto[2]->getBrand()+" "+statsMoto[2]->getName()).c_str());
+
+
+    ui->stackedWidget->setCurrentIndex(10);
+}
+
+std::vector<Vehicle*> MainWindow::stats(Vehicle::Type c){
+    int nb=0;
+    std::multimap<int,Vehicle*> sorted;
+    std::vector<Vehicle*> returnValue;
+    std::vector<Vehicle*> already;
+
+    //Slow iterator
+    for(std::vector<Rent*>::iterator it = _rentContainer.begin(); it != _rentContainer.end(); it++){
+        if(!in(already,(*it)->getCopy()->getVehicle())){
+            if((*it)->getCopy()->getVehicle()->getType()==c){
+                already.push_back((*it)->getCopy()->getVehicle());
+                //Fast iterator
+                for(std::vector<Rent*>::iterator it2 = _rentContainer.begin(); it2 != _rentContainer.end(); it2++){
+                    if((*it)->getCopy()->getVehicle()==(*it2)->getCopy()->getVehicle())
+                        nb++;
+                }
+            }
+            if(nb>0)
+                sorted.insert(std::make_pair(nb,(*it)->getCopy()->getVehicle()));
+            nb=0;
+        }
+    }
+
+    for(std::multimap<int,Vehicle*>::reverse_iterator it3 = sorted.rbegin(); it3 != sorted.rend(); it3++){
+        returnValue.push_back((*it3).second);
+    }
+
+    return returnValue;
 }

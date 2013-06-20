@@ -98,6 +98,10 @@ private slots:
 
     void on_search_Clicked();
 
+    void on_stats_clicked();
+
+    std::vector<Vehicle*> stats(Vehicle::Type c);
+
 private:
     Ui::MainWindow *ui;
 
