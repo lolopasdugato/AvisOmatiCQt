@@ -46,21 +46,6 @@ Borrower::Borrower(const Borrower& borrower) {
 Borrower::~Borrower() {
 }
 
-/**
- *
- * @return
- */
-bool Borrower::rent() {
-	return false;
-}
-
-/**
- *
- * @return
- */
-bool Borrower::bringBack() {
-	return false;
-}
 
 /**
  *

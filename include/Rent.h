@@ -19,25 +19,32 @@ public:
 	Rent(const Rent& rent);
 	virtual ~Rent();
 
-	const Date& getBegin() const;
-	void setBegin(const Date& _begin);
-	const Date& getEnd() const;
-	void setEnd(const Date& _end);
-    int getId() const;
-    void setId(int id);
-    void setInsurance(const bool& i);
-    const bool getInsurance() const;
-    const bool getStatus() const;
-    void setStatus(const bool& i);
-    int getFuelMalus();
-    void setFuelMalus(int f);
-    Copy *getCopy();
-    Borrower *getBorrower() const;
-
-    bool isReturned();
-
     static int currentId;
 
+    //Getters and Setters
+    int getId() const;
+    void setId(int id);
+
+	const Date& getBegin() const;
+	void setBegin(const Date& _begin);
+
+	const Date& getEnd() const;
+	void setEnd(const Date& _end);
+
+    void setInsurance(const bool& i);
+    bool getInsurance() const;
+
+    bool getStatus() const;
+    void setStatus(const bool& i);
+
+    int getFuelMalus();
+    void setFuelMalus(int f);
+
+    Copy *getCopy();
+
+    Borrower *getBorrower() const;
+
+    //Overload
 	friend std::ostream& operator<< (std::ostream& out, const Rent& rent);
 	friend std::istream& operator>> (std::istream& in, Rent& rent);
 

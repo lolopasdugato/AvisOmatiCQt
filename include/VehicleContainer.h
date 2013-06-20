@@ -21,17 +21,14 @@ public:
 	VehicleContainer();
 	virtual ~VehicleContainer();
 
-	Vehicle* at(int i);
-	int count();
-    std::vector<std::string> search(std::string brand);
-    std::vector<Vehicle *> search(std::vector<std::string> keywords);
+    //Getters and Setters
     const std::vector<Vehicle*>& getVehicleList() const;
 
+    //Other functions
+    std::vector<Vehicle *> search(std::vector<std::string> keywords);
     int size();
-
     std::vector<std::string> display(int i);
     std::vector<std::string> display(int i, Vehicle::Type t);
-
     void add(const std::string& brand, const std::string& name, const Vehicle::Type &type, float dailyCost);
 
 private:

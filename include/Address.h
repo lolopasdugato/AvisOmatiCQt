@@ -18,15 +18,20 @@ public:
 	Address(Address const& address);
 	virtual ~Address();
 
+    //getters and setters
 	const std::string& getCity() const;
 	void setCity(const std::string& city);
-	int getNumber() const;
+
+    int getNumber() const;
 	void setNumber(int number);
+
 	const std::string& getPc() const;
 	void setPc(const std::string& pc);
+
 	const std::string& getStreet() const;
 	void setStreet(const std::string& street);
 
+    //Display
     std::string display();
 
 	//overload

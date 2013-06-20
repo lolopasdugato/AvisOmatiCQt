@@ -18,24 +18,6 @@ VehicleContainer::~VehicleContainer() {
 	// TODO Auto-generated destructor stub
 }
 
-Vehicle* VehicleContainer::at(int i) {
-	return this->_vehicleList.at(i);
-}
-
-int VehicleContainer::count() {
-	return _vehicleList.size();
-}
-
-std::vector<std::string> VehicleContainer::search(std::string brand) {
-	std::vector<std::string> list;
-	for(std::vector<Vehicle*>::iterator iter=_vehicleList.begin();iter != _vehicleList.end();iter++){
-		if((*iter)->getBrand()==brand)
-			list.push_back((*iter)->getName());
-	}
-
-	return list;
-}
-
 std::vector<Vehicle*> VehicleContainer::search(std::vector<std::string> keywords) {
     int counter=0;
     std::multimap<int,Vehicle*> list2;

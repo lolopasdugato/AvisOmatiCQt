@@ -52,21 +52,6 @@ Copy::Copy(const Copy& copy) {
 
 Copy::~Copy() {
 }
-/**
- *
- * @return
- */
-bool Copy::bringBack() {
-	return false;
-}
-
-/**
- *
- * @return
- */
-bool Copy::rent() {
-	return false;
-}
 
 /**
  *

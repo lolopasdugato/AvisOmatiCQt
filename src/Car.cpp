@@ -52,6 +52,14 @@ void Car::setModel(const std::string& model) {
 	_model = model;
 }
 
+const std::string& Car::getName() const{
+    return getModel();
+}
+
+const Vehicle::Type& Car::getType() const{
+    return _type;
+}
+
 /**
  * @brief overload stream <<
  * @param out
@@ -62,14 +70,6 @@ std::ostream& operator<< (std::ostream& out, const Car& car) {
 	out << "Car model: " << car._model;
 	out << "\nCar brand: " << car._brand;
 	return out;
-}
-
-const std::string& Car::getName() const{
-	return getModel();
-}
-
-const Vehicle::Type& Car::getType() const{
-    return _type;
 }
 
 /**

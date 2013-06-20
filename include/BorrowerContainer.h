@@ -16,20 +16,21 @@
 
 class BorrowerContainer {
 private:
+    //Container
     std::map<int, Borrower*> _borrowerContainer;
 public:
 	BorrowerContainer();
 	virtual ~BorrowerContainer();
 
-    std::map<int, Borrower*> search(std::string firstName = "none", std::string lastName = "none");
-    void add(const std::string& firstname, const std::string& lastname, const Address& address, const std::string& phoneNumber, int id = -1, bool active = true);
+    //Getters and Setters
     std::map<int, Borrower*>& getBorrowerContainer();
     void setBorrowerContainer(const std::map<int, Borrower*>& borrowerContainer);
-    std::vector<std::string> display(int i);
 
+    //Other functions
     std::vector<Borrower*> search(std::vector<std::string> keywords);
+    void add(const std::string& firstname, const std::string& lastname, const Address& address, const std::string& phoneNumber, int id = -1, bool active = true);
+    std::vector<std::string> display(int i);
     void erase(Borrower*);
-
     int size();
 };
 

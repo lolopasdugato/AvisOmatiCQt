@@ -19,27 +19,25 @@
 class CopyContainer {
 private:
     std::map<int, Copy*> _copyContainer;
-public:
 
+public:
 	CopyContainer();
 	virtual ~CopyContainer();
 
-	Copy* at(const int& i);
-    std::map<int, Copy*> search(const int& number = -1, const int& kilometers = -1);
+    //Getters and Setters
+    std::map<int, Copy*>& getCopyContainer();
+    void setCopyContainer(const std::map<int, Copy*>& copyContainer);
 
+    //Functions
     void add(int i, Vehicle* vehicle);
     void add(const int& kilometers, const Copy::Status& status, const bool& dispo, Vehicle* vehicle, int id = -1, bool active=true);
     void erase(Copy* copy);
-
     int getNumberOf(Vehicle*vehicle);
-
     int size();
 
+    //Display
     std::vector<std::string> display(int i);
     std::vector<std::string> display(int i, Vehicle::Type c);
-
-    std::map<int, Copy*>& getCopyContainer();
-    void setCopyContainer(const std::map<int, Copy*>& copyContainer);
 };
 
 #endif /* COPYCONTAINER_H_ */

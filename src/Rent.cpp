@@ -150,11 +150,11 @@ void Rent::setStatus(const bool &i){
     _status = i;
 }
 
-const bool Rent::getInsurance() const{
+bool Rent::getInsurance() const{
     return _insurance;
 }
 
-const bool Rent::getStatus() const{
+bool Rent::getStatus() const{
     return _status;
 }
 

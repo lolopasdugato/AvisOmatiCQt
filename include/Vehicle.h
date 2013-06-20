@@ -15,6 +15,7 @@
 
 class Vehicle {
 public:
+    //Enum to set whenever it's a car or a motorcycle
     enum Type{
         car,
         moto
@@ -24,16 +25,19 @@ public:
 	Vehicle(const Vehicle& vehicle);
 	virtual ~Vehicle();
 
+    //Getters and Setters
 	const std::string& getBrand() const;
+    void setBrand(const std::string& brand);
+
     const float& getDailyCost() const;
     void setDailyCost(const float& cost);
-	void setBrand(const std::string& brand);
-	virtual const std::string& getName() const=0;
 
-    std::vector<std::string> display();
+	virtual const std::string& getName() const=0;
 
     virtual const Type& getType() const=0;
 
+    //Display
+    std::vector<std::string> display();
 protected:
 	std::string _brand;
     Type _type;

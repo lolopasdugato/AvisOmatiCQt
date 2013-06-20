@@ -16,11 +16,7 @@ public:
     virtual ~XmlCopy();
 
     bool read(VehicleContainer* vehicleContainer, CopyContainer* copyContainer);
-    bool write(CopyContainer* copyContainer);
-signals:
-    
-public slots:
-    
+    bool write(CopyContainer* copyContainer);   
 };
 
 #endif // XMLCOPY_H

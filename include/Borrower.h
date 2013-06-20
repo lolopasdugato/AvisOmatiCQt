@@ -18,25 +18,31 @@ public:
 	Borrower(const Borrower&);
 	virtual ~Borrower();
 
-	bool rent();
-	bool bringBack();
+    //Getters and Setters
+    int getId() const;
+    void setId(int id);
+
+    const std::string& getFirstName() const;
+    void setFirstName(const std::string& firstName);
+
+    const std::string& getLastName() const;
+    void setLastName(const std::string& lastName);
 
 	const Address& getAddress() const;
 	void setAddress(const Address& address);
-	const std::string& getFirstName() const;
-	void setFirstName(const std::string& firstName);
-	int getId() const;
-	void setId(int id);
-	const std::string& getLastName() const;
-	void setLastName(const std::string& lastName);
+
 	const std::string& getPhoneNumber() const;
+    void setPhoneNumber(const std::string& phoneNumber);
+
     Address& getAddress();
-	void setPhoneNumber(const std::string& phoneNumber);
+
     const bool& isActive();
     void setActive(bool b);
 
+    //Display
     std::vector<std::string> display();
 
+    //Overload
 	friend std::ostream& operator<< (std::ostream& out, const Borrower& borrower);
 	friend std::istream& operator>> (std::istream& in, Borrower& borrower);
 

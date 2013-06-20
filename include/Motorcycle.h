@@ -20,12 +20,14 @@ public:
     Motorcycle(Vehicle*& vehicle);
 	virtual ~Motorcycle();
 
+    //Getters Setters
     const std::string& getCylinder() const;
     void setCylinder(std::string cylinder);
 
 	const std::string& getName() const;
     const Vehicle::Type& getType() const;
 
+    //Overload
 	friend std::ostream& operator<< (std::ostream& out, const Motorcycle& motorcycle);
 	friend std::istream& operator>> (std::istream& in, Motorcycle& motorcycle);
 

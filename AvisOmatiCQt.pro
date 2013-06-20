@@ -29,7 +29,10 @@ SOURCES +=\
     src/mainwindow.cpp \
     src/XmlBorrower.cpp \
     src/XmlCopy.cpp \
-    src/XmlRent.cpp
+    src/XmlRent.cpp \
+    src/mainwindow_pageChange.cpp \
+    src/mainwindow_render.cpp \
+    src/tools.cpp
 
 HEADERS  += \
     include/VehicleContainer.h \

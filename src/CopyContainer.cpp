@@ -14,10 +14,6 @@ CopyContainer::CopyContainer() {
 
 }
 
-Copy* CopyContainer::at(const int& i) {
-	return _copyContainer[i];
-}
-
 std::map<int, Copy *> &CopyContainer::getCopyContainer() {
 	return _copyContainer;
 }
@@ -113,16 +109,6 @@ std::vector<std::string> CopyContainer::display(int i, Vehicle::Type c){
     return returnVector;
 }
 
-std::map<int, Copy*> CopyContainer::search(const int& number, const int& kilometers) {
-    std::map<int, Copy*> sorted;
-    std::map<int, Copy*>::iterator it;
-	for (it = _copyContainer.begin(); it != _copyContainer.end(); it++) {
-        if (number != -1 && number == (*it).second->getId()) sorted[(*it).first] = (*it).second;
-        else if (kilometers != -1 && (*it).second->getKilometers()) sorted[(*it).first] = (*it).second;
-	}
-	return sorted;
-}
-
 int CopyContainer::getNumberOf(Vehicle* vehicle){
     std::map<int, Copy*>::iterator it;
     int returnValue=0;
@@ -131,7 +117,7 @@ int CopyContainer::getNumberOf(Vehicle* vehicle){
             returnValue++;
     }
 
-    return returnValue;
+    return returnValue; //return the number of one vehicle in copy
 }
 
 int CopyContainer::size(){
@@ -153,21 +139,7 @@ void CopyContainer::add(const int& kilometers, const Copy::Status& status, const
 }
 
 void CopyContainer::erase(Copy* copy) {
-    //_copyContainer.erase(copy->getId());
-
     _copyContainer[copy->getId()]->setActive(false);
-
-    /*std::map<int, Copy*> newContainer;
-
-    int i=1;
-    for(std::map<int, Copy*>::iterator it = _copyContainer.begin(); it != _copyContainer.end(); it++) {
-        newContainer[i]=(*it).second;
-        newContainer[i]->setId(i);
-        i++;
-    }
-
-    _copyContainer=newContainer;
-    return;*/
 }
 
 CopyContainer::~CopyContainer() {

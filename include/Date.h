@@ -16,13 +16,17 @@ public:
 	Date(const Date& date);
 	virtual ~Date();
 
+    //Getters and Setters
 	int getDay() const;
 	void setDay(int day);
+
 	int getMonth() const;
 	void setMonth(int month);
+
 	int getYear() const;
 	void setYear(int year);
 
+    //Overload
 	friend std::ostream& operator<< (std::ostream& out, const Date& date);
 	friend std::istream& operator>> (std::istream& in, Date& date);
 	friend bool operator< (const Date& date1, const Date& date2);

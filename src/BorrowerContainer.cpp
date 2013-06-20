@@ -23,15 +23,6 @@ void BorrowerContainer::setBorrowerContainer(
 	_borrowerContainer = borrowerContainer;
 }
 
-std::map<int, Borrower*> BorrowerContainer::search(std::string firstName, std::string lastName) {
-    std::map<int, Borrower*> sorted;
-    for(std::map<int, Borrower*>::iterator it = _borrowerContainer.begin(); it != _borrowerContainer.end(); it++) {
-        if(firstName != "none" && firstName == (*it).second->getFirstName()) sorted[(*it).first] = (*it).second;
-        else if(lastName != "none" && lastName == (*it).second->getLastName()) sorted[(*it).first] = (*it).second;
-	}
-	return sorted;
-}
-
 void BorrowerContainer::add(const std::string& firstname, const std::string& lastname, const Address& address, const std::string& phoneNumber = "None", int id, bool active) {
     Borrower* a = new Borrower (firstname, lastname, address, phoneNumber, id);
     _borrowerContainer[a->getId()] = a;
@@ -40,19 +31,7 @@ void BorrowerContainer::add(const std::string& firstname, const std::string& las
 }
 
 void BorrowerContainer::erase(Borrower* borrower) {
-    //_borrowerContainer.erase(borrower->getId());
     _borrowerContainer[borrower->getId()]->setActive(false);
-    /*std::map<int, Borrower*> newContainer;
-
-    int i=0;
-    for(std::map<int, Borrower*>::iterator it = _borrowerContainer.begin(); it != _borrowerContainer.end(); it++) {
-        newContainer[i]=(*it).second;
-        newContainer[i]->setId(i);
-        i++;
-    }
-
-    _borrowerContainer=newContainer;
-    return;*/
 }
 
 std::vector<std::string> BorrowerContainer::display(int i){
@@ -75,7 +54,7 @@ std::vector<Borrower*> BorrowerContainer::search(std::vector<std::string> keywor
     for(std::map<int,Borrower*>::iterator iter2=_borrowerContainer.begin();iter2 != _borrowerContainer.end();iter2++){
         concat=(*iter2).second->getFirstName() +" "+ (*iter2).second->getLastName() +" "+(*iter2).second->getAddress().getStreet();  //Concat all elements
         for(std::vector<std::string>::iterator iter=keywords.begin();iter != keywords.end();iter++){   //Go throught all parameters
-            if(concat.find((*iter))!=std::string::npos)
+            if(concat.find((*iter))!=std::string::npos) //if one parameter is found in our concat string
                 counter++;
         }
         if(counter!=0){ //One or more match found
@@ -87,7 +66,7 @@ std::vector<Borrower*> BorrowerContainer::search(std::vector<std::string> keywor
 
     std::vector<Borrower*> returnValue;
     for(std::multimap<int, Borrower*>::reverse_iterator it3 = list.rbegin(); it3 != list.rend(); it3++) {
-        returnValue.push_back((*it3).second);
+        returnValue.push_back((*it3).second);   //We only keep the Borrower* part
     }
 
     return returnValue;

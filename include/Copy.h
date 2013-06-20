@@ -13,40 +13,47 @@
 
 class Copy {
 public:
+    //Enum to define the three different status of damage
     enum Status{
         NEW,
         DAMAGED,
         UNUSABLE
     };
+
+    static int currentId;
+
     Copy(Vehicle* vehicle);
     Copy(const int &kilometers, const Status& status, const bool& dispo, Vehicle *vehicle, int id = -1);
 	Copy(const Copy& copy);
 	virtual ~Copy();
 
-	bool bringBack();
-	bool rent();
-	int getKilometers() const;
-	void setKilometers(int kilometers);
+    //Getters and Setters
     int getId() const;
     void setId(int id);
-     Vehicle* getVehicle() const;
+
+	int getKilometers() const;
+	void setKilometers(int kilometers);
+
+    Vehicle* getVehicle() const;
+
     void setDispo(const bool &dispo);
     bool isDispo();
+
     const Status& getStatus();
     void setStatus(Status status);
+
     const bool& isActive();
     void setActive(bool b);
 
-    static int currentId;
-
+    //Overload
 	friend std::ostream& operator<< (std::ostream& out, const Copy& copy);
 	friend std::istream& operator>> (std::istream& in, Copy& copy);
-    Status _status;
 private:
     int _id;
 	int _kilometers;
     bool _dispo;
     bool _active;
+    Status _status;
 
 	Vehicle* _vehicle;
 };

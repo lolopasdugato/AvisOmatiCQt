@@ -1,23 +1,6 @@
 #include "../include/mainwindow.h"
 #include "ui_mainwindow.h"
 
-std::string toString(const int& i){
-    std::ostringstream oss;
-    oss << i;
-    return oss.str();
-}
-
-std::vector<std::string> split(QString string){
-    std::vector<std::string> returnValue;
-    QStringList fields = string.split(QRegExp(",| "));
-
-    for(int i = 0; i<fields.size(); ++i){
-        returnValue.push_back(fields[i].toStdString());
-    }
-
-    return returnValue;
-}
-
 template<typename Type> bool in(std::vector<Type> firstOp, Type secondOp)
 {
     for(typename std::vector<Type>::iterator it=firstOp.begin(); it!= firstOp.end();it++){
@@ -34,7 +17,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    // Load JeanLapin
+    //Load Xml
     XmlBorrower xmlBorrower;
     XmlCopy xmlCopy;
     XmlRent xmlRent;
@@ -43,6 +26,7 @@ MainWindow::MainWindow(QWidget *parent) :
     xmlCopy.read(&_vehicleContainer,&_copyContainer);
     xmlRent.read(&_rentContainer,&_copyContainer,&_borrowerContainer);
 
+    //Render
     renderBorrowerContainer();
     renderVehicleContainer();
     renderCopyContainer();
@@ -62,61 +46,7 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_NewBorrower_Clicked(){
-    ui->stackedWidget->setCurrentIndex(4);
-}
-
-void MainWindow::on_ListBorrower_Clicked(){
-    ui->stackedWidget->setCurrentIndex(6);
-    if(!selectedBorrower)
-        ui->pushButton_5->setEnabled(false);
-}
-
-void MainWindow::on_ListCopy_Clicked(){
-    ui->stackedWidget->setCurrentIndex(7);
-    if(!selectedCopy)
-        ui->pushButton_6->setEnabled(false);
-}
-
-void MainWindow::on_NewVehicle_Clicked(){
-    ui->stackedWidget->setCurrentIndex(3);
-}
-
-void MainWindow::on_ListVehicle_Clicked(){
-    ui->stackedWidget->setCurrentIndex(2);
-    if(!selectedVehicle){
-        ui->label_vehicle_copy->setEnabled(false);
-        ui->pushButton->setEnabled(false);
-    }
-}
-
-void MainWindow::on_NewRent_Clicked(){
-    if(selectedBorrower&&selectedCopy){
-        ui->stackedWidget->setCurrentIndex(5);
-        ui->pushButton_2->setEnabled(true);
-    }
-    else{
-        QMessageBox::critical(this, "AvisOmatiC", "Please, select a borrower and a copy before.");
-        return;
-    }
-
-}
-
-void MainWindow::on_RentList_Clicked(){
-    ui->stackedWidget->setCurrentIndex(8);
-}
-
-void MainWindow::on_returnRent_Clicked(){
-    if(selectedRent){
-        ui->stackedWidget->setCurrentIndex(9);
-    }
-    else{
-        QMessageBox::critical(this, "AvisOmatiC", "Please, select a rent before.");
-        ui->stackedWidget->setCurrentIndex(8);
-    }
-}
-
-
+//Add New Borrower
 void MainWindow::on_button_newBorrower_clicked()
 {
     _borrowerContainer.add(ui->line_new_borro_firstname->text().toStdString(),
@@ -138,6 +68,7 @@ void MainWindow::on_button_newBorrower_clicked()
     ui->line_new_borro_phone->clear();
 }
 
+//Add new Vehicle
 void MainWindow::on_button_newvehicle_clicked()
 {
     Vehicle::Type type;
@@ -160,6 +91,7 @@ void MainWindow::on_button_newvehicle_clicked()
     ui->spin_vehicle_cost->clear();
 }
 
+//Click on Vehicle table
 void MainWindow::on_table_vehicle_clicked(const QModelIndex &index)
 {
     std::vector<std::string> v;
@@ -193,6 +125,7 @@ void MainWindow::on_table_vehicle_clicked(const QModelIndex &index)
     ui->pushButton->setEnabled(true);
 }
 
+//Add new copy
 void MainWindow::on_pushButton_clicked()
 {
    if(ui->label_vehicle_copy->value()>_copyContainer.getNumberOf(selectedVehicle)){
@@ -201,6 +134,7 @@ void MainWindow::on_pushButton_clicked()
     }
 }
 
+//Click on Borrower table
 void MainWindow::on_tableWidget_clicked(const QModelIndex &index)
 {
     std::vector<std::string> v;
@@ -226,6 +160,7 @@ void MainWindow::on_tableWidget_clicked(const QModelIndex &index)
     ui->pushButton_5->setEnabled(true);
 }
 
+//Change in Copy table
 void MainWindow::on_tableWidget_2_cellChanged(int row, int column)
 {
     //The user change and we save
@@ -235,6 +170,7 @@ void MainWindow::on_tableWidget_2_cellChanged(int row, int column)
     }
 }
 
+//Click on Copy table
 void MainWindow::on_tableWidget_2_clicked(const QModelIndex &index)
 {
     int id = ui->tableWidget_2->item(index.row(),0)->text().toInt();
@@ -265,93 +201,7 @@ void MainWindow::on_tableWidget_2_clicked(const QModelIndex &index)
     ui->pushButton_6->setEnabled(true);
 }
 
-//-----------------------------------------------------------------------//
-
-void MainWindow::renderCopyContainer(){
-    removeAllRows(ui->tableWidget_2);
-    int minorV= 0;
-
-    for(int i=0; i<_copyContainer.size();i++){
-        if(_copyContainer.getCopyContainer()[i+1]->isActive()){
-            renderRowInTable(ui->tableWidget_2,i-minorV,_copyContainer.display(i));
-                    ui->tableWidget_2->item(i-minorV, 0)->setBackground(Qt::white);
-            if(!_copyContainer.getCopyContainer()[i+1]->isDispo())
-                ui->tableWidget_2->item(i-minorV, 0)->setBackground(Qt::red);
-        }
-        else
-            minorV++;
-    }
-}
-
-void MainWindow::renderVehicleContainer(){
-    removeAllRows(ui->table_vehicle);
-
-    for(int i=0; i<_vehicleContainer.size();i++){
-        renderRowInTable(ui->table_vehicle,i,_vehicleContainer.display(i));
-    }
-}
-
-void MainWindow::renderBorrowerContainer(){
-    removeAllRows(ui->tableWidget);
-
-    int minorV=0;
-
-    for(int i=0; i<_borrowerContainer.size();i++){
-        if(_borrowerContainer.getBorrowerContainer()[i]->isActive())
-            renderRowInTable(ui->tableWidget,i-minorV,_borrowerContainer.display(i));
-        else
-            minorV++;
-    }
-}
-
-void MainWindow::renderRentContainer(){
-    removeAllRows(ui->tableWidget_3);
-
-    std::vector<std::string> data;
-
-    for(int i=0; i<_rentContainer.size();i++){
-        //Preparing data vector
-        data.clear();
-        data.push_back(toString(_rentContainer[i]->getId()));
-        data.push_back(_rentContainer[i]->getCopy()->getVehicle()->getBrand()+" "+_rentContainer[i]->getCopy()->getVehicle()->getName());
-        data.push_back(_rentContainer[i]->getBorrower()->getFirstName()+" "+_rentContainer[i]->getBorrower()->getLastName());
-        data.push_back(toString(QDate(_rentContainer[i]->getEnd().getYear(),_rentContainer[i]->getEnd().getMonth(),_rentContainer[i]->getEnd().getDay()).daysTo(QDate::currentDate())*-1));
-
-
-        renderRowInTable(ui->tableWidget_3,i,data);
-        if(_rentContainer[i]->getStatus())
-            ui->tableWidget_3->item(i, 0)->setBackground(Qt::green);
-        else
-            ui->tableWidget_3->item(i, 0)->setBackground(Qt::red);
-    }
-}
-
-void MainWindow::on_refresh_clicked(){
-    renderCopyContainer();
-    renderRentContainer();
-    renderBorrowerContainer();
-    renderVehicleContainer();
-}
-
-//-----------------------------------------------------------------------//
-
-void MainWindow::removeAllRows(QTableWidget* table){
-    while (table->rowCount() > 0)
-    {
-        table->removeRow(0);
-    }
-}
-
-void MainWindow::renderRowInTable(QTableWidget *table, int row, std::vector<std::string> list){
-    table->insertRow(row);
-    for(std::vector<std::string>::iterator it=list.begin();it<list.end();it++){
-        QTableWidgetItem *item = new QTableWidgetItem((*it).c_str());
-        table->setItem(row, it-list.begin(), item);
-    }
-}
-
-
-
+//Start date changed
 void MainWindow::on_date_rent_return_userDateChanged(const QDate &date)
 {
     if(selectedBorrower||selectedCopy){
@@ -361,6 +211,7 @@ void MainWindow::on_date_rent_return_userDateChanged(const QDate &date)
     }
 }
 
+//End date changed
 void MainWindow::on_date_rent_start_userDateChanged(const QDate &date)
 {
     if(selectedBorrower||selectedCopy){
@@ -371,6 +222,7 @@ void MainWindow::on_date_rent_start_userDateChanged(const QDate &date)
     }
 }
 
+//Add new rent
 void MainWindow::on_pushButton_2_clicked()
 {
     if(selectedCopy->isDispo()){
@@ -393,7 +245,8 @@ void MainWindow::on_pushButton_2_clicked()
 
         selectedBorrower=NULL;
     }
-    QMessageBox::critical(this, "AvisOmatiC", "This copy is already in rent.");
+    else
+        QMessageBox::critical(this, "AvisOmatiC", "This copy is already in rent.");
     selectedCopy=NULL;
     ui->label_vehicle_brand_2->clear();
     ui->label_vehicle_name_2->clear();
@@ -403,21 +256,13 @@ void MainWindow::on_pushButton_2_clicked()
     ui->pushButton_2->setEnabled(false);
 }
 
-void MainWindow::on_save_clicked(){
-    XmlBorrower xmlBorrower;
-    XmlCopy xmlCopy;
-    XmlRent xmlRent;
-
-    xmlBorrower.write(&_borrowerContainer);
-    xmlCopy.write(&_copyContainer);
-    xmlRent.write(_rentContainer);
-}
-
+//Vehicle sort : ALL
 void MainWindow::on_radioButton_2_clicked()
 {
     renderVehicleContainer();
 }
 
+//Vehicle sort : CAR
 void MainWindow::on_radioButton_3_clicked()
 {
     removeAllRows(ui->table_vehicle);
@@ -435,6 +280,7 @@ void MainWindow::on_radioButton_3_clicked()
     }
 }
 
+//Vehicle sort : MOTO
 void MainWindow::on_radioButton_clicked()
 {
     removeAllRows(ui->table_vehicle);
@@ -452,6 +298,7 @@ void MainWindow::on_radioButton_clicked()
     }
 }
 
+//Click rent table
 void MainWindow::on_tableWidget_3_clicked(const QModelIndex &index)
 {
     int id = ui->tableWidget_2->item(index.row(),0)->text().toInt();
@@ -477,6 +324,7 @@ void MainWindow::on_tableWidget_3_clicked(const QModelIndex &index)
     ui->pushButton_3->setEnabled(true);
 }
 
+//Rent return
 void MainWindow::on_pushButton_4_clicked()
 {
     selectedRent->setStatus(false);
@@ -491,6 +339,7 @@ void MainWindow::on_pushButton_4_clicked()
     renderCopyContainer();
 }
 
+//Insurance
 void MainWindow::on_radio_insu_clicked()
 {
     if(selectedBorrower||selectedCopy){
@@ -500,6 +349,7 @@ void MainWindow::on_radio_insu_clicked()
     }
 }
 
+//No Insurance
 void MainWindow::on_radio_noinsu_clicked()
 {
     if(selectedBorrower||selectedCopy){
@@ -540,6 +390,7 @@ int MainWindow::calculatePrice(int price, bool insu, int NbOfDay, int nbKm, int 
     return price2+fuelMalus+insuVal+km+damage;
 }
 
+//Edit bill
 void MainWindow::on_pushButton_3_clicked()
 {
     //Generate the bill and change the page
@@ -605,18 +456,29 @@ void MainWindow::on_pushButton_3_clicked()
     ui->stackedWidget->setCurrentIndex(1);
 }
 
+//Fuel level changed
 void MainWindow::on_combo_fuel_currentIndexChanged(int index)
 {
+    //Mute warnings
+    int i = index;
+    i++;
+
     int NbOfDays = QDate(selectedRent->getBegin().getYear(),selectedRent->getBegin().getMonth(),selectedRent->getBegin().getDay()).daysTo(QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()));
-    ui->label_return_realPrice->setText(QString::number(calculatePrice(selectedRent->getCopy()->getVehicle()->getDailyCost(),selectedRent->getInsurance(),NbOfDays,selectedRent->getCopy()->getKilometers(),ui->combo_fuel->currentIndex()*50,ui->comboBox->currentIndex(),QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()).daysTo(QDate::currentDate()))));
+    ui->label_return_realPrice->setText(QString::number(calculatePrice(selectedRent->getCopy()->getVehicle()->getDailyCost(),selectedRent->getInsurance(),NbOfDays,selectedRent->getCopy()->getKilometers(),i*50,ui->comboBox->currentIndex(),QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()).daysTo(QDate::currentDate()))));
 }
 
+//Damage level changed
 void MainWindow::on_comboBox_currentIndexChanged(int index)
 {
+    //Mute warnings
+    int i = index;
+    i++;
+
     int NbOfDays = QDate(selectedRent->getBegin().getYear(),selectedRent->getBegin().getMonth(),selectedRent->getBegin().getDay()).daysTo(QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()));
     ui->label_return_realPrice->setText(QString::number(calculatePrice(selectedRent->getCopy()->getVehicle()->getDailyCost(),selectedRent->getInsurance(),NbOfDays,selectedRent->getCopy()->getKilometers(),ui->combo_fuel->currentIndex()*50,ui->comboBox->currentIndex(),QDate(selectedRent->getEnd().getYear(),selectedRent->getEnd().getMonth(),selectedRent->getEnd().getDay()).daysTo(QDate::currentDate()))));
 }
 
+//Erase borrower
 void MainWindow::on_pushButton_5_clicked()
 {
     _borrowerContainer.erase(selectedBorrower);
@@ -625,6 +487,7 @@ void MainWindow::on_pushButton_5_clicked()
     ui->pushButton_5->setEnabled(false);
 }
 
+//Erase copy
 void MainWindow::on_pushButton_6_clicked()
 {
     _copyContainer.erase(selectedCopy);
@@ -633,11 +496,13 @@ void MainWindow::on_pushButton_6_clicked()
     ui->pushButton_6->setEnabled(false);
 }
 
+//Copy sort : ALL
 void MainWindow::on_radioButton_4_clicked()
 {
     renderCopyContainer();
 }
 
+//Copy sort : CAR
 void MainWindow::on_radioButton_5_clicked()
 {
     removeAllRows(ui->tableWidget_2);
@@ -659,6 +524,7 @@ void MainWindow::on_radioButton_5_clicked()
     }
 }
 
+//Copy sort : MOTO
 void MainWindow::on_radioButton_6_clicked()
 {
     removeAllRows(ui->tableWidget_2);
@@ -678,74 +544,6 @@ void MainWindow::on_radioButton_6_clicked()
         else
             minorV++;
     }
-}
-
-void MainWindow::on_search_Clicked(){
-    int currentId = ui->stackedWidget->currentIndex();
-    int i=0;
-    bool ok=false;
-    QString searchValue;
-    int minorV=0;
-
-    switch(currentId){
-    default:
-        QMessageBox::critical(this, "AvisOmatiC", "You can't make a search on this page.");
-        break;
-    case 2:
-        ok=false;
-        searchValue = QInputDialog::getText(this, "AvisOmatiC", "Enter the search parameters:", QLineEdit::Normal, QString(), &ok);
-        if(ok){
-            removeAllRows(ui->table_vehicle);
-            std::vector<std::string> search = split(searchValue);
-            std::vector<Vehicle*> returnValue = _vehicleContainer.search(search);
-            for(i=0; i<returnValue.size();i++){
-                renderRowInTable(ui->table_vehicle,i,returnValue[i]->display());
-            }
-        }
-        break;
-    case 6:
-        ok=false;
-        searchValue = QInputDialog::getText(this, "AvisOmatiC", "Enter the search parameters:", QLineEdit::Normal, QString(), &ok);
-        if(ok){
-            removeAllRows(ui->tableWidget);
-            std::vector<std::string> search = split(searchValue);
-            std::vector<Borrower*> returnValue = _borrowerContainer.search(search);
-            for(i=0; i<returnValue.size();i++){
-                for(i=0; i<returnValue.size();i++){
-                    if(returnValue[i]->isActive())
-                        renderRowInTable(ui->tableWidget,i-minorV,returnValue[i]->display());
-                    else
-                        minorV++;
-                }
-            }
-        }
-        break;
-    }
-}
-
-void MainWindow::on_stats_clicked(){
-    //Let's generate the stats!
-    std::vector<Vehicle*> statsCar = stats(Vehicle::car);
-    std::vector<Vehicle*> statsMoto = stats(Vehicle::moto);
-
-    //Car
-
-    if(statsCar.size()>0)
-        ui->label_stats_car_1->setText((statsCar[0]->getBrand()+" "+statsCar[0]->getName()).c_str());
-    if(statsCar.size()>1)
-        ui->label_stats_car_2->setText((statsCar[1]->getBrand()+" "+statsCar[1]->getName()).c_str());
-    if(statsCar.size()>2)
-        ui->label_stats_car_3->setText((statsCar[2]->getBrand()+" "+statsCar[2]->getName()).c_str());
-
-    if(statsMoto.size()>0)
-        ui->label_stats_moto_1->setText((statsMoto[0]->getBrand()+" "+statsMoto[0]->getName()).c_str());
-    if(statsMoto.size()>1)
-        ui->label_stats_moto_2->setText((statsMoto[1]->getBrand()+" "+statsMoto[1]->getName()).c_str());
-    if(statsMoto.size()>2)
-        ui->label_stats_moto_3->setText((statsMoto[2]->getBrand()+" "+statsMoto[2]->getName()).c_str());
-
-
-    ui->stackedWidget->setCurrentIndex(10);
 }
 
 std::vector<Vehicle*> MainWindow::stats(Vehicle::Type c){

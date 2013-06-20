@@ -14,16 +14,10 @@ class XmlRent : public QWidget
     Q_OBJECT
 public:
     explicit XmlRent(QWidget *parent = 0);
+    virtual ~XmlRent();
 
     bool read(std::vector<Rent*>*, CopyContainer* copyContainer, BorrowerContainer* borrowerContainer);
-    bool write(std::vector<Rent*>);
-
-    virtual ~XmlRent();
-    
-signals:
-    
-public slots:
-    
+    bool write(std::vector<Rent*>);    
 };
 
 #endif // XMLRENT_H
