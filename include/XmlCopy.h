@@ -14,8 +14,9 @@ class XmlCopy : public QWidget
 public:
     explicit XmlCopy(QWidget *parent = 0);
     virtual ~XmlCopy();
-
+    // Lecture du fichier CopyList.xml
     bool read(VehicleContainer* vehicleContainer, CopyContainer* copyContainer);
+    // Ecriture dans le fichier CopyList.xml
     bool write(CopyContainer* copyContainer);   
 };
 

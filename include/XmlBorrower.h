@@ -16,7 +16,9 @@ public:
     explicit XmlBorrower(QWidget *parent = 0);
     virtual ~XmlBorrower();
 
+    // Lecture du fichier BorrowerList.xml
     bool read(BorrowerContainer* borrowerContainer);
+    // Ecriture dans le fichier BorrowerList.xml
     bool write(BorrowerContainer* borrowerContainer);    
 };
 

@@ -15,8 +15,9 @@ class XmlRent : public QWidget
 public:
     explicit XmlRent(QWidget *parent = 0);
     virtual ~XmlRent();
-
+    // Lecture du fichier RentList.xml
     bool read(std::vector<Rent*>*, CopyContainer* copyContainer, BorrowerContainer* borrowerContainer);
+    // Ecriture dans le fichier RentList.xml
     bool write(std::vector<Rent*>);    
 };
 

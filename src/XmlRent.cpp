@@ -22,11 +22,9 @@ bool XmlRent::read(std::vector<Rent *> *rentContainer, CopyContainer* copyContai
     }
 
     int i(0), j(0);
-    // QString affichage;
     QDomNodeList tab1, tab2;
-    QDomElement mesure;
+    QDomElement rent;
     QDomNode n;
-    // QMessageBox a(0);
     QDomElement racine = dom->documentElement(); // renvoie la balise racine
     QDomNode noeud = racine.firstChild(); // renvoie la première balise « mesure »
 
@@ -39,16 +37,15 @@ bool XmlRent::read(std::vector<Rent *> *rentContainer, CopyContainer* copyContai
     {
         // convertit le nœud en élément pour utiliser les
         // méthodes tagName() et attribute()
-        mesure = noeud.toElement();
-        // vérifie la présence de la balise « mesure »
-        if (mesure.tagName() == "rent")
+        rent = noeud.toElement();
+        // vérifie la présence de la balise « rent »
+        if (rent.tagName() == "rent")
         {
-            tab1 = mesure.childNodes(); // crée un tableau des enfants de « mesure »
+            tab1 = rent.childNodes(); // crée un tableau des enfants de « rent »
             for(i = 0; i < tab1.length(); i++)
             {
-                // pour chaque enfant, on extrait la donnée et on concatène
+                // pour chaque enfant, on extrait la donnée
                 n = tab1.item(i);
-                // affichage = affichage + " " + n.firstChild().toText().data();
                 if (n.toElement().tagName() == "copy") copyID = n.firstChild().toText().data().toInt();
                 else if (n.toElement().tagName() == "borrower") borrowerID = n.firstChild().toText().data().toInt();
                 else if (n.toElement().tagName() == "status") status = n.firstChild().toText().data().toInt();
@@ -57,7 +54,6 @@ bool XmlRent::read(std::vector<Rent *> *rentContainer, CopyContainer* copyContai
                     tab2 = n.toElement().childNodes();
                     for(j = 0; j < tab2.length(); j++) {
                         n = tab2.item(j);
-                        // affichage = affichage + " " + n.firstChild().toText().data();
                         if(n.toElement().tagName() == "day1") begin.setDay(n.firstChild().toText().data().toInt());
                         else if(n.toElement().tagName() == "month1") begin.setMonth(n.firstChild().toText().data().toInt());
                         else if(n.toElement().tagName() == "year1") begin.setYear(n.firstChild().toText().data().toInt());
@@ -67,34 +63,25 @@ bool XmlRent::read(std::vector<Rent *> *rentContainer, CopyContainer* copyContai
                     tab2 = n.toElement().childNodes();
                     for(j = 0; j < tab2.length(); j++) {
                         n = tab2.item(j);
-                        // affichage = affichage + " " + n.firstChild().toText().data();
                         if(n.toElement().tagName() == "day2") end.setDay(n.firstChild().toText().data().toInt());
                         else if(n.toElement().tagName() == "month2") end.setMonth(n.firstChild().toText().data().toInt());
                         else if(n.toElement().tagName() == "year2") end.setYear(n.firstChild().toText().data().toInt());
                     }
                 }
             }
-            // a.setText(affichage); // affichage dans un QMessageBox
-            // a.exec();
+            // On stocke la nouvelle location en mémoire.
             Rent* a = new Rent(copyContainer->getCopyContainer().at(copyID), borrowerContainer->getBorrowerContainer().at(borrowerID), begin, end);
             a->setInsurance(insurance);
             a->setStatus(status);
             rentContainer->push_back(a);
         }
-        noeud = noeud.nextSibling(); // passe à la "mesure" suivante
+        noeud = noeud.nextSibling(); // passe à la "rent" suivante
     }
     xml_doc.close();
     return true;
 }
 
 bool XmlRent::write(std::vector<Rent*> rent) {
-
-    /* Tests
-    BorrowerContainer *borrowerContainer = new BorrowerContainer;
-    Address addresss;
-    borrowerContainer->add("Jean", "Jacques", addresss, "465789123");
-    borrowerContainer->add("Jean", "Lapin", addresss, "465487496546");
-    */
 
     std::vector<Rent*>::iterator it;
     QDomElement xml;
@@ -109,9 +96,11 @@ bool XmlRent::write(std::vector<Rent*> rent) {
     out.setDevice(&file); // association du flux au fichier
 
     for(it = rent.begin(); it != rent.end(); it++) {
+        // Création et filiation de rent à xml
         QDomElement rent = dom->createElement("rent");
         xml.appendChild(rent);
 
+        // Créations et filiations des noeuds éléments de rent
         QDomElement copy = dom->createElement("copy");
         rent.appendChild(copy);
         QDomElement borrower = dom->createElement("borrower");
@@ -125,6 +114,7 @@ bool XmlRent::write(std::vector<Rent*> rent) {
         QDomElement insurance = dom->createElement("insurance");
         rent.appendChild(insurance);
 
+        // Créations et filiations des noeuds éléments des dates
         QDomElement day1 = dom->createElement("day1");
         begin.appendChild(day1);
         QDomElement day2 = dom->createElement("day2");
@@ -138,6 +128,7 @@ bool XmlRent::write(std::vector<Rent*> rent) {
         QDomElement year2 = dom->createElement("year2");
         end.appendChild(year2);
 
+        // On écrit les noeuds textes en fonction de ce qui est présent en mémoire
         copy.appendChild(QDomText(dom->createTextNode(QString::number((*it)->getCopy()->getId()))));
         borrower.appendChild(QDomText(dom->createTextNode(QString::number((*it)->getBorrower()->getId()))));
         day1.appendChild(QDomText(dom->createTextNode(QString::number((*it)->getBegin().getDay()))));

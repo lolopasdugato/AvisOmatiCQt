@@ -72,6 +72,7 @@ bool XmlCopy::read(VehicleContainer* vehicleContainer, CopyContainer* copyContai
                     a.push_back(brand);
                     a.push_back(name);
                     b = vehicleContainer->search(a);
+                    // On stocke le véhicule si celui-ci n'existe pas déjà
                     if (b.size() == 0 || (b.size() != 0 && !(b.front()->getName() == name && b.front()->getBrand() == brand))) vehicleContainer->add(brand, name, type, cost);
 
                 }
@@ -90,13 +91,12 @@ bool XmlCopy::read(VehicleContainer* vehicleContainer, CopyContainer* copyContai
                         else if (n.toElement().tagName() == "id") id = n.firstChild().toText().data().toInt();
                         else if (n.toElement().tagName() == "active") active = n.firstChild().toText().data().toInt();
                     }
+                    // On stocke l'exemplaire et on le relie au bon véhicule
                     if (b.size() == 0 || (b.size() != 0 && !(b.front()->getName() == name && b.front()->getBrand() == brand))) copyContainer->add(kilometers, status, dispo, vehicleContainer->getVehicleList().back(), id);
                     else copyContainer->add(kilometers, status, dispo, b.front(), id, active);
                 }
-                noeud2 = noeud2.nextSibling();
+                noeud2 = noeud2.nextSibling(); // On passe au sous noeud suivants (characteristics ou vehicle)
             }
-            // a.setText(affichage); // affichage dans un QMessageBox
-            // a.exec();
         }
         noeud = noeud.nextSibling(); // passe à la "copy" suivante
     }

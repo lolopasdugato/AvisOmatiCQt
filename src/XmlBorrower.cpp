@@ -23,13 +23,11 @@ bool XmlBorrower::read(BorrowerContainer* borrowerContainer) {
 
 
     int i(0), j(0);
-    // QString affichage;
     QDomNodeList tab1, tab2;
-    QDomElement mesure;
+    QDomElement borrower;
     QDomNode n;
-    // QMessageBox a(0);
-    QDomElement racine = dom->documentElement(); // renvoie la balise racine
-    QDomNode noeud = racine.firstChild(); // renvoie la première balise « mesure »
+    QDomElement racine = dom->documentElement(); // renvoie la balise racine (xml)
+    QDomNode noeud = racine.firstChild(); // renvoie la première balise « borrower »
     std::string firstname("Default"), lastname("Default"), phoneNumber("Default");
     Address address;
     int id(-1);
@@ -40,16 +38,16 @@ bool XmlBorrower::read(BorrowerContainer* borrowerContainer) {
     {
         // convertit le nœud en élément pour utiliser les
         // méthodes tagName() et attribute()
-        mesure = noeud.toElement();
-        // vérifie la présence de la balise « mesure »
-        if (mesure.tagName() == "borrower")
+        borrower = noeud.toElement();
+        // vérifie la présence de la balise « borrower »
+        if (borrower.tagName() == "borrower")
         {
-            tab1 = mesure.childNodes(); // crée un tableau des enfants de « mesure »
+            tab1 = borrower.childNodes(); // crée un tableau des enfants de « borrower »
             for(i = 0; i < tab1.length(); i++)
             {
-                // pour chaque enfant, on extrait la donnée et on concatène
+                // pour chaque enfant, on extrait la donnée
                 n = tab1.item(i);
-                // affichage = affichage + " " + n.firstChild().toText().data();
+                // En fonction de la balise, on enregistre dans une variable spécifique.
                 if (n.toElement().tagName() == "firstname") firstname = n.firstChild().toText().data().toStdString();
                 else if (n.toElement().tagName() == "lastname") lastname = n.firstChild().toText().data().toStdString();
                 else if (n.toElement().tagName() == "phone") phoneNumber = n.firstChild().toText().data().toStdString();
@@ -59,7 +57,6 @@ bool XmlBorrower::read(BorrowerContainer* borrowerContainer) {
                     tab2 = n.toElement().childNodes();
                     for(j = 0; j < tab2.length(); j++) {
                         n = tab2.item(j);
-                        // affichage = affichage + " " + n.firstChild().toText().data();
                         if (n.toElement().tagName() == "street") address.setStreet(n.firstChild().toText().data().toStdString());
                         else if(n.toElement().tagName() == "nb") address.setNumber(n.firstChild().toText().data().toInt());
                         else if(n.toElement().tagName() == "city") address.setCity(n.firstChild().toText().data().toStdString());
@@ -67,24 +64,15 @@ bool XmlBorrower::read(BorrowerContainer* borrowerContainer) {
                     }
                 }
             }
-            // a.setText(affichage); // affichage dans un QMessageBox
-            // a.exec();
             borrowerContainer->add(firstname, lastname, address, phoneNumber, id, active);
         }
-        noeud = noeud.nextSibling(); // passe à la "mesure" suivante
+        noeud = noeud.nextSibling(); // passe au "borrower" suivant
     }
     xml_doc.close();
     return true;
 }
 
 bool XmlBorrower::write(BorrowerContainer* borrowerContainer) {
-
-    /* Tests
-    BorrowerContainer *borrowerContainer = new BorrowerContainer;
-    Address addresss;
-    borrowerContainer->add("Jean", "Jacques", addresss, "465789123");
-    borrowerContainer->add("Jean", "Lapin", addresss, "465487496546");
-    */
 
     std::map<int, Borrower*>::iterator it;
     std::map<int, Borrower*> container = borrowerContainer->getBorrowerContainer();
@@ -99,17 +87,22 @@ bool XmlBorrower::write(BorrowerContainer* borrowerContainer) {
         return false; // en écriture
     out.setDevice(&file); // association du flux au fichier
 
+    // Boucle qui pour chaque élément du conteneur va créer un arborescence XML de type borrower
     for(it = container.begin(); it != container.end(); it++) {
+        // Création et filiation de la balise borrower
         QDomElement borrower = dom->createElement("borrower");
         xml.appendChild(borrower);
+
+        // Créations et filiations des sous balises de borrower
         QDomElement firstname = dom->createElement("firstname");
         borrower.appendChild(firstname);
         QDomElement lastname = dom->createElement("lastname");
         borrower.appendChild(lastname);
         QDomElement address = dom->createElement("address");
         borrower.appendChild(address);
-        QDomElement street = dom->createElement("street");
 
+        // Créations et filiations des sous balises de adress
+        QDomElement street = dom->createElement("street");
         address.appendChild(street);
         QDomElement nb = dom->createElement("nb");
         address.appendChild(nb);
@@ -118,6 +111,7 @@ bool XmlBorrower::write(BorrowerContainer* borrowerContainer) {
         QDomElement pc = dom->createElement("pc");
         address.appendChild(pc);
 
+        // Créations et filiations des sous balises de borrower
         QDomElement phone = dom->createElement("phone");
         borrower.appendChild(phone);
         QDomElement id = dom->createElement("id");
@@ -125,6 +119,7 @@ bool XmlBorrower::write(BorrowerContainer* borrowerContainer) {
         QDomElement active = dom->createElement("active");
         borrower.appendChild(active);
 
+        // Ici, pour chaque noeud élément, on crée un noeud texte associé en fonction du contenu du conteneur
         firstname.appendChild(QDomText(dom->createTextNode((*it).second->getFirstName().c_str())));
         lastname.appendChild(QDomText(dom->createTextNode((*it).second->getLastName().c_str())));
         street.appendChild(QDomText(dom->createTextNode((*it).second->getAddress().getStreet().c_str())));

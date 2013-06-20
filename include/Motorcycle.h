@@ -33,7 +33,6 @@ public:
 
 private:
     std::string _cylinder;
-    Vehicle::Type _type;
 };
 
 #endif /* MOTORCYCLE_H_ */
